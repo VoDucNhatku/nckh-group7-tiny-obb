@@ -43,7 +43,7 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 
 ## Đọc gì trước
 
-1. [notes/t07-c3-proposal-nhom7-EN.pdf](notes/t07-c3-proposal-nhom7-EN.pdf): bản nộp trường, 11 trang, theo mẫu AITA Lab.
+1. [notes/Group7.pdf](notes/Group7.pdf): bản nộp trường, 11 trang, theo mẫu AITA Lab. Slide thuyết trình đi kèm: [notes/Group7-proposal-presentation.pptx](notes/Group7-proposal-presentation.pptx), 18 slide, khoảng 15 phút, có speaker notes.
 2. [notes/t07-c3-proposal-v2-EN.md](notes/t07-c3-proposal-v2-EN.md): bản đầy đủ có công thức, 8 nhánh thí nghiệm, cổng khả thi (§10), timeline (§11), rủi ro (§12) và danh mục tham khảo có link.
 3. [ROADMAP.md](ROADMAP.md): checklist Pha 0 và 9 giai đoạn.
 4. [notes/claims-ledger.md](notes/claims-ledger.md): mọi khẳng định về novelty/venue và lịch sử sửa đổi.
@@ -55,9 +55,10 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 ├── ROADMAP.md                   ← kế hoạch 14 tuần + checklist (tick khi xong)
 ├── notes/
 │   ├── t07-c3-proposal-v2-EN.md        ← proposal đầy đủ (bản gốc)
-│   ├── t07-c3-proposal-nhom7-EN.pdf    ← proposal theo mẫu trường (bản nộp)
-│   ├── t07-c3-proposal-template-EN.docx← nguồn của bản PDF trên
-│   ├── t07-c3-introduction-EN.pptx     ← 20 slide giới thiệu trên lớp
+│   ├── Group7.pdf                      ← proposal theo mẫu trường (bản nộp)
+│   ├── Group7-proposal-presentation.pptx ← slide thuyết trình proposal (18 slide)
+│   ├── t07-c3-proposal-template-EN.docx← nguồn của Group7.pdf
+│   ├── t07-c3-introduction-EN.pptx     ← 20 slide giới thiệu chủ đề cho cả lớp
 │   ├── figs/                           ← hình 1–2 của proposal
 │   ├── t07-c3-evidence-dossier.md      ← bằng chứng theo trang/bảng/dòng code
 │   ├── t07-c3-novelty-rescan.md        ← quét độ mới + 10 phản biện giả định
@@ -103,3 +104,4 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 | 2026-10-07 | Xếp ưu tiên hướng Q4; các hướng dự phòng C-8, C-9 | notes/synthesize-gaps-t07-q4-priority.md |
 | 2026-10-08 | Proposal v2 (C-10, REVISION của C-3), bản theo mẫu trường, slide giới thiệu | notes/t07-c3-* |
 | 2026-10-08 | Tạo repo GitHub, ROADMAP, Issues/Milestones | README.md, ROADMAP.md |
+| 2026-10-08 | Group7.pdf thành bản nộp duy nhất; slide thuyết trình proposal | notes/Group7.pdf, notes/Group7-proposal-presentation.pptx |
