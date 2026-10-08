@@ -1,0 +1,51 @@
+# Whitelist: ignore everything, then re-include only what the team shares.
+# Paper PDFs, SLR reading notes, raw caches (~1.3 GB) and logs stay local on purpose
+# (copyright + size). To share a new file, add a "!path" line below.
+/*
+!/.gitignore
+!/README.md
+!/ROADMAP.md
+
+# --- proposal & decisions (notes/) ---
+!/notes/
+/notes/*
+!/notes/t07-c3-proposal-v2-EN.md
+!/notes/t07-c3-proposal-nhom7-EN.pdf
+!/notes/t07-c3-proposal-template-EN.docx
+!/notes/t07-c3-introduction-EN.pptx
+!/notes/t07-c3-evidence-dossier.md
+!/notes/t07-c3-novelty-rescan.md
+!/notes/claims-ledger.md
+!/notes/r3-final-comparison.md
+!/notes/t07-tier-upgrade.md
+!/notes/synthesize-gaps-t07-q4-priority.md
+!/notes/t07-proposal.md
+!/notes/figs/
+
+# --- scripts that rebuild the proposal figures / docx ---
+!/scripts/
+/scripts/*
+!/scripts/t07-slr/
+/scripts/t07-slr/*
+!/scripts/t07-slr/common.py
+!/scripts/t07-slr/p12_proposal_figures.py
+!/scripts/t07-slr/p13_build_proposal_docx.js
+
+# --- experiments & manuscript (shared from day one) ---
+!/experiments/
+!/paper/
+
+# --- never commit, even inside shared folders ---
+~$*
+*.tmp
+__pycache__/
+.ipynb_checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+experiments/**/weights/
+experiments/**/data/
+.env
+*.key
+kaggle.json
