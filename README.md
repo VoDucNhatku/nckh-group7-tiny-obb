@@ -47,7 +47,7 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 2. [notes/t07-c3-proposal-v2-EN.md](notes/t07-c3-proposal-v2-EN.md): bản đầy đủ có công thức, 8 nhánh thí nghiệm, cổng khả thi (§10), timeline (§11), rủi ro (§12) và danh mục tham khảo có link.
 3. [ROADMAP.md](ROADMAP.md): checklist Pha 0 và 9 giai đoạn.
 4. [notes/claims-ledger.md](notes/claims-ledger.md): mọi khẳng định về novelty/venue và lịch sử sửa đổi.
-5. [notes/t07-foundation-G7-VI-v2.pdf](notes/t07-foundation-G7-VI-v2.pdf): sổ tay nền kiến thức tiếng Việt (detection, AI-TOD-R, TAL/STAL, OA-STAL v2, thiết kế thí nghiệm). Phụ lục tra nhanh ở mục E5. Kết quả rà soát nằm ở [notes/t07-foundation-review-2026-10-09.md](notes/t07-foundation-review-2026-10-09.md).
+5. [notes/t07-foundation-G7-VI-v3.pdf](notes/t07-foundation-G7-VI-v3.pdf): sổ tay nền kiến thức tiếng Việt, 61 trang (detection, AI-TOD-R, TAL/STAL, OA-STAL v2, thiết kế thí nghiệm, thực hành Phase 0 ở phần P, bảo vệ proposal ở phần D). Phụ lục tra nhanh ở mục E5, cuối sổ tay. Bản v2 cũ hơn vẫn giữ để đối chiếu. Kết quả rà soát nằm ở [notes/t07-foundation-review-2026-10-09.md](notes/t07-foundation-review-2026-10-09.md).
 
 ## Cấu trúc repo
 

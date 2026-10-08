@@ -44,7 +44,8 @@
 | 4 | Trung bình | Phần D1–D10 giải thích deck 20 slide giới thiệu (`t07-c3-introduction-EN.pptx`), không phải deck bảo vệ proposal 18 slide (`Group7-proposal-presentation.pptx`). Handbook cũng chưa nhắc tới bản nộp `Group7.pdf` và tên đề tài "...Training Signal?" | 50–59 | Chưa sửa |
 | 5 | Thấp | Bảng nguồn E4 trỏ tới file không có trên GitHub: `scripts/t07-slr/data/...` và `outputs/...`. Thành viên clone repo sẽ không mở được [S7], [S8], [S11]–[S14] | 67–68 | Chưa sửa |
 | 6 | Thấp | Thứ tự: phần tự kiểm tra của F1 dùng số 13.125, nhưng số này đến F3 mới giải thích. A1 nhắc "Hình 4" của paper nhưng không in hình | 6, 17 | Chưa sửa |
-| 7 | Thấp | Bìa không ghi mentor | 1 | Chưa sửa |
+| 7 | Thấp | Bìa không ghi mentor | 1 | Sửa ở v3 |
+| 8 | Thấp | Hình F3 ghi "0 ứng viên" cho hộp 4×4 tâm (8,8). Con số này chỉ đúng ở stride 8: tính đủ ba mức thì có 1 ứng viên, vì ở stride 16 có một điểm neo nằm đúng tại (8,8) (đã chạy lại bằng code) | 9 | Ghi chú ở P3 của v3 |
 
 ## 4. Những chỗ handbook đúng và proposal hoặc slide cần sửa theo
 
@@ -97,6 +98,38 @@
 7. bảng "hỏi gì thì mở mục nào".
 
 Mọi số trong E5 đã đối chiếu nguồn ngày 09/10/2026.
+
+## 7. Bản v3: gọn lại và bổ sung
+
+File: `notes/t07-foundation-G7-VI-v3.pdf`, **61 trang** (v1 68 trang, v2 73 trang). Script dựng: `outputs/.../t07-foundation-handbook-v3-2026-10-09/build/make_v3.py`.
+
+**Thay đổi so với v2:**
+- **Bỏ khoảng 20 trang trống.** Unit chỉ sang trang mới khi đổi phần; trong cùng một phần chỉ ngắt khi còn dưới khoảng 1/3 trang.
+- **Thay D1–D10 (deck 20 slide cũ) bằng 2 unit:**
+  - D1: bảng thông điệp của từng slide trong deck 18 slide, kèm câu hỏi hay gặp;
+  - D2: đọc `Group7.pdf` theo mục và danh sách chỗ cần sửa.
+- **Thêm phần P "Bắt tay vào thực nghiệm" (4 unit):**
+  - P1: dựng ảnh AI-TOD, nhãn AI-TOD-R (định dạng DOTA v1) và converter sang YOLO OBB. Converter có sẵn của Ultralytics gán cứng lớp DOTA, nên không dùng nguyên được.
+  - P2: các tham số phải đặt rõ, resume, ước lượng GPU-giờ, quy trình đo tốc độ.
+  - P3: code đếm ứng viên (đã chạy thử), các đại lượng của RQ2, ba quy tắc xung đột và nhánh A3.
+  - P4: SODA-A và DOTA-v2.0.
+- **Dời A5, B5, B6, C2 vào "Phụ lục chuyên sâu".** Mã unit giữ nguyên để tham chiếu chéo vẫn đúng.
+- **Các thay đổi nhỏ:**
+  - E3 và E4 cập nhật theo cấu trúc mới; E4 thêm nguồn [S15]–[S17] và ghi rõ file nào không có trên GitHub;
+  - E5 thêm câu hỏi trỏ tới phần P;
+  - bìa ghi mentor;
+  - sửa thêm 3 chỗ chữ dính số còn sót.
+
+**Nguồn mới đọc ngày 09/10/2026:**
+- README `jwwangchn/AI-TOD`;
+- repo `Chasel-Tsui/AI-TOD-R`: `configs/_base_/datasets/aitodr.py`, `mmrotate/datasets/aitodr.py`, `index.html`;
+- `docs.ultralytics.com/datasets/obb`, `docs.ultralytics.com/modes/train`;
+- `ultralytics/data/converter.py` (bản 8.4.174).
+
+**Chưa làm:**
+- chưa thống nhất dấu thập phân;
+- chưa mở được file Google Drive chứa nhãn AI-TOD-R;
+- chưa đọc lại paper SODA.
 
 ## Thuật ngữ (Glossary)
 
