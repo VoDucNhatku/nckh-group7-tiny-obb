@@ -7,8 +7,29 @@
 | Course / context | DPL302m (Deep Learning), semester 5; student research project (NCKH) |
 | Team / supervisor | [to be filled by the team] |
 | Date / version | 2026-10-08 · v2 (supersedes `notes/t07-proposal.md` v1 of 2026-10-01) |
-| Ledger entry | C-10, REVISION of C-3 (see §13) |
+| Ledger entry | C-10, REVISION of C-3 (see §13); **revised → C-11 on 2026-10-13** (see the revision box below) |
 | Status | **Not runnable as stated.** Data access (xView registration), throughput and the in-house baseline are unverified until Phase 0 passes (§10). No experiment has been run; **no result in this document is a measured outcome of this project.** |
+
+> **Revision v2.1 (2026-10-13, ledger C-11).** Adopted by the team after the Q2-level critique
+> (`notes/t07-critique-q2-2026-10-11.md`). Changes, all marked *[v2.1]* in the text:
+> 1. **Primary contrast** is now the threshold/coverage factorial **A0 (TAL), A1 (STAL-8), A2 (STAL-16),
+>    A8 (coverage-minimal floor)**; A4 vs A2 becomes a secondary mechanism test (§7.4, §8.5).
+>    Reason: Corollary 2 already predicts A4 ≈ A2 in expected candidate count.
+> 2. **New arm A8 [design]:** short side < $\sqrt{2}\,s_{\min}$ (11.31 px at $s=8$) is floored to
+>    11.31 px. Covering-radius argument [derived, critique §5.1]: any region whose short side is
+>    ≥ $\sqrt{2}\,s$ contains at least one anchor centre at every position and angle, so STAL-16 uses
+>    2× the minimal guaranteeing area.
+> 3. **Detection cap:** AITODReval keeps 1,500 detections **per (image, class)**; YOLO's `max_det` is
+>    per image, so we set `max_det = 12,000` (1,500 × 8 classes) (§8.2).
+> 4. **Bootstrap unit:** scene-clustered, not image-level, because crops of one scene are not
+>    independent (§8.6).
+> 5. **Scope for the 4-week plan (11/10 → 08/11/2026, `ROADMAP.md`):** YOLO26n only for ablations;
+>    A5–A7 cut; seeds 4–5 for the primary pair; RQ4 only if a second source-independent dataset is
+>    ready by 25/10. The 14-week timeline in §11 is superseded.
+> 6. Positioning must add **MCSA** (*Sci. Rep.* 2025, oriented-tiny sample assignment) and CDCEDet.
+>
+> Tier and band are unchanged: **T1**, Scopus conference (ICORE C–B) / Q4, conditional; Q2/Q1 not
+> defensible (C-11).
 
 **Evidence conventions.**
 - Bracketed numbers [n] refer to §16. Every factual statement about a paper is traceable to a page, table or code line in Appendix A.
@@ -283,6 +304,9 @@ Unit tests, written before any training, check P1–P5 on synthetic boxes. Diagn
 | A5 | similarity, side trigger 16 | default | isolates trigger vs shape (A5 vs A2) |
 | A6 | OA-STAL v2 | C-inside | conflict effect |
 | A7 | STAL-16 | C-inside | conflict effect without shape change |
+| **A8** *[v2.1]* | per-side floor, $t = s_{ref} = \sqrt{2}\,s_{\min} \approx 11.31$ | default | coverage-minimal floor; **part of the primary factorial** (A0/A1/A2/A8) |
+
+*[v2.1]* A5, A6 and A7 are cut from the 4-week plan; conflicts are measured through online logs and per-GT recall regression instead.
 
 **Primary comparison (pre-declared):** A4 vs A2 on $AP_t$ and $AP_{vt}$. All other contrasts are secondary and reported as such. A Gaussian candidate region in the spirit of DCFL [3] is added if budget allows. Otherwise its absence is stated as a limitation.
 
@@ -303,7 +327,7 @@ Unit tests, written before any training, check P1–P5 on synthetic boxes. Diagn
 ### 8.2 Evaluation protocol
 
 - **Scoring:** predictions are exported to DOTA-format text and scored **only** with the official `AITODReval`. Settings: IoU 0.50:0.05:0.95, `maxDets = 1500`, area bins very tiny [2², 8²], tiny [8², 16²], small [16², 32²], medium [32², 64²] [15].
-- **Detection cap:** Ultralytics defaults to `max_det = 300` [2]. We set `max_det ≥ 1500` (including the end-to-end head) and confidence 0.001.
+- **Detection cap:** Ultralytics defaults to `max_det = 300` [2]. We set `max_det = 12,000` *[v2.1]* — AITODReval's 1,500 cap applies per (image, class), and AI-TOD-R has 8 classes — including the end-to-end head, and confidence 0.001.
 - **Converter validation:** we reproduce one MMRotate row of Table II (RetinaNet-O, 1×) from the official configuration [15]. Pre-declared tolerance: within ±1.0 AP of 7.3 AP [3, p6]; otherwise the evaluator setup is investigated before any comparison is made.
 - **Reporting:** AP, AP50, AP75, the four size-bin APs, per-class AP, and parameters/FLOPs/latency measured on one GPU. YOLO26 rows report the end-to-end (one-to-one) and non-end-to-end branches separately.
 
@@ -345,7 +369,7 @@ Deviations are logged with reasons.
 
 - Three seeds per arm.
 - Report mean ± standard deviation.
-- Primary contrast: paired, image-level bootstrap (10,000 resamples) 95% confidence interval for $\Delta AP_t$ and $\Delta AP_{vt}$, pooled over seeds.
+- Primary contrast *[v2.1: the A0/A1/A2/A8 factorial]*: paired, **scene-clustered** bootstrap *[v2.1; was image-level]* (10,000 resamples) 95% confidence interval for $\Delta AP_t$ and $\Delta AP_{vt}$, pooled over seeds.
 - A difference is called an improvement only if the interval excludes 0 **and** the predicted class/configuration pattern holds (H3).
 - Secondary contrasts are reported without significance claims.
 
@@ -409,6 +433,8 @@ and record the cut in the log.
 
 ## 11. Timeline (14 weeks)
 
+> *[v2.1]* **Superseded** by the 4-week plan in `ROADMAP.md` (11/10 → 08/11/2026, gates 0–5). The table below is kept for the record.
+
 | Week | Work | Gate / deliverable |
 |---|---|---|
 | 1 | xView registration; rebuild AI-TOD-R images; pin the fork; unit tests for the surrogates (P1–P5) | Data present; tests pass |
@@ -464,6 +490,7 @@ and record the cut in the log.
   - the converter fails tolerance.
 - **Confidence:** medium for the benchmark and diagnosis (gaps checked on full text and code); low for the intervention (Corollary 2 bounds its mechanism).
 - **Ledger:** C-10, REVISION of C-3. Cause: new evidence (DIA-YOLO; the STAL version history; SARFA-Net/RDCNet; geometric defects of OA-STAL v1).
+- *[v2.1]* **Superseded by C-11** (2026-10-13): same tier and band; primary contrast changed to the A0/A1/A2/A8 factorial, `max_det = 12,000`, scene-clustered bootstrap, MCSA/CDCEDet added to the reading list. Q3 only if the primary contrast CI excludes 0 with the predicted density/configuration pattern on 2 source-independent datasets; Q2/Q1 not defensible.
 
 ---
 

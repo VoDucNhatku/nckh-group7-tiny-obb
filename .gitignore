@@ -5,6 +5,7 @@
 !/.gitignore
 !/README.md
 !/ROADMAP.md
+!/ROADMAP-14w-backup.md
 
 # --- proposal & decisions (notes/) ---
 !/notes/
@@ -26,6 +27,13 @@
 !/notes/synthesize-gaps-t07-q4-priority.md
 !/notes/t07-proposal.md
 !/notes/figs/
+!/notes/t07-critique-q2-2026-10-11.md
+!/notes/t07-dl-digest-2026-10-11.md
+!/notes/t07-dl-from-slides-VI.pdf
+!/notes/t07-dl-from-slides/
+/notes/t07-dl-from-slides/_qa/
+/notes/t07-dl-from-slides/*.print.html
+/notes/t07-dl-from-slides/lab_err.txt
 
 # --- scripts that rebuild the proposal figures / docx ---
 !/scripts/

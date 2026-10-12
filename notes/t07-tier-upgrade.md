@@ -1,5 +1,8 @@
 # #7 — Có thể nâng lên mức mới T2 / T3 không?
 
+> **Cập nhật 2026-10-13 (ledger C-12, REVISION của C-7).** "Gated angle supervision" nếu chỉ đổi trọng số một loss có sẵn thì là **T1** theo rubric, không phải T2 — đây là lỗi áp rubric lúc đề xuất. Hướng T2 thật (C-7′) phải đổi **đầu dự đoán/biểu diễn góc** (đầu góc xuất thêm độ tập trung + cổng đổi cả giám sát lẫn giải mã) và thắng đối chứng "chỉ gate loss". Bằng chứng mới thu hẹp độ mới: TOLF (arXiv 2601.00617), oriented DETR thời gian thực (arXiv 2603.15497). Mở hay đóng C-7′ tại Cổng 4 (01/11/2026); không đạt được trước 08/11/2026. Chi tiết: `notes/t07-critique-q2-2026-10-11.md` §5.2.
+
+
 - **Ngày:** 2026-10-02 · **Câu hỏi của user:** "t muốn mức mới T2 T3 của #7 thì theo m nghĩ có thể k"
 - **Căn cứ:** `notes/t07-proposal.md` (đề xuất T1, claim C-3); `logs/research-log.md` #1–#42 và U-01…U-04 (4 lượt tra mới, mức snippet).
 - **Nhắc lại thang mức mới** (rubric research-proposal-integrity §1):

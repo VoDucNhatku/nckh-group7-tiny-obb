@@ -1,0 +1,382 @@
+
+==============================================================================
+[A1] AI-TOD-R class counts (digest 2.1) -> imbalance
+==============================================================================
+sum of class counts = 752,460 (digest says 752,460) -> match=True
+  airplane          1,667    0.22%
+  bridge            1,541    0.20%
+  storage-tank     13,771    1.83%
+  ship             35,813    4.76%
+  swimming-pool     1,617    0.21%
+  vehicle         662,929   88.10%
+  person           34,490    4.58%
+  wind-mill           632    0.08%
+vehicle / wind-mill ratio = 1049x
+mean objects per image = 752460/28036 = 26.84
+
+==============================================================================
+[A2] Size bins of AITODReval (area = int(w*h)) and the s_eq vs per-side trap
+==============================================================================
+  very tiny  area [4,64]  s_eq in [2,8] px
+  tiny       area [64,256]  s_eq in [8,16] px
+  small      area [256,1024]  s_eq in [16,32] px
+  medium     area [1024,4096]  s_eq in [32,64] px
+  box 25x4: area=100, s_eq=10.00 -> bin tiny; STAL-8 fires=True, STAL-16 fires=True, dropped by loss (<2px)=False
+  box 12x4: area=48, s_eq=6.93 -> bin very tiny; STAL-8 fires=True, STAL-16 fires=True, dropped by loss (<2px)=False
+  box 10x10: area=100, s_eq=10.00 -> bin tiny; STAL-8 fires=False, STAL-16 fires=True, dropped by loss (<2px)=False
+  box 4x4: area=16, s_eq=4.00 -> bin very tiny; STAL-8 fires=True, STAL-16 fires=True, dropped by loss (<2px)=False
+  box 60x5: area=300, s_eq=17.32 -> bin small; STAL-8 fires=True, STAL-16 fires=True, dropped by loss (<2px)=False
+  box 3x1.5: area=4, s_eq=2.12 -> bin very tiny; STAL-8 fires=True, STAL-16 fires=True, dropped by loss (<2px)=True
+
+==============================================================================
+[A3] SIMULATED grouped split: 30 scenes x 4 tiles, 10% dev by scene vs by image
+==============================================================================
+by scene: train=108 dev=12 scenes split across both = 0
+by image: train=108 dev=12 scenes split across both = 10
+
+==============================================================================
+[B1] Output size formula floor((n+2p-f)/s)+1 for Conv(k=3,s=2,p=k//2) x5
+==============================================================================
+  input 800: P1..P5 = [400, 200, 100, 50, 25]
+  input 640: P1..P5 = [320, 160, 80, 40, 20]
+  torch check (800): [(400, 400), (200, 200), (100, 100), (50, 50), (25, 25)]
+  img 800: grids [100, 50, 25] -> anchors [10000, 2500, 625] total 13125
+  img 640: grids [80, 40, 20] -> anchors [6400, 1600, 400] total 8400
+  channels/anchor C=8: YOLO11 4*16+8+1=73, YOLO26 4+8+1=13
+  numbers per image: YOLO11 958,125; YOLO26 one branch 170,625; slide YOLO 3x3x16 = 144
+  binary classifiers per image = 13125*8 = 105,000
+
+==============================================================================
+[B2] Params of one Conv block (conv no bias + BN) vs slide formula
+==============================================================================
+  Conv(64->128,3x3,bias=False): 73,728 ; BN gamma+beta: 256 ; total learnable 73,984
+  slide formula (f*f*nc+1)*nc' = (3*3*64+1)*128 = 73,856
+  ILLUSTRATIVE cost at P3 100x100, 64->64 ch: normal 368,640,000 mult; dw+pw 46,720,000; ratio 0.127 ; slide approx 1/nc'+1/f^2 = 0.127
+
+==============================================================================
+[B3] Self-attention size: why only at P5
+==============================================================================
+  P5 (25x25): positions 625, attention matrix 390,625 entries, fp32 1.5 MiB per head
+  P4 (50x50): positions 2,500, attention matrix 6,250,000 entries, fp32 23.8 MiB per head
+  P3 (100x100): positions 10,000, attention matrix 100,000,000 entries, fp32 381.5 MiB per head
+  YOLO26n-OBB C2PSA: c1=256, self.c=128, num_heads=max(c//64,1)=2
+  YOLO26s-OBB C2PSA: c1=512, self.c=256, num_heads=max(c//64,1)=4
+
+==============================================================================
+[B4] Class-bias init ln(5/C/(640/s)^2), C=8 (head.py bias_init)
+==============================================================================
+  s= 8: bias=-9.234  sigmoid=0.000098  BCE of a negative at init = 0.000098
+  s=16: bias=-7.848  sigmoid=0.000390  BCE of a negative at init = 0.000391
+  s=32: bias=-6.461  sigmoid=0.001560  BCE of a negative at init = 0.001561
+
+==============================================================================
+[C1] Slide BCE (1.2 s010) on single examples and the cost over m=4
+==============================================================================
+  y=1, yhat=0.9: L=0.1054
+  y=1, yhat=0.5: L=0.6931
+  y=1, yhat=0.1: L=2.3026
+  y=0, yhat=0.2: L=0.2231
+  cost J = mean = 0.8311
+
+==============================================================================
+[C2] BCE with a SOFT target s=0.62: minimum is at p=s, not p=1
+==============================================================================
+  p=0.30: BCE=0.8820
+  p=0.62: BCE=0.6641
+  p=0.90: BCE=0.9403
+  p=0.99: BCE=1.7562
+  minimum value = H(0.62) = 0.6641  (never 0 for a soft target)
+
+==============================================================================
+[C3] Background anchor: sigmoid vs softmax (8 logits = -4.6)
+==============================================================================
+  sigmoid each = 0.0100 (sum 0.0796); softmax each = 0.1250 (sum 1.0000)
+  ship logit 2.0: sigmoid ship=0.8808 others=0.0100; softmax ship=0.9906
+
+==============================================================================
+[C4] SIMULATED image: who dominates L_cls, and why we divide by S not N*C
+==============================================================================
+  positives=40, S=sum soft=14.029
+  BCE sum: negatives 526.12 | positive anchors 27.56 | total 553.67
+  L_cls = total/S = 39.467 ; total/(N*C) = 0.00527
+  background p=0.005: negatives sum=526.12 vs positive anchors sum=27.56 -> L_cls=39.467
+  background p=0.0001: negatives sum=10.50 vs positive anchors sum=27.56 -> L_cls=2.713
+  if soft labels halve (worse matching): S=7.014, L_cls=78.086
+
+==============================================================================
+[C5] Axis-aligned IoU (slide 4.3 s026): 1-px shift, tiny vs large
+==============================================================================
+  4x4 shifted 1px: IoU=0.6000
+  4x4 shifted 2px: IoU=0.3333
+  10x10 shifted 1px: IoU=0.8182
+  40x40 shifted 1px: IoU=0.9512
+  40x40 shifted 4px: IoU=0.8182
+
+==============================================================================
+[C6] Rotated polygon IoU vs ProbIoU (re-implemented)
+==============================================================================
+  identical 10x10: polyIoU=1.0000  ProbIoU=0.99955
+  dtheta= 5deg: 12x4 poly=0.8705 prob=0.9182 | 10x10 poly=0.9231 prob=0.9996
+  dtheta=10deg: 12x4 poly=0.7658 prob=0.8395 | 10x10 poly=0.8632 prob=0.9996
+  dtheta=20deg: 12x4 poly=0.6018 prob=0.6998 | 10x10 poly=0.7802 prob=0.9996
+  dtheta=45deg: 12x4 poly=0.3084 prob=0.4781 | 10x10 poly=0.7071 prob=0.9996
+  dtheta=90deg: 12x4 poly=0.2000 prob=0.3675 | 10x10 poly=1.0000 prob=0.9996
+  4x4 shift 1px: poly=0.6000 prob=0.7009
+  40x40 shift 1px: poly=0.9512 prob=0.9694
+  boxes A=(20,20,12,4,30deg) B=(21,19.5,11,4.5,40deg): polyIoU=0.5873 ProbIoU=0.6856 -> 1-ProbIoU=0.3144
+
+==============================================================================
+[C7] eps_f floor=0.01 for sub-stride boxes (grid units) and gradient check
+==============================================================================
+  floor=0.0: var w^2/12=0.02083(+0.0) ProbIoU=0.4408 |dL/dx|=1.8437
+  floor=0.01: var w^2/12=0.02083(+0.01) ProbIoU=0.5269 |dL/dx|=1.6628
+  torch.autograd.gradcheck(1-ProbIoU) = True
+  analytic grad [ 1.3231 -0.5822 -0.1792 -0.1145  0.0423]
+  numeric  grad [ 1.3231 -0.5822 -0.1792 -0.1145  0.0423]
+  slide-2.1 difference = 3.38e-10
+
+==============================================================================
+[C8] DFL (reg_max=16) on one side distance
+==============================================================================
+  d=3.7 -> bins (3,4) weights (0.30,0.70)
+  ideal p(3)=0.3,p(4)=0.7: DFL=0.6109, decode E[k]=3.7000
+  peaked p(4)=0.9: DFL=1.5769, decode=4.3733
+  uniform: DFL=2.7726 (=ln16=2.7726), decode=7.5
+  raw target d=16.2: DFL uses clamp -> 14.99
+  raw target d=-0.8: DFL uses clamp -> 0.00
+  raw target d=0.25: DFL uses clamp -> 0.25
+  max representable side distance at stride 8: 14.99*8 = 119.9 px
+  max representable side distance at stride 16: 14.99*16 = 239.8 px
+  max representable side distance at stride 32: 14.99*32 = 479.7 px
+
+==============================================================================
+[C9] YOLO26 L1 on image-normalised distances
+==============================================================================
+  error 0.5 grid unit at stride 8, imgsz 800 -> |0.5*8/800| = 0.0050 per side
+  same error at stride 32 -> 0.0200 (4x larger)
+  negative target d=-0.8 kept: |0.2-(-0.8)|*8/800 = 0.0100
+
+==============================================================================
+[C10] Angle loss: sin^2(2*dtheta) and omega(r)=exp(-ln^2 r / 9)
+==============================================================================
+  dtheta=  0deg wrapped=   0.0 sin^2(2d)=0.0000
+  dtheta= 15deg wrapped=  15.0 sin^2(2d)=0.2500
+  dtheta= 30deg wrapped=  30.0 sin^2(2d)=0.7500
+  dtheta= 45deg wrapped=  45.0 sin^2(2d)=1.0000
+  dtheta= 60deg wrapped=  60.0 sin^2(2d)=0.7500
+  dtheta= 90deg wrapped=  90.0 sin^2(2d)=0.0000
+  dtheta=135deg wrapped= -45.0 sin^2(2d)=1.0000
+  dtheta=180deg wrapped=   0.0 sin^2(2d)=0.0000
+  aspect r= 1: omega=1.0000
+  aspect r= 2: omega=0.9480
+  aspect r= 3: omega=0.8745
+  aspect r= 4: omega=0.8077
+  aspect r= 8: omega=0.6185
+  aspect r=16: omega=0.4256
+
+==============================================================================
+[C11] YOLO26 progressive weight alpha(e) = 0.1 + 0.7*max(1-e/(E-1),0)
+==============================================================================
+  E=100: e=0:0.800, e=1:0.793, e=25:0.623, e=50:0.446, e=75:0.270, e=99:0.100
+  E=24: e=0:0.800, e=1:0.770, e=6:0.617, e=12:0.435, e=18:0.252, e=23:0.100
+  E=12: e=0:0.800, e=1:0.736, e=3:0.609, e=6:0.418, e=9:0.227, e=11:0.100
+
+==============================================================================
+[D1] TAL alignment t = s^0.5 * u^6
+==============================================================================
+  s=0.9, u=0.5: t=0.01482
+  s=0.1, u=0.9: t=0.16806
+  s=0.5, u=0.7: t=0.08319
+  s=0.5, u=0.35: t=0.00130
+  soft labels for t=[0.02 0.01], u=[0.5 0.4]: [0.5  0.25]
+
+==============================================================================
+[D2] Candidate regions per rule and Prop.1 expectation E[N]=21/1024*area
+==============================================================================
+  21/1024 = 0.020508
+  GT 4x4: A0 4.00x4.00=0.33 | A1 16.00x16.00=5.25 | A2 16.00x16.00=5.25 | A4 16.00x16.00=5.25 | A8 11.31x11.31=2.63
+  GT 12x4: A0 12.00x4.00=0.98 | A1 12.00x16.00=3.94 | A2 16.00x16.00=5.25 | A4 27.71x9.24=5.25 | A8 12.00x11.31=2.78
+  GT 10x10: A0 10.00x10.00=2.05 | A1 10.00x10.00=2.05 | A2 16.00x16.00=5.25 | A4 16.00x16.00=5.25 | A8 11.31x11.31=2.63
+  GT 25x4: A0 25.00x4.00=2.05 | A1 25.00x16.00=8.20 | A2 25.00x16.00=8.20 | A4 32.00x8.00=5.25 | A8 25.00x11.31=5.80
+  GT 60x5: A0 60.00x5.00=6.15 | A1 60.00x16.00=19.69 | A2 60.00x16.00=19.69 | A4 60.00x5.00=6.15 | A8 60.00x11.31=13.92
+  GT 12x8: A0 12.00x8.00=1.97 | A1 12.00x8.00=1.97 | A2 16.00x16.00=5.25 | A4 19.60x13.06=5.25 | A8 12.00x11.31=2.78
+  GT 20x5: A0 20.00x5.00=2.05 | A1 20.00x16.00=6.56 | A2 20.00x16.00=6.56 | A4 32.00x8.00=5.25 | A8 20.00x11.31=4.64
+
+==============================================================================
+[D3] Monte Carlo of Prop.1: random position (uniform in a 32x32 period) and angle
+==============================================================================
+  GT  4x4  A0 TAL            region  4.00x 4.00: E[N] sim=0.323 pred=0.328 | P(N=0) sim=0.677 bound>=0.672 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT  4x4  A1 STAL-8         region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.938 (1-|g|/|R|=0.938)
+  GT  4x4  A2 STAL-16        region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.938 (1-|g|/|R|=0.938)
+  GT  4x4  A4 OA-STAL v2     region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.938 (1-|g|/|R|=0.938)
+  GT  4x4  A8 san phu 11,31  region 11.31x11.31: E[N] sim=2.623 pred=2.625 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.877 (1-|g|/|R|=0.875)
+  GT 10x10 A0 TAL            region 10.00x10.00: E[N] sim=2.049 pred=2.051 | P(N=0) sim=0.006 bound>=0.000 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT 10x10 A1 STAL-8         region 10.00x10.00: E[N] sim=2.049 pred=2.051 | P(N=0) sim=0.006 bound>=0.000 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT 10x10 A2 STAL-16        region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.610 (1-|g|/|R|=0.609)
+  GT 10x10 A4 OA-STAL v2     region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.610 (1-|g|/|R|=0.609)
+  GT 10x10 A8 san phu 11,31  region 11.31x11.31: E[N] sim=2.623 pred=2.625 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.219 (1-|g|/|R|=0.219)
+  GT 16x16 A0 TAL            region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT 12x4  A0 TAL            region 12.00x 4.00: E[N] sim=0.983 pred=0.984 | P(N=0) sim=0.233 bound>=0.016 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT 12x4  A1 STAL-8         region 12.00x16.00: E[N] sim=3.934 pred=3.938 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.750 (1-|g|/|R|=0.750)
+  GT 12x4  A2 STAL-16        region 16.00x16.00: E[N] sim=5.252 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.813 (1-|g|/|R|=0.812)
+  GT 12x4  A4 OA-STAL v2     region 27.71x 9.24: E[N] sim=5.260 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.813 (1-|g|/|R|=0.812)
+  GT 12x4  A8 san phu 11,31  region 12.00x11.31: E[N] sim=2.778 pred=2.784 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.646 (1-|g|/|R|=0.646)
+  GT 25x4  A0 TAL            region 25.00x 4.00: E[N] sim=2.052 pred=2.051 | P(N=0) sim=0.048 bound>=0.000 | frac cand outside true box=0.000 (1-|g|/|R|=0.000)
+  GT 25x4  A1 STAL-8         region 25.00x16.00: E[N] sim=8.203 pred=8.203 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.750 (1-|g|/|R|=0.750)
+  GT 25x4  A2 STAL-16        region 25.00x16.00: E[N] sim=8.203 pred=8.203 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.750 (1-|g|/|R|=0.750)
+  GT 25x4  A4 OA-STAL v2     region 32.00x 8.00: E[N] sim=5.256 pred=5.250 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.610 (1-|g|/|R|=0.609)
+  GT 25x4  A8 san phu 11,31  region 25.00x11.31: E[N] sim=5.794 pred=5.800 | P(N=0) sim=0.000 bound>=0.000 | frac cand outside true box=0.646 (1-|g|/|R|=0.646)
+
+==============================================================================
+[D4] Covering-radius check (critique 5.1 [design]): square side a, random angle, TAL
+==============================================================================
+  side  8.00: P(N=0)=0.0607  P(P3 count=0)=0.0877  min P3 count=0
+  side 10.00: P(N=0)=0.0059  P(P3 count=0)=0.0086  min P3 count=0
+  side 11.00: P(N=0)=0.0002  P(P3 count=0)=0.0002  min P3 count=0
+  side 11.31: P(N=0)=0.0000  P(P3 count=0)=0.0000  min P3 count=1
+  side 12.00: P(N=0)=0.0000  P(P3 count=0)=0.0000  min P3 count=1
+  side 16.00: P(N=0)=0.0000  P(P3 count=0)=0.0000  min P3 count=2
+  sqrt(2)*8 = 11.3137; area 128 px^2 -> E[N] = 2.625
+
+==============================================================================
+[D5] Conflict prediction: two identical 12x4 boxes, gap 2 px
+==============================================================================
+  A2 STAL-16        region 16.00x16.00: side-by-side shared=0.625 | end-to-end shared=0.126
+  A4 OA-STAL v2     region 27.71x9.24: side-by-side shared=0.351 | end-to-end shared=0.495
+  A8 san phu 11,31  region 12.00x11.31: side-by-side shared=0.469 | end-to-end shared=0.000
+
+==============================================================================
+[D6] Toy end-to-end: re-implemented RotatedTAL + v8OBBLoss (YOLO26 L1 branch), SIMULATED predictions
+==============================================================================
+  anchors in 128x128 image: 336 (16^2+8^2+4^2); GTs: ['ship 12x4', 'vehicle 5x5', 'tank 10x10', 'vehicle 5x3 (a)', 'vehicle 5x3 (b)']
+ arm A0 TAL
+  ('none',): candidates/GT=[1, 1, 2, 1, 1] positives/GT=[1, 1, 2, 1, 1] conflicts=0
+     max soft label/GT=[0.502, 0.287, 0.696, 0.325, 0.136]  S=1.9471  positives=6  positives needing a negative distance target=0
+     L_box=0.4717 L_cls=15.0941 L_l1=0.02741 L_ang=0.7279 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.8540
+ arm A1 STAL-8
+  ('per_side', 8.0, 16.0): candidates/GT=[5, 6, 2, 4, 6] positives/GT=[5, 6, 2, 2, 5] conflicts=3
+     max soft label/GT=[0.502, 0.287, 0.696, 0.325, 0.318]  S=2.3611  positives=20  positives needing a negative distance target=14
+     L_box=0.5014 L_cls=13.3288 L_l1=0.02581 L_ang=0.6158 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.0792
+ arm A2 STAL-16
+  ('per_side', 16.0, 16.0): candidates/GT=[5, 6, 5, 4, 6] positives/GT=[5, 6, 5, 2, 5] conflicts=3
+     max soft label/GT=[0.502, 0.287, 0.696, 0.325, 0.318]  S=2.3627  positives=23  positives needing a negative distance target=17
+     L_box=0.5015 L_cls=13.3232 L_l1=0.02582 L_ang=0.6160 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.0779
+ arm A4 OA-STAL v2
+  ('similarity',): candidates/GT=[7, 6, 5, 5, 6] positives/GT=[7, 6, 5, 3, 4] conflicts=4
+     max soft label/GT=[0.502, 0.287, 0.696, 0.325, 0.318]  S=2.3528  positives=25  positives needing a negative distance target=19
+     L_box=0.5007 L_cls=13.3592 L_l1=0.02577 L_ang=0.6153 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.0888
+ arm A8 san phu 11,31
+  ('per_side', 11.313708498984761, 11.313708498984761): candidates/GT=[2, 2, 2, 2, 4] positives/GT=[2, 2, 2, 1, 3] conflicts=2
+     max soft label/GT=[0.502, 0.287, 0.696, 0.325, 0.318]  S=2.1579  positives=10  positives needing a negative distance target=4
+     L_box=0.4777 L_cls=14.2419 L_l1=0.02498 L_ang=0.6131 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.3547
+  anchors with non-zero gradient per term (A2): {'cls': 336, 'box': 23, 'l1': 23, 'ang': 23} of 336
+ o2o branch (topk=7, topk2=1) on the same predictions, A2:
+  ('per_side', 16.0, 16.0): candidates/GT=[5, 6, 5, 4, 6] positives/GT=[1, 1, 1, 1, 1] conflicts=3
+     max soft label/GT=[0.502, 0.247, 0.696, 0.325, 0.318]  S=2.0882  positives=5  positives needing a negative distance target=2
+     L_box=0.4756 L_cls=14.1474 L_l1=0.02385 L_ang=0.6169 -> B*(7.5*box+0.5*cls+1.5*l1+1.0*ang) with B=1 = 11.2934
+  E=100 e=0: alpha=0.80: L_total = 0.80*11.0779 + 0.20*11.2934 = 11.1210
+  E=100 e=99: alpha=0.10: L_total = 0.10*11.0779 + 0.90*11.2934 = 11.2718
+
+==============================================================================
+[E1] Iterations, optimizer steps and optimizer=auto (trainer.py), N_train=12,600 [estimate]
+==============================================================================
+  batch 16: iterations/epoch=788, accumulate=4, optimizer steps/epoch~197
+  batch 8: iterations/epoch=1575, accumulate=8, optimizer steps/epoch~197
+  E= 12: auto-iterations=  2364 -> AdamW lr=0.000833; total forward/backward iterations=9456
+  E= 24: auto-iterations=  4728 -> AdamW lr=0.000833; total forward/backward iterations=18912
+  E= 50: auto-iterations=  9850 -> AdamW lr=0.000833; total forward/backward iterations=39400
+  E= 51: auto-iterations= 10047 -> MuSGD lr=0.01; total forward/backward iterations=40188
+  E=100: auto-iterations= 19700 -> MuSGD lr=0.01; total forward/backward iterations=78800
+  weight decay effective (batch 16, acc 4) = 0.0005*16*4/64 = 0.000500
+  weight decay effective (batch 12, acc 5) = 0.0005*12*5/64 = 0.000469
+  weight decay effective (batch 8, acc 8) = 0.0005*8*8/64 = 0.000500
+
+==============================================================================
+[E2] LR schedule lr0*[(1-e/E)(1-lrf)+lrf] vs slide 2.2 s050 decay; warmup
+==============================================================================
+  E=100 e=  0: lr=0.010000
+  E=100 e=  1: lr=0.009901
+  E=100 e=  3: lr=0.009703
+  E=100 e= 50: lr=0.005050
+  E=100 e= 99: lr=0.000199
+  slide alpha0=0.2 decay_rate=1 epoch 1: 0.1000
+  slide alpha0=0.2 decay_rate=1 epoch 2: 0.0667
+  slide alpha0=0.2 decay_rate=1 epoch 3: 0.0500
+  slide alpha0=0.2 decay_rate=1 epoch 4: 0.0400
+  warmup iterations = round(3*788) = 2364 (= 3 epochs); for E=12 warmup is 25% of training
+
+==============================================================================
+[E3] ModelEMA decay d(x)=0.9999*(1-exp(-x/2000)), x = optimizer steps; window ~ 1/(1-d)
+==============================================================================
+  after   197 steps (~  1.0 epochs): d=0.0938, window~     1.1 steps
+  after  1000 steps (~  5.1 epochs): d=0.3934, window~     1.6 steps
+  after  2000 steps (~ 10.2 epochs): d=0.6321, window~     2.7 steps
+  after  2364 steps (~ 12.0 epochs): d=0.6933, window~     3.3 steps
+  after  4728 steps (~ 24.0 epochs): d=0.9059, window~    10.6 steps
+  after  9850 steps (~ 50.0 epochs): d=0.9926, window~   135.8 steps
+  after 19700 steps (~100.0 epochs): d=0.9998, window~  6547.0 steps
+
+==============================================================================
+[E4] GPU-hours per run = N*E/(r*3600) (PROP 9) and Kaggle 12-h sessions
+==============================================================================
+  N=14000 E=100 r=100 img/s:  3.89 GPU-h -> sessions of 12 h: 1; epoch = 2.3 min
+  N=14000 E=100 r= 50 img/s:  7.78 GPU-h -> sessions of 12 h: 1; epoch = 4.7 min
+  N=14000 E=100 r= 25 img/s: 15.56 GPU-h -> sessions of 12 h: 2; epoch = 9.3 min
+  N=12600 E=100 r=100 img/s:  3.50 GPU-h -> sessions of 12 h: 1; epoch = 2.1 min
+  N=12600 E=100 r= 50 img/s:  7.00 GPU-h -> sessions of 12 h: 1; epoch = 4.2 min
+  N=12600 E=100 r= 25 img/s: 14.00 GPU-h -> sessions of 12 h: 2; epoch = 8.4 min
+  N=12600 E=12 r=25: 1.68 GPU-h
+  N=12600 E=24 r=25: 3.36 GPU-h
+
+==============================================================================
+[E5] R-native scale augmentation s~U(0.5,1.5) on tiny GTs (augment.py L1159)
+==============================================================================
+  native short side  3px: P(<8 after scale)=1.000  P(<16)=1.000  P(<=2, dropped)=0.167
+  native short side  4px: P(<8 after scale)=1.000  P(<16)=1.000  P(<=2, dropped)=0.000
+  native short side  6px: P(<8 after scale)=0.833  P(<16)=1.000  P(<=2, dropped)=0.000
+  native short side 10px: P(<8 after scale)=0.300  P(<16)=1.000  P(<=2, dropped)=0.000
+  native short side 14px: P(<8 after scale)=0.071  P(<16)=0.643  P(<=2, dropped)=0.000
+
+==============================================================================
+[F1] Slide 3.1 s014 precision/recall/F1
+==============================================================================
+  P=0.750 R=0.600 F1=0.667 acc=0.70
+  classifier A F1=0.9243, B F1=0.9104
+
+==============================================================================
+[F2] SIMULATED PR curve and COCO 101-point AP
+==============================================================================
+  detections=25, TP=14, GT=20, final recall=0.700, AP(101-pt)=0.6043
+
+==============================================================================
+[F3] How many of the 10 IoU thresholds 0.50:0.05:0.95 a 1-px error passes
+==============================================================================
+  4x4 shifted 1px: IoU=0.6000 passes 3/10 thresholds
+  10x10 shifted 1px: IoU=0.8182 passes 7/10 thresholds
+  40x40 shifted 1px: IoU=0.9512 passes 10/10 thresholds
+  12x4 rotated 10deg: IoU=0.7658 passes 6/10
+
+==============================================================================
+[F4] Detection cap: YOLO max_det is per IMAGE (all classes); AITODReval keeps 1500 per (image,class)
+==============================================================================
+  image with   27 GT (one class): recall ceiling max_det=300 1.000 | 1500 1.000 | 12000 1.000
+  image with  300 GT (one class): recall ceiling max_det=300 1.000 | 1500 1.000 | 12000 1.000
+  image with 1200 GT (one class): recall ceiling max_det=300 0.250 | 1500 1.000 | 12000 1.000
+  image with 2000 GT (one class): recall ceiling max_det=300 0.150 | 1500 0.750 | 12000 1.000
+  1500 per (image,class) x 8 classes = 12000 detections per image
+
+==============================================================================
+[F5] SIMULATED paired image-level bootstrap of Delta AP (A4 - A2), 3 seeds, 10,000 resamples
+==============================================================================
+  A2: AP per seed [0.4874 0.4892 0.4776] mean=0.4847 std=0.0063
+  A4: AP per seed [0.5038 0.4923 0.502 ] mean=0.4993 std=0.0062
+  point Delta AP (mean over seeds) = 0.0146; 95% CI = [0.0133, 0.0229]; excludes 0: True
+  bootstrap time 9.1 s for 10000 resamples x 3 seeds x 2 arms (weights trick, no re-matching)
+
+==============================================================================
+[F6] Slide 3.2 s007 error-analysis ceiling
+==============================================================================
+  dev error 10%, 8 of 100 errors are dogs -> best case error 9.2%
+  if 50 of 100 errors were dogs -> best case 5.0%
+
+[done] total runtime 34.8 s; figures in D:\DEMO kế hoạch kì 5-20260915T034926Z-1-001\DEMO kế hoạch kì 5\DPL302m\NCKH\notes\t07-dl-from-slides\figures
