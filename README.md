@@ -14,7 +14,7 @@
 | Thành viên | Võ Đức Nhật · Trần Lợi Kiều Nhi · Trần Nguyễn Minh Hải · Nguyễn Tấn Tài |
 | Đề tài gốc | Tier 1 #7 trong danh sách đề tài của giảng viên: *Multi-scale Aerial Object Detection and Segmentation* |
 | Hướng đã chốt | **C-10**: benchmark YOLO-OBB trên AI-TOD-R, chẩn đoán quy tắc chọn vùng ứng viên (STAL), thử OA-STAL v2 |
-| Thời gian | 14 tuần, 12/10/2026 → 17/01/2027 |
+| Thời gian | **4 tuần, 11/10/2026 → 08/11/2026** (đổi ngày 2026-10-13; kế hoạch 14 tuần cũ lưu ở `ROADMAP-14w-backup.md`) |
 
 ## Trạng thái hiện tại (cập nhật 2026-10-08)
 
@@ -54,7 +54,8 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 
 ```
 ├── README.md                    ← file này
-├── ROADMAP.md                   ← kế hoạch 14 tuần + checklist (tick khi xong)
+├── ROADMAP.md                   ← kế hoạch 4 tuần + cổng go/no-go + checklist (tick khi xong)
+├── ROADMAP-14w-backup.md        ← kế hoạch 14 tuần cũ (đã thay)
 ├── notes/
 │   ├── t07-c3-proposal-v2-EN.md        ← proposal đầy đủ (bản gốc)
 │   ├── Group7.pdf                      ← proposal theo mẫu trường (bản nộp)
@@ -65,6 +66,9 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 │   ├── t07-c3-evidence-dossier.md      ← bằng chứng theo trang/bảng/dòng code
 │   ├── t07-c3-novelty-rescan.md        ← quét độ mới + 10 phản biện giả định
 │   ├── claims-ledger.md                ← sổ khẳng định (append-only)
+│   ├── t07-critique-q2-2026-10-11.md   ← phản biện mức Q2 + kế hoạch 4 tuần (cổng 0–5)
+│   ├── t07-dl-digest-2026-10-11.md     ← dự án qua lăng kính DL: dữ liệu, mô hình, loss (kiểm trong code 8.4.174), train, đánh giá
+│   ├── t07-dl-from-slides-VI.pdf       ← sổ tay 54 trang: khái niệm slide DPL302m → dự án (nguồn + lab ở t07-dl-from-slides/)
 │   ├── r3-final-comparison.md          ← vì sao chọn #7 (so sánh 4 đề tài)
 │   ├── t07-tier-upgrade.md             ← hướng nâng cấp C-7 (ứng viên)
 │   ├── synthesize-gaps-t07-q4-priority.md ← hướng dự phòng C-8, C-9
@@ -107,3 +111,4 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 | 2026-10-08 | Proposal v2 (C-10, REVISION của C-3), bản theo mẫu trường, slide giới thiệu | notes/t07-c3-* |
 | 2026-10-08 | Tạo repo GitHub, ROADMAP, Issues/Milestones | README.md, ROADMAP.md |
 | 2026-10-08 | Group7.pdf thành bản nộp duy nhất; slide thuyết trình proposal | notes/Group7.pdf, notes/Group7-proposal-presentation.pptx |
+| 2026-10-11 → 13 | Digest DL của dự án; phản biện mức Q2 (kết luận: Q2 không bảo vệ được trong 4 tuần); ledger C-12 (REVISION của C-7); ROADMAP nén còn 4 tuần | notes/t07-dl-digest-2026-10-11.md, notes/t07-critique-q2-2026-10-11.md, ROADMAP.md |
