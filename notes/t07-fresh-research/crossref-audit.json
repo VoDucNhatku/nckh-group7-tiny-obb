@@ -1,0 +1,4867 @@
+[
+  {
+    "id": "B01",
+    "queried_title": "Feature Pyramid Networks for Object Detection",
+    "match_title": "Feature Pyramid Networks for Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr.2017.106",
+    "venue": [
+      "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2017,
+          7
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Tsung-Yi",
+        "family": "Lin",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Piotr",
+        "family": "Dollar",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ross",
+        "family": "Girshick",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Kaiming",
+        "family": "He",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Bharath",
+        "family": "Hariharan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Serge",
+        "family": "Belongie",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "B05",
+    "queried_title": "DETRs Beat YOLOs on Real-time Object Detection",
+    "match_title": "DETRs Beat YOLOs on Real-time Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr52733.2024.01605",
+    "venue": [
+      "2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          6,
+          16
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Yian",
+        "family": "Zhao",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wenyu",
+        "family": "Lv",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Shangliang",
+        "family": "Xu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jinman",
+        "family": "Wei",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Guanzhong",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Qingqing",
+        "family": "Dang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yi",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Baidu Inc,Beijing,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jie",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic and Computer Engineering, Peking University,Shenzhen,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "D01",
+    "queried_title": "DOTA: A Large-scale Dataset for Object Detection in Aerial Images",
+    "match_title": "DOTA: A Large-Scale Dataset for Object Detection in Aerial Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr.2018.00418",
+    "venue": [
+      "2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          6
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Gui-Song",
+        "family": "Xia",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiang",
+        "family": "Bai",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jian",
+        "family": "Ding",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhen",
+        "family": "Zhu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Serge",
+        "family": "Belongie",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jiebo",
+        "family": "Luo",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Mihai",
+        "family": "Datcu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Marcello",
+        "family": "Pelillo",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Liangpei",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "D02",
+    "queried_title": "Object Detection in Aerial Images: A Large-Scale Benchmark and Challenges",
+    "match_title": "Object Detection in Aerial Images: A Large-Scale Benchmark and Challenges",
+    "similarity": 1.0,
+    "DOI": "10.1109/tpami.2021.3117983",
+    "venue": [
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          11,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-7188-5884",
+        "authenticated-orcid": false,
+        "given": "Jian",
+        "family": "Ding",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory LIESMARS, Wuhan University, Wuhan, Hubei, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5449-8073",
+        "authenticated-orcid": false,
+        "given": "Nan",
+        "family": "Xue",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National Engineering Research Center for Multimedia Software, School of Computer Science and Institute of Artificial Intelligence, Wuhan University, Wuhan, Hubei, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7660-6090",
+        "authenticated-orcid": false,
+        "given": "Gui-Song",
+        "family": "Xia",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National Engineering Research Center for Multimedia Software, School of Computer Science, Institute of Artificial Intelligence, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3449-5940",
+        "authenticated-orcid": false,
+        "given": "Xiang",
+        "family": "Bai",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, Huazhong University of Science and Technology, Wuhan, Hubei, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3263-8768",
+        "authenticated-orcid": false,
+        "given": "Wen",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0649-9987",
+        "authenticated-orcid": false,
+        "given": "Michael Ying",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Faculty of Geo-Information Science and Earth Observation (ITC), University of Twente, Enschede, NB, The Netherlands"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0388-5217",
+        "authenticated-orcid": false,
+        "given": "Serge",
+        "family": "Belongie",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Cornell University and Cornell Tech, Ithaca, NY, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-4516-9729",
+        "authenticated-orcid": false,
+        "given": "Jiebo",
+        "family": "Luo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, University of Rochester, Rochester, NY, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3477-9687",
+        "authenticated-orcid": false,
+        "given": "Mihai",
+        "family": "Datcu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Remote Sensing Technology Institute, German Aerospace Center (DLR), Cologne, NRW, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8992-9243",
+        "authenticated-orcid": false,
+        "given": "Marcello",
+        "family": "Pelillo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "DAIS, Ca&#x2019;Foscari University of Venice, Venezia, Italy"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6890-3650",
+        "authenticated-orcid": false,
+        "given": "Liangpei",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory LIESMARS, Wuhan University, Wuhan, Hubei, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "D03",
+    "queried_title": "Object Detection in Optical Remote Sensing Images: A Survey and A New Benchmark",
+    "match_title": "Object detection in optical remote sensing images: A survey and a new benchmark",
+    "similarity": 1.0,
+    "DOI": "10.1016/j.isprsjprs.2019.11.023",
+    "venue": [
+      "ISPRS Journal of Photogrammetry and Remote Sensing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-7873-1554",
+        "authenticated-orcid": false,
+        "given": "Ke",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gang",
+        "family": "Wan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5030-0683",
+        "authenticated-orcid": false,
+        "given": "Gong",
+        "family": "Cheng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Liqiu",
+        "family": "Meng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5545-7217",
+        "authenticated-orcid": false,
+        "given": "Junwei",
+        "family": "Han",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "D04",
+    "queried_title": "iSAID: A Large-scale Dataset for Instance Segmentation in Aerial Images",
+    "match_title": "MitoEM Dataset: Large-Scale 3D Mitochondria Instance Segmentation from EM Images",
+    "similarity": 0.6822,
+    "DOI": "10.1007/978-3-030-59722-1_7",
+    "venue": [
+      "Lecture Notes in Computer Science",
+      "Medical Image Computing and Computer Assisted Intervention – MICCAI 2020"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2020,
+          9,
+          29
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "given": "Donglai",
+        "family": "Wei",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zudi",
+        "family": "Lin",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Daniel",
+        "family": "Franco-Barranco",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Nils",
+        "family": "Wendt",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xingyu",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wenjie",
+        "family": "Yin",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xin",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Aarush",
+        "family": "Gupta",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Won-Dong",
+        "family": "Jang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xueying",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ignacio",
+        "family": "Arganda-Carreras",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jeff W.",
+        "family": "Lichtman",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Hanspeter",
+        "family": "Pfister",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "book-chapter",
+    "match_verified": false
+  },
+  {
+    "id": "D05",
+    "queried_title": "Detection and Tracking Meet Drones Challenge",
+    "match_title": "Detection and Tracking Meet Drones Challenge",
+    "similarity": 1.0,
+    "DOI": "10.1109/tpami.2021.3119563",
+    "venue": [
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          11,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-4310-9140",
+        "authenticated-orcid": false,
+        "given": "Pengfei",
+        "family": "Zhu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "College of Intelligence and Computing, Tianjin University, Tianjin, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5525-492X",
+        "authenticated-orcid": false,
+        "given": "Longyin",
+        "family": "Wen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JD Finance America Corporation, Mountain View, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9404-524X",
+        "authenticated-orcid": false,
+        "given": "Dawei",
+        "family": "Du",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Computer Science Department, University at Albany, State University of New York, Albany, NY, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiao",
+        "family": "Bian",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "GE Global Research, Niskayuna, NY, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3308-7873",
+        "authenticated-orcid": false,
+        "given": "Heng",
+        "family": "Fan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science and Engineering, University of North Texas, Denton, TX, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7765-8095",
+        "authenticated-orcid": false,
+        "given": "Qinghua",
+        "family": "Hu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Intelligence and Computing, Tianjin University, Tianjin, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4094-8413",
+        "authenticated-orcid": false,
+        "given": "Haibin",
+        "family": "Ling",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Stony Brook University, Stony Brook, NY, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "D06",
+    "queried_title": "FAIR1M: A Benchmark Dataset for Fine-grained Object Recognition in High-Resolution Remote Sensing Imagery",
+    "match_title": "FAIR1M: A benchmark dataset for fine-grained object recognition in high-resolution remote sensing imagery",
+    "similarity": 1.0,
+    "DOI": "10.1016/j.isprsjprs.2021.12.004",
+    "venue": [
+      "ISPRS Journal of Photogrammetry and Remote Sensing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          2
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Xian",
+        "family": "Sun",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Peijin",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhiyuan",
+        "family": "Yan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Feng",
+        "family": "Xu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ruiping",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wenhui",
+        "family": "Diao",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jin",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jihao",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yingchao",
+        "family": "Feng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Tao",
+        "family": "Xu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Martin",
+        "family": "Weinmann",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stefan",
+        "family": "Hinz",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Cheng",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Kun",
+        "family": "Fu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "F01",
+    "queried_title": "RiO-DETR: DETR for Real-time Oriented Object Detection",
+    "match_title": "RiO-DETR: DETR for Real-Time Oriented Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1007/978-3-032-37083-9_26",
+    "venue": [
+      "Lecture Notes in Computer Science",
+      "Computer Vision – ECCV 2026"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          4
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0009-0008-4030-825X",
+        "authenticated-orcid": false,
+        "given": "Zhangchi",
+        "family": "Hu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0005-1301-3585",
+        "authenticated-orcid": false,
+        "given": "Yifan",
+        "family": "Zhao",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-3504-0611",
+        "authenticated-orcid": false,
+        "given": "Yansong",
+        "family": "Peng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8924-8747",
+        "authenticated-orcid": false,
+        "given": "Wenzhang",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-1809-2592",
+        "authenticated-orcid": false,
+        "given": "Jie",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0003-1376-9628",
+        "authenticated-orcid": false,
+        "given": "Peixi",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xinghao",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0006-7593-7473",
+        "authenticated-orcid": false,
+        "given": "Xiangchen",
+        "family": "Yin",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7390-9173",
+        "authenticated-orcid": false,
+        "given": "Dongsheng",
+        "family": "Jiang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7529-6331",
+        "authenticated-orcid": false,
+        "given": "Hebei",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-3638-5566",
+        "authenticated-orcid": false,
+        "given": "Xiaoyan",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "book-chapter",
+    "match_verified": true
+  },
+  {
+    "id": "F02",
+    "queried_title": "Adaptive Slicing-Assisted Hyper Inference for Enhanced Small Object Detection in High-Resolution Imagery",
+    "match_title": "Enhanced Small-Scale Crack Detection in High-Resolution Imagery Using Object Detection Model and Slicing Aided Hyper Inference (SAHI)",
+    "similarity": 0.4608,
+    "DOI": "10.1109/idciot67589.2026.11455689",
+    "venue": [
+      "2026 4th International Conference on Intelligent Data Communication Technologies and Internet of Things (IDCIoT)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          2,
+          4
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-2842-6674",
+        "authenticated-orcid": false,
+        "given": "Remya Elizabeth",
+        "family": "Philip",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Karunya Institute of Technology and Sciences,Department of Electronics and Communication Engineering,Coimbatore,India"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0001-2733",
+        "authenticated-orcid": false,
+        "given": "Diana Andrushia",
+        "family": "A",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Karunya Institute of Technology and Sciences,Department of Electronics and Communication Engineering,Coimbatore,India"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0170-2138",
+        "authenticated-orcid": false,
+        "given": "Mervin Ealiyas",
+        "family": "Mathews",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Larsen &#x0026; Toubro Limited,L&#x0026;T EduTech,Chennai,India"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7643-9747",
+        "authenticated-orcid": false,
+        "given": "Anand",
+        "family": "N",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Karunya Institute of Technology and Sciences,Department of Civil Engineering,Coimbatore,India"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": false
+  },
+  {
+    "id": "F03",
+    "queried_title": "Benchmarking Object Detectors under Real-World Distribution Shifts in Satellite Imagery",
+    "match_title": "Benchmarking Object Detectors under Real-World Distribution Shifts in Satellite Imagery",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr52734.2025.00777",
+    "venue": [
+      "2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Sara A.",
+        "family": "Al-Emadi",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Qatar Computing Research Institute, HBKU"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yin",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Science and Engineering, HBKU"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ferda",
+        "family": "Ofli",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Qatar Computing Research Institute, HBKU"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "F04",
+    "queried_title": "DenseScout: Algorithm-System Co-design for Budgeted Tiny Object Selection on Edge Platforms",
+    "match_title": "Tiny object detection algorithm based on edge information reconstruction",
+    "similarity": 0.3944,
+    "DOI": "10.1117/12.3107091",
+    "venue": [
+      "International Conference on Computer Vision and Image Computing (CVIC 2025)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          2,
+          13
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Xue",
+        "family": "Liu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Lan",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Xuelian",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": false
+  },
+  {
+    "id": "F05",
+    "queried_title": "Differentiable Resolution Allocation for Tiny Object Detection in UAV Imagery",
+    "match_title": "Differentiable Resolution Allocation for Tiny Object Detection in UAV Imagery",
+    "similarity": 1.0,
+    "DOI": "10.3390/s26196157",
+    "venue": [
+      "Sensors"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          28
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          28
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-5206-635X",
+        "authenticated-orcid": false,
+        "given": "Ergashevich Halimjon",
+        "family": "Khujamatov",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Computer Engineering, Gachon University, Seongnam-si 13120, Gyeonggi-go, Republic of Korea"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "methodology",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "software",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "writing-original-draft",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "writing-review-editing",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5285-3775",
+        "authenticated-orcid": false,
+        "given": "Khasanov",
+        "family": "Doston",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Data Communication Networks and Systems,\r\nTashkent University of Information Technologies, Tashkent 100084, Uzbekistan"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "supervision",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "conceptualization",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "given": "Yusupov Sarvarbek",
+        "family": "Sodikovich",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Mechanical Engineering Kimyo International University in Tashkent, Tashkent 100121, Uzbekistan"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "project-administration",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "validation",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-1918-0641",
+        "authenticated-orcid": false,
+        "given": "Oybek Usmankulovich",
+        "family": "Mallaev",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Digital Technologies, Alfraganus University, Yukori Karakamish Street 2a, Tashkent 100190, Uzbekistan"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "formal-analysis",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "validation",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6223-4502",
+        "authenticated-orcid": false,
+        "given": "Shakhnoza",
+        "family": "Muksimova",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Engineering, Gachon University, Seongnam-si 13120, Gyeonggi-go, Republic of Korea"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "project-administration",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "data-curation",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "software",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "writing-review-editing",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "given": "Alisher",
+        "family": "Mamatov",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Digital Pedagogy and Media Education Development, Republican Scientific and Methodological Center for the Development of Education of the Republic of Uzbekistan, Tashkent 100011, Uzbekistan"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "software",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "investigation",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "given": "Jinsoo",
+        "family": "Cho",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Engineering, Gachon University, Seongnam-si 13120, Gyeonggi-go, Republic of Korea"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "supervision",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "visualization",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "writing-review-editing",
+            "vocabulary": "credit"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0060-3306",
+        "authenticated-orcid": false,
+        "given": "Razvan",
+        "family": "Craciunescu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Telecommunications, Faculty of Electronics, Telecommunications and Information Technology, National University of Science and Technology POLITEHNICA Bucharest, 060042 Bucharest, Romania"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "resources",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "conceptualization",
+            "vocabulary": "credit"
+          },
+          {
+            "role": "investigation",
+            "vocabulary": "credit"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "F06",
+    "queried_title": "Visual Accommodation: Rethinking Image Scale as a Learnable Variable for Object Detection",
+    "match_title": "Rethinking Learnable Proposals for Graphical Object Detection in Scanned Document Images",
+    "similarity": 0.5161,
+    "DOI": "10.3390/app122010578",
+    "venue": [
+      "Applied Sciences"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          20
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          20
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9456-213X",
+        "authenticated-orcid": false,
+        "given": "Sankalp",
+        "family": "Sinha",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0456-6493",
+        "authenticated-orcid": false,
+        "given": "Khurram Azeem",
+        "family": "Hashmi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          },
+          {
+            "name": "Mindgarage, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          },
+          {
+            "name": "German Research Institute for Artificial Intelligence (DFKI), 67663 Kaiserslautern, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alain",
+        "family": "Pagani",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "German Research Institute for Artificial Intelligence (DFKI), 67663 Kaiserslautern, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4029-6574",
+        "authenticated-orcid": false,
+        "given": "Marcus",
+        "family": "Liwicki",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Luleå University of Technology, 971 87 Luleå, Sweden"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Didier",
+        "family": "Stricker",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          },
+          {
+            "name": "German Research Institute for Artificial Intelligence (DFKI), 67663 Kaiserslautern, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0536-6867",
+        "authenticated-orcid": false,
+        "given": "Muhammad Zeshan",
+        "family": "Afzal",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          },
+          {
+            "name": "Mindgarage, Technical University of Kaiserslautern, 67663 Kaiserslautern, Germany"
+          },
+          {
+            "name": "German Research Institute for Artificial Intelligence (DFKI), 67663 Kaiserslautern, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": false
+  },
+  {
+    "id": "G01",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G02",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G03",
+    "queried_title": "Oriented R-CNN for Object Detection",
+    "match_title": "Oriented R-CNN for Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1109/iccv48922.2021.00350",
+    "venue": [
+      "2021 IEEE/CVF International Conference on Computer Vision (ICCV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Xingxing",
+        "family": "Xie",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Northwestern Ploytechnical University,School of Automation,Xi&#x2019;an,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gong",
+        "family": "Cheng",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northwestern Ploytechnical University,School of Automation,Xi&#x2019;an,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jiabao",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northwestern Ploytechnical University,School of Automation,Xi&#x2019;an,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiwen",
+        "family": "Yao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northwestern Ploytechnical University,School of Automation,Xi&#x2019;an,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Junwei",
+        "family": "Han",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northwestern Ploytechnical University,School of Automation,Xi&#x2019;an,China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "G04",
+    "queried_title": "Rethinking Rotated Object Detection with Gaussian Wasserstein Distance Loss",
+    "match_title": "Distribution-Aware Diffusion: Enhancing Rotated Object Detection via Gaussian Wasserstein Distance Loss",
+    "similarity": 0.7722,
+    "DOI": "10.1109/compsac69091.2026.00033",
+    "venue": [
+      "2026 IEEE 50th Annual Computers, Software, and Applications Conference (COMPSAC)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          7
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Youcef",
+        "family": "Zermane",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "École Militaire Polytechnique",
+            "place": [
+              "Algiers, Algeria"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yacine",
+        "family": "Amara",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "École Militaire Polytechnique",
+            "place": [
+              "Algiers, Algeria"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Mohamed Akrem",
+        "family": "Benatia",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "École Militaire Polytechnique",
+            "place": [
+              "Algiers, Algeria"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": false
+  },
+  {
+    "id": "G05",
+    "queried_title": "Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-Leibler Divergence",
+    "match_title": "Learning High-Quality Bounding Box for Rotated Object Detection via Rotated Cascade Region Proposal Network",
+    "similarity": 0.6742,
+    "DOI": "10.1145/3622896.3622911",
+    "venue": [
+      "2023 4th International Conference on Control, Robotics and Intelligent System"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          25
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          3
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0009-0008-6612-3755",
+        "authenticated-orcid": false,
+        "given": "Hang",
+        "family": "Cheng",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "National Innovation University of Defense Technology, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9314-2929",
+        "authenticated-orcid": false,
+        "given": "Naiyang",
+        "family": "Guan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National Innovation University of Defense Technology, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-2227-1838",
+        "authenticated-orcid": false,
+        "given": "Jiangang",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National University of Defense Technology, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-7696-7967",
+        "authenticated-orcid": false,
+        "given": "Yujie",
+        "family": "Miao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National Innovation University of Defense Technology, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0004-1161-4283",
+        "authenticated-orcid": false,
+        "given": "Hao",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National Innovation University of Defense Technology, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": false
+  },
+  {
+    "id": "G06",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G07",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G08",
+    "queried_title": "Hausdorff Distance Matching with Adaptive Query Denoising for Rotated Detection Transformer",
+    "match_title": "Hausdorff Distance Matching with Adaptive Query Denoising for Rotated Detection Transformer",
+    "similarity": 1.0,
+    "DOI": "10.1109/wacv61041.2025.00189",
+    "venue": [
+      "2025 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          26
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Hakjin",
+        "family": "Lee",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "SI Analytics Co. Ltd."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "MinKi",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "SI Analytics Co. Ltd."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jamyoung",
+        "family": "Koo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "SI Analytics Co. Ltd."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Junghoon",
+        "family": "Seo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "KAIST Daejeon,South Korea"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "G09",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G10",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "G11",
+    "queried_title": "GSDet: Gaussian Splatting for Oriented Object Detection",
+    "match_title": "GSDet: Gaussian Splatting for Oriented Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.24963/ijcai.2025/101",
+    "venue": [
+      "Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Zeyu",
+        "family": "Ding",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jiaqi",
+        "family": "Zhao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yong",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wen-liang",
+        "family": "Du",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Hancheng",
+        "family": "Zhu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Rui",
+        "family": "Yao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology"
+          },
+          {
+            "name": "Mine Digitization Engineering Research Center"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "G12",
+    "queried_title": "Real-Time Oriented Object Detection Transformer in Remote Sensing Images",
+    "match_title": "Real-Time Oriented Object Detection Transformer in Remote Sensing Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/tgrs.2026.3671683",
+    "venue": [
+      "IEEE Transactions on Geoscience and Remote Sensing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0009-0005-9614-7131",
+        "authenticated-orcid": false,
+        "given": "Zeyu",
+        "family": "Ding",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6207-0299",
+        "authenticated-orcid": false,
+        "given": "Yong",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3564-5090",
+        "authenticated-orcid": false,
+        "given": "Jiaqi",
+        "family": "Zhao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9234-0912",
+        "authenticated-orcid": false,
+        "given": "Wen-Liang",
+        "family": "Du",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xixi",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2734-915X",
+        "authenticated-orcid": false,
+        "given": "Rui",
+        "family": "Yao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "China University of Mining and Technology",
+            "place": [
+              "Xuzhou, China"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7690-8547",
+        "authenticated-orcid": false,
+        "given": "Abdulmotaleb El",
+        "family": "Saddik",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Ottawa",
+            "place": [
+              "Ottawa, ON, Canada"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "R01",
+    "queried_title": "Clustered Object Detection in Aerial Images",
+    "match_title": "Clustered Object Detection in Aerial Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/iccv.2019.00840",
+    "venue": [
+      "2019 IEEE/CVF International Conference on Computer Vision (ICCV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Fan",
+        "family": "Yang",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Heng",
+        "family": "Fan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Peng",
+        "family": "Chu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Erik",
+        "family": "Blasch",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Haibin",
+        "family": "Ling",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "R02",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "R03",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "R04",
+    "queried_title": "Slicing Aided Hyper Inference and Fine-tuning for Small Object Detection",
+    "match_title": "Slicing Aided Hyper Inference and Fine-Tuning for Small Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1109/icip46576.2022.9897990",
+    "venue": [
+      "2022 IEEE International Conference on Image Processing (ICIP)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          16
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Fatih Cagatay",
+        "family": "Akyon",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "OBSS AI,Ankara,Turkey"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sinan",
+        "family": "Onur Altinuc",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "OBSS AI,Ankara,Turkey"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alptekin",
+        "family": "Temizel",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Middle East Technical University,Graduate School of Informatics,Ankara,Turkey"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "R05",
+    "queried_title": "AutoFocus: Efficient Multi-Scale Inference",
+    "match_title": "AutoFocus: Efficient Multi-Scale Inference",
+    "similarity": 1.0,
+    "DOI": "10.1109/iccv.2019.00984",
+    "venue": [
+      "2019 IEEE/CVF International Conference on Computer Vision (ICCV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Mahyar",
+        "family": "Najibi",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Bharat",
+        "family": "Singh",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Larry",
+        "family": "Davis",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "R06",
+    "queried_title": "RFLA: Gaussian Receptive Field based Label Assignment for Tiny Object Detection",
+    "match_title": "RFLA: Gaussian Receptive Field Based Label Assignment for Tiny Object Detection",
+    "similarity": 1.0,
+    "DOI": "10.1007/978-3-031-20077-9_31",
+    "venue": [
+      "Lecture Notes in Computer Science",
+      "Computer Vision – ECCV 2022"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2022,
+          11,
+          6
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "given": "Chang",
+        "family": "Xu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jinwang",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wen",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Huai",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lei",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gui-Song",
+        "family": "Xia",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "book-chapter",
+    "match_verified": true
+  },
+  {
+    "id": "R07",
+    "queried_title": "Detecting tiny objects in aerial images: A normalized Wasserstein distance and a new benchmark",
+    "match_title": "Detecting tiny objects in aerial images: A normalized Wasserstein distance and a new benchmark",
+    "similarity": 1.0,
+    "DOI": "10.1016/j.isprsjprs.2022.06.002",
+    "venue": [
+      "ISPRS Journal of Photogrammetry and Remote Sensing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          8
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Chang",
+        "family": "Xu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jinwang",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wen",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Huai",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lei",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gui-Song",
+        "family": "Xia",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "R08",
+    "queried_title": "Oriented Tiny Object Detection: A Dataset, Benchmark, and Dynamic Unbiased Learning",
+    "match_title": "Oriented Tiny Object Detection: A Dataset, Benchmark, and Dynamic Unbiased Learning",
+    "similarity": 1.0,
+    "DOI": "10.1109/tpami.2025.3634161",
+    "venue": [
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          3
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-3078-0496",
+        "authenticated-orcid": false,
+        "given": "Chang",
+        "family": "Xu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0704-2484",
+        "authenticated-orcid": false,
+        "given": "Ruixiang",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3263-8768",
+        "authenticated-orcid": false,
+        "given": "Wen",
+        "family": "Yang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0003-0153-1305",
+        "authenticated-orcid": false,
+        "given": "Haoran",
+        "family": "Zhu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronic Information, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4260-7911",
+        "authenticated-orcid": false,
+        "given": "Fang",
+        "family": "Xu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Artificial Intelligence, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jian",
+        "family": "Ding",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "King Abdullah University of Science and Technology, Thuwal, Saudi Arabia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7660-6090",
+        "authenticated-orcid": false,
+        "given": "Gui-Song",
+        "family": "Xia",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Artificial Intelligence, Wuhan University, Wuhan, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "R09",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "R10",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "R11",
+    "queried_title": "YOLC: You Only Look Clusters for Tiny Object Detection in Aerial Images",
+    "match_title": "YOLC: You Only Look Clusters for Tiny Object Detection in Aerial Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/tits.2024.3386928",
+    "venue": [
+      "IEEE Transactions on Intelligent Transportation Systems"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0009-0002-9121-5623",
+        "authenticated-orcid": false,
+        "given": "Chenguang",
+        "family": "Liu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory of Virtual Reality Technology and Systems, Beihang University, Haidian, Beijing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5050-2311",
+        "authenticated-orcid": false,
+        "given": "Guangshuai",
+        "family": "Gao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Electronics and Information, Zhongyuan University of Technology, Zhengzhou, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ziyue",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory of Virtual Reality Technology and Systems, Beihang University, Haidian, Beijing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6106-0416",
+        "authenticated-orcid": false,
+        "given": "Zhenghui",
+        "family": "Hu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hangzhou Innovation Institute, Beihang University, Hangzhou, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5181-6451",
+        "authenticated-orcid": false,
+        "given": "Qingjie",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory of Virtual Reality Technology and Systems, Beihang University, Haidian, Beijing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8001-2703",
+        "authenticated-orcid": false,
+        "given": "Yunhong",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "State Key Laboratory of Virtual Reality Technology and Systems, Beihang University, Haidian, Beijing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "R12",
+    "queried_title": "UFPMP-Det: Toward Accurate and Efficient Object Detection on Drone Imagery",
+    "match_title": "UFPMP-Det:Toward Accurate and Efficient Object Detection on Drone Imagery",
+    "similarity": 1.0,
+    "DOI": "10.1609/aaai.v36i1.19986",
+    "venue": [
+      "Proceedings of the AAAI Conference on Artificial Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          28
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          28
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "given": "Yecheng",
+        "family": "Huang",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jiaxin",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Di",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "R13",
+    "queried_title": "Dynamic Zoom-in Network for Fast Object Detection in Large Images",
+    "match_title": "Dynamic Zoom-in Network for Fast Object Detection in Large Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr.2018.00724",
+    "venue": [
+      "2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          6
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Mingfei",
+        "family": "Gao",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ruichi",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ang",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Vlad I.",
+        "family": "Morariu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Larry S.",
+        "family": "Davis",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "R14",
+    "queried_title": "Flexible High-resolution Object Detection on Edge Devices with Tunable Latency",
+    "match_title": "Flexible high-resolution object detection on edge devices with tunable latency",
+    "similarity": 1.0,
+    "DOI": "10.1145/3447993.3483274",
+    "venue": [
+      "Proceedings of the 27th Annual International Conference on Mobile Computing and Networking"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          25
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          25
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "given": "Shiqi",
+        "family": "Jiang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Microsoft Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhiqi",
+        "family": "Lin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Science and Technology of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yuanchun",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Microsoft Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yuanchao",
+        "family": "Shu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Microsoft Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yunxin",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Tsinghua University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S01",
+    "queried_title": "Mask R-CNN",
+    "match_title": "Mask R-CNN",
+    "similarity": 1.0,
+    "DOI": "10.1109/tpami.2018.2844175",
+    "venue": [
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          2,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-7318-9658",
+        "authenticated-orcid": false,
+        "given": "Kaiming",
+        "family": "He",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Georgia",
+        "family": "Gkioxari",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Piotr",
+        "family": "Dollar",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ross",
+        "family": "Girshick",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "S02",
+    "queried_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+    "match_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr52688.2022.00135",
+    "venue": [
+      "2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          6
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Bowen",
+        "family": "Cheng",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Facebook AI Research (FAIR)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ishan",
+        "family": "Misra",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Facebook AI Research (FAIR)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alexander G.",
+        "family": "Schwing",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Illinois at Urbana-Champaign (UIUC)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alexander",
+        "family": "Kirillov",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Facebook AI Research (FAIR)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Rohit",
+        "family": "Girdhar",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Facebook AI Research (FAIR)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S03",
+    "queried_title": "Segment Anything",
+    "match_title": "Segment Anything",
+    "similarity": 1.0,
+    "DOI": "10.1109/iccv51070.2023.00371",
+    "venue": [
+      "2023 IEEE/CVF International Conference on Computer Vision (ICCV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Alexander",
+        "family": "Kirillov",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Eric",
+        "family": "Mintun",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Nikhila",
+        "family": "Ravi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Hanzi",
+        "family": "Mao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Chloe",
+        "family": "Rolland",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Laura",
+        "family": "Gustafson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Tete",
+        "family": "Xiao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Spencer",
+        "family": "Whitehead",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alexander C.",
+        "family": "Berg",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wan-Yen",
+        "family": "Lo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Piotr",
+        "family": "Dollár",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ross",
+        "family": "Girshick",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI Research,FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S05",
+    "queried_title": "RS-SAM: Integrating Multi-Scale Information for Enhanced Remote Sensing Image Segmentation",
+    "match_title": "RS-SAM: Integrating Multi-scale Information for Enhanced Remote Sensing Image Segmentation",
+    "similarity": 1.0,
+    "DOI": "10.1007/978-981-96-0966-6_17",
+    "venue": [
+      "Lecture Notes in Computer Science",
+      "Computer Vision – ACCV 2024"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          7
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          7
+        ]
+      ]
+    },
+    "authors": [
+      {
+        "given": "Enkai",
+        "family": "Zhang",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jingjing",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anda",
+        "family": "Cao",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhen",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Haofei",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Huiqiong",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Li",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Mingli",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "book-chapter",
+    "match_verified": true
+  },
+  {
+    "id": "S06",
+    "queried_title": "ROS-SAM: High-Quality Interactive Segmentation for Remote Sensing Moving Object",
+    "match_title": "ROS-SAM: High-Quality Interactive Segmentation for Remote Sensing Moving Object",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr52734.2025.00343",
+    "venue": [
+      "2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Zhe",
+        "family": "Shan",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Hainan University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yang",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Zhejiang University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lei",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hainan University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Cheng",
+        "family": "Yan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Tianjin University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Heng",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hainan University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xia",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hainan University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S07",
+    "queried_title": "Scale-MAE: A Scale-Aware Masked Autoencoder for Multiscale Geospatial Representation Learning",
+    "match_title": "Scale-MAE: A Scale-Aware Masked Autoencoder for Multiscale Geospatial Representation Learning",
+    "similarity": 1.0,
+    "DOI": "10.1109/iccv51070.2023.00378",
+    "venue": [
+      "2023 IEEE/CVF International Conference on Computer Vision (ICCV)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          1
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Colorado J",
+        "family": "Reed",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Berkeley AI Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ritwik",
+        "family": "Gupta",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Berkeley AI Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Shufan",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Berkeley AI Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sarah",
+        "family": "Brockman",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Kitware Inc."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Christopher",
+        "family": "Funk",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Kitware Inc."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Brian",
+        "family": "Clipp",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Kitware Inc."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Kurt",
+        "family": "Keutzer",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Berkeley AI Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Salvatore",
+        "family": "Candido",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI, FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Matt",
+        "family": "Uyttendaele",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Meta AI, FAIR"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Trevor",
+        "family": "Darrell",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Berkeley AI Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S08",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  },
+  {
+    "id": "S10",
+    "queried_title": "RemoteCLIP: A Vision Language Foundation Model for Remote Sensing",
+    "match_title": "RemoteCLIP: A Vision Language Foundation Model for Remote Sensing",
+    "similarity": 1.0,
+    "DOI": "10.1109/tgrs.2024.3390838",
+    "venue": [
+      "IEEE Transactions on Geoscience and Remote Sensing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8746-9845",
+        "authenticated-orcid": false,
+        "given": "Fan",
+        "family": "Liu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "College of Computer Science and Software Engineering, Hohai University, Nanjing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8172-2894",
+        "authenticated-orcid": false,
+        "given": "Delong",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhangqingyun",
+        "family": "Guan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Computer and Information, Hohai University, Nanjing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiaocong",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Computer and Information, Hohai University, Nanjing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jiale",
+        "family": "Zhu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Computer and Information, Hohai University, Nanjing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8793-8610",
+        "authenticated-orcid": false,
+        "given": "Qiaolin",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Information Science and Technology, Nanjing Forestry University, Nanjing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5794-9458",
+        "authenticated-orcid": false,
+        "given": "Liyong",
+        "family": "Fu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute of Forest Resource Information Techniques, Chinese Academy of Forestry, Beijing, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5822-8233",
+        "authenticated-orcid": false,
+        "given": "Jun",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Information and Communication Technology, Griffith University, Nathan, QLD, Australia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "journal-article",
+    "match_verified": true
+  },
+  {
+    "id": "S11",
+    "queried_title": "SegEarth-OV: Towards Training-Free Open-Vocabulary Segmentation for Remote Sensing Images",
+    "match_title": "SegEarth-OV: Towards Training-Free Open-Vocabulary Segmentation for Remote Sensing Images",
+    "similarity": 1.0,
+    "DOI": "10.1109/cvpr52734.2025.00986",
+    "venue": [
+      "2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          10
+        ]
+      ]
+    },
+    "published_online": null,
+    "authors": [
+      {
+        "given": "Kaiyu",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Xi&#x2019;an Jiaotong University,School of Software Engineering,Xi&#x2019;an,China,710049"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ruixun",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xi&#x2019;an Jiaotong University,School of Computer Science and Technology,Xi&#x2019;an,China,710049"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiangyong",
+        "family": "Cao",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xi&#x2019;an Jiaotong University,School of Computer Science and Technology,Xi&#x2019;an,China,710049"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xueru",
+        "family": "Bai",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xidian University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Feng",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xidian University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Deyu",
+        "family": "Meng",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xi&#x2019;an Jiaotong University,School of Mathematics and Statistics,Xi&#x2019;an,China,710049"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhi",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Xi&#x2019;an Jiaotong University,School of Software Engineering,Xi&#x2019;an,China,710049"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "type": "proceedings-article",
+    "match_verified": true
+  },
+  {
+    "id": "S12",
+    "error": "HTTP Error 429: Too Many Requests",
+    "match_verified": false
+  }
+]

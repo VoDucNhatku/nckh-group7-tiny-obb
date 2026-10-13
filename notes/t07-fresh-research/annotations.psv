@@ -1,0 +1,51 @@
+id|role|relevance|priority|mechanism|limitation|research_use
+B01|baseline|3|reference|FPN đưa ngữ nghĩa xuống nhiều mức phân giải bằng kết nối trên-xuống và ngang.|[suy luận] FPN không tự chứng minh khôi phục thông tin ảnh đã mất.|Baseline đa tỷ lệ; không nhận FPN là novelty.
+B05|baseline|4|skim|RT-DETR dùng hybrid encoder và chọn query để cân bằng tốc độ, độ chính xác.|[suy luận] Số đo COCO không chuyển trực tiếp sang OBB dày đặc.|Đối chứng detector hiện đại nếu chọn HBB.
+D01|data|5|reference|DOTA cung cấp vật thể đa hướng/đa tỷ lệ và nhãn tứ giác.|Ảnh lớn cần quy ước crop và ghép dự đoán rõ ràng.|Dữ liệu gốc cho nghiên cứu hình học.
+D02|data|5|deep-next|DOTA mở rộng v2.0 cùng baseline rộng cho detection ảnh trên không.|[suy luận] Quy mô lớn có thể vượt ngân sách tái lập toàn bộ.|Kiểm tra external validity theo phiên bản và tiny bins.
+D03|data|4|reference|DIOR chuẩn hóa benchmark nhiều loại vật thể và điều kiện ảnh.|DIOR gốc không được đồng nhất với DIOR-R.|Ứng viên miền thứ hai; xác minh đúng loại nhãn.
+D04|data|5|deep-next|iSAID cung cấp instance masks trong ảnh trên không.|Dùng cùng ảnh DOTA-v1.0; không phải miền kiểm chứng độc lập.|Nếu chọn mask auxiliary, khóa scene split chung.
+D05|data|5|reference|VisDrone benchmark detection/tracking trên ảnh/video UAV.|[suy luận] Không dùng HBB AP thay bằng chứng OBB.|Dữ liệu độc lập cho nhánh HBB và latency.
+D06|data|4|reference|FAIR1M bổ sung nhãn OBB fine-grained và metadata địa lý/độ phân giải.|[suy luận] Kích thước corpus và số lớp tăng gánh tái lập.|Ứng viên kiểm chứng mở rộng, không mặc định train hết.
+F01|direct|5|deep-next|RiO-DETR tách angle estimation, periodic refinement và oriented dense supervision.|[suy luận] Cần kiểm tra checkpoint, config và toàn bộ pipeline latency.|Prior mới 2026 cho OBB end-to-end.
+F02|direct|5|deep-next|ASAHI điều chỉnh số slice theo phân giải và đổi hậu xử lý.|Mới xác minh bản arXiv; số tác giả báo cáo chưa được tái lập.|Đối chứng cho adaptive tiling; không mặc định số liệu công bằng.
+F03|direct|5|methods|RWDS tổ chức đánh giá detector khi đổi địa lý/thiên tai/khí hậu.|[suy luận] Không đồng nghĩa dữ liệu này là tiny-OBB benchmark.|Mẫu thiết kế held-out domain và chống tuning target.
+F04|direct|5|methods|DenseScout học heatmap chọn patch dưới budget và kiểm tra closure với backend cố định.|Có cả downstream closure; không được nói bài chỉ đo coverage.|Prior gần cho selector; so raw heatmap và latency thực.
+F05|direct|5|excerpt|AFWD-Net kết hợp foveation khả vi, wavelet và sparse head theo density.|Mới đọc trích đoạn nguồn publisher; chưa audit toàn bộ thí nghiệm/code.|Chặn claim rằng detection-driven crop selection chưa ai làm.
+F06|transfer|4|deep-next|Visual Accommodation học image scale bằng tín hiệu nội dung và loss tối ưu resolution.|Chỉ xác minh bản arXiv hiện tại; cần đọc phương pháp trước claim khác biệt.|Đối chứng chống novelty giả về scale learnable.
+G01|direct|5|skim|RoI Transformer chuyển horizontal RoI thành rotated RoI và align features.|[suy luận] ROI alignment khác với bất định quan sát của ảnh.|Baseline lịch sử của oriented feature alignment.
+G02|direct|5|skim|S2A-Net căn chỉnh feature với anchor rồi phát hiện vật thể có hướng.|[suy luận] Không mặc định feature alignment giải quyết thiếu pixel.|Đối chứng loại bỏ lợi ích chỉ do alignment.
+G03|direct|5|skim|Oriented R-CNN sinh oriented proposals và refine qua oriented head.|[suy luận] Cần đo chi phí crop/merge ngoài detector.|Baseline OBB trưởng thành cho pilot.
+G04|direct|5|skim|GWD ánh xạ OBB sang Gaussian và dùng khoảng cách phân bố làm loss.|[suy luận] Gaussian mô tả hình học không mặc nhiên là uncertainty đã calibration.|Prior loss và phản biện nhầm uncertainty.
+G05|direct|5|skim|KLD điều chỉnh gradient theo đặc tính hình học, gồm tỷ lệ cạnh.|[suy luận] Trọng số phụ thuộc hình học đã có; thêm aspect ratio không đủ mới.|Baseline bắt buộc cho hướng angle/shape.
+G06|direct|5|skim|KFIoU dùng Gaussian product để xấp xỉ xu hướng SkewIoU.|[suy luận] Trend alignment không đồng nhất với metric chính xác ở mọi cấu hình.|Đối chứng loss, không trộn AP50 với AP75.
+G07|direct|5|skim|PSC mã hóa góc bằng pha, xử lý tuần hoàn và đối xứng.|[suy luận] Angle coder không chứng minh góc có thể quan sát được từ ảnh tiny.|Đối chứng periodic representation.
+G08|direct|5|deep-next|RHINO dùng Hausdorff matching và adaptive query denoising.|[suy luận] Đổi matching cost phải so với prior này.|Chặn đề xuất matching theo đỉnh hộp như ý tưởng mới.
+G09|direct|5|skim|AO2-DETR kết hợp oriented proposal, refinement và rotation-aware matching.|[suy luận] DETR+OBB là một họ đã có.|Prior của oriented transformer.
+G10|direct|5|methods|GauCho dự đoán trực tiếp tham số Cholesky của Gaussian.|[suy luận] Covariance hình học chưa phải confidence về localization.|Baseline biểu diễn angle-free; không claim Gaussian head mới.
+G11|direct|5|methods|GSDet dùng Gaussian trong feature space, điều khiển thích nghi và đổi số Gaussian khi suy luận.|Các phiên bản DOTA dùng chung lineage ảnh; không cộng thành miền độc lập.|Prior query/candidate budget; baseline cho dynamic count.
+G12|direct|5|deep-next|O2-family dùng angle distribution refinement, Chamfer matching và denoising có hướng.|[suy luận] Angular uncertainty và matching đã là prior gần.|Đọc sâu trước khi chốt head distributional mới.
+R01|direct|5|skim|ClusDet phát hiện cụm, ước lượng scale và chạy detector trên vùng chuẩn hóa.|[suy luận] Chọn vùng chứa vật thể đã có từ lâu.|Đối chứng density/crop.
+R02|direct|5|methods|QueryDet dùng query head chỉ vị trí cần tính trên feature phân giải cao.|Tăng tốc chủ yếu ở head; không được suy ra toàn backbone sparse.|Baseline feature-level sparsity.
+R03|direct|5|deep-next|CEASC thêm global context và adaptive masks ở nhiều mức feature.|[suy luận] Thêm context vào sparse detection không tự mới.|Đối chứng accuracy/compute và context loss.
+R04|direct|5|methods|SAHI cắt ảnh chồng lấn, detect từng patch, ghép về ảnh gốc; có fine-tuning tùy chọn.|Slice nhỏ có thể cắt vật thể lớn; lợi ích phải tính đủ số lượt infer.|Baseline đơn giản bắt buộc.
+R05|transfer|4|skim|AutoFocus dự đoán FocusPixels rồi tạo FocusChips cho coarse-to-fine inference.|[suy luận] Cần giữ recall của selector trước khi đo detector.|Prior selective high-resolution inference.
+R06|direct|5|skim|RFLA dùng Gaussian receptive field và hierarchical assignment cho tiny objects.|[suy luận] Assignment và quan sát hình ảnh là hai cơ chế khác nhau.|Đối chứng giả thuyết thiếu positive samples.
+R07|direct|5|skim|NWD-RKA sửa độ nhạy của assignment; AI-TOD-v2 sửa nhãn thiếu/sai vị trí.|[suy luận] Label quality có thể giải thích thay đổi AP.|Phân biệt nút thắt nhãn và representation.
+R08|direct|5|deep-next|AI-TOD-R/DCFL cung cấp benchmark tiny OBB và học coarse-to-fine chống bias.|[suy luận] Không tự giữ làm dataset chính chỉ vì proposal cũ dùng.|Ứng viên tiny-OBB nếu kiểm tra access và leakage đạt.
+R09|direct|5|methods|ESOD dùng ObjSeeker/AdaSlicer ở feature level, kết hợp sparse head.|[suy luận] Kết quả phụ thuộc resolution và chi phí feature extraction.|Baseline mạnh chống so sánh chỉ với YOLO mặc định.
+R10|direct|5|skim|AdaZoom dùng reinforcement learning chọn hình dạng và phóng đại vùng.|[suy luận] Zoom policy phải so với scale-aware crop đã có.|Prior gần cho adaptive zoom.
+R11|direct|5|skim|YOLC dùng local scale module tìm cụm và detector CenterNet cải tiến.|[suy luận] Cụm và zoom không đủ cấu thành novelty.|Đối chứng crop theo cluster.
+R12|direct|5|skim|UFPMP-Det gom vùng foreground thành mosaic và dùng multiple proxies.|[suy luận] Packing giảm nền là phương án rẻ cần so trước router mới.|Đối chứng tận dụng batch/pixel budget.
+R13|transfer|5|deep-next|Dynamic Zoom-in đã học dự đoán accuracy gain rồi dùng Q-net chọn vùng phóng to.|Đã có gain prediction từ 2018; không tuyên bố đây là gap mới.|Prior phủ định đề xuất gain-router tổng quát.
+R14|transfer|5|deep-next|Remix chia vùng và chọn mô hình theo latency budget để tối ưu accuracy.|[suy luận] Cần phân biệt tối ưu ngân sách chung với phát hiện OBB cụ thể.|Prior systems cho budget allocation.
+S01|baseline|4|reference|Mask R-CNN thêm nhánh instance mask cạnh detection.|[suy luận] Nhánh mask phụ trợ cần chứng minh hơn supervision tăng thêm.|Baseline nếu chọn detection+segmentation.
+S02|baseline|4|reference|Mask2Former dùng masked attention cho nhiều dạng segmentation.|[suy luận] Semantic/instance/panoptic không dùng chung một metric.|Baseline segmentation hiện đại.
+S03|transfer|4|reference|SAM cung cấp promptable segmentation và pretrained masks model.|Prompt GT và prompt detector dự đoán là hai điều kiện khác nhau.|Teacher ứng viên; kiểm soát đặc quyền nhãn.
+S05|direct|5|methods|RS-SAM thêm LoRA, multiscale neck và progressive refinement cho ảnh remote sensing.|[suy luận] LoRA+FPN trên SAM đã có, không tự mới.|Đối chứng nếu phát triển segmentation.
+S06|direct|4|skim|ROS-SAM dùng LoRA/context/boundary cho interactive segmentation vật thể chuyển động.|Task interactive/video khác automatic instance segmentation ảnh tĩnh.|Chỉ chuyển cơ chế, không so trực tiếp headline IoU.
+S07|transfer|5|methods|Scale-MAE dùng GSD positional encoding và tái tạo nhiều dải tần/tỷ lệ.|Cần scale metadata; pretraining gốc quy mô lớn.|Ứng viên transfer checkpoint; không pretrain lại trong 60 USD.
+S08|transfer|3|reference|SatMAE khai thác temporal/spectral structure trong masked pretraining.|[suy luận] RGB aerial đơn ảnh không mặc định hưởng lợi từ multispectral setup.|Đối chứng lựa chọn pretrained representation.
+S10|transfer|4|skim|RemoteCLIP tạo biểu diễn ảnh-ngôn ngữ bằng chuyển annotation thành caption.|[suy luận] Retrieval/classification tốt chưa chứng minh tiny-OBB tốt.|Teacher/feature baseline tùy kiểm tra checkpoint.
+S11|direct|4|skim|SegEarth-OV dùng feature upsampling và giảm global bias cho open-vocabulary segmentation.|[suy luận] OV semantic segmentation không thay instance OBB detection.|Prior tránh đề xuất upsampling CLIP như giải pháp chưa có.
+S12|direct|4|methods|Active learning kết hợp masks, uncertainty, diversity và sửa box lúc cold start.|Cần annotation oracle và user study; khó thêm vào kế hoạch 4 tuần.|Nhánh giảm chi phí annotation, ưu tiên thấp khi đã có nhãn.

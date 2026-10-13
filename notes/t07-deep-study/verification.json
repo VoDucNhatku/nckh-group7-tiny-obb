@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-13",
+  "scope": "Structural artifact consistency only; not scientific validation or replication",
+  "checks": {
+    "all_three_ledgers_parse": true,
+    "static_has_27_unique_claims": true,
+    "temporal_has_11_unique_claims": true,
+    "temporal_sources_resolve": true,
+    "multiview_has_three_exemplars_and_repeat_audit": true,
+    "local_links_resolve": true,
+    "no_old_foundation_namespace": true,
+    "ledger_c15_once": true,
+    "index_once": true,
+    "review_resolution_present": true
+  },
+  "passed": 10,
+  "total": 10,
+  "local_links_checked": 15,
+  "broken_links": [],
+  "static_claims": 27,
+  "temporal_claims": 11,
+  "paper_cases": 8,
+  "multiview_exemplars": 3,
+  "toy_entropy_finite_difference_max_error": 1.2E-11,
+  "detector_runs": 0
+}

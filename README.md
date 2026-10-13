@@ -8,6 +8,14 @@
 - công việc được chia thành Issues và gom theo Milestones;
 - kết quả chạy thí nghiệm sẽ nằm trong `experiments/`.
 
+## Nghiên cứu mở lại từ đề tài #7 — 13/10/2026
+
+**Repo public.** Bộ nghiên cứu mới đã được bổ sung theo yêu cầu nhóm: [hướng dẫn đọc và bước tiếp theo](notes/RESEARCH-START-HERE.md), [báo cáo đọc sâu](notes/t07-deep-study/DEEP-REPORT.md), [corpus 50 bài](notes/t07-fresh-research/CORPUS-50.md), [120 câu hỏi](notes/t07-problem-map/QUESTION-BANK.md) và [prompt nghiên cứu](notes/t07-deep-study/RESEARCH-PROMPT.md).
+
+Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt buộc giữ YOLO/OBB/STAL của proposal cũ. Multi-view là nhánh có điều kiện. Đã đọc sâu 8 case và 3 exemplar multi-view; không phải toàn bộ 50 bài đã được đọc toàn văn. **Chưa train, chưa chọn kiến trúc thắng, chưa xác nhận novelty hoặc mức Q2/Q1.** C-13–C-15 ghi phạm vi mới trong [claims ledger](notes/claims-ledger.md).
+
+Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
+
 | | |
 |---|---|
 | Mentor | Hà Anh |
@@ -80,7 +88,7 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 └── paper/                       ← bản thảo bài báo (khi bắt đầu viết)
 ```
 
-**Không có trong repo:** PDF bài báo (có bản quyền), thẻ đọc paper và các file của bài tổng quan tài liệu có hệ thống (SLR). Các file này giữ ở máy của người làm SLR. Vì vậy một số đường dẫn trong proposal, như `papers/...`, `logs/...` và `scripts/t07-slr/data/...`, chỉ tồn tại ở bản local.
+**Đã chia sẻ:** ba bộ nghiên cứu ngày 13/10 gồm báo cáo, corpus/metadata, câu hỏi, casebooks, phản biện, prompt, claim ledgers và scripts kiểm tra tài liệu. **Giữ local:** PDF bài báo, cache PDF/text/HTML/ảnh trang, dữ liệu và các thẻ/file SLR lịch sử chưa được whitelist. Vì vậy một số đường dẫn cache và đường dẫn trong proposal, như `papers/...`, `logs/...`, `scripts/t07-slr/data/...`, chỉ tồn tại ở bản local. Mỗi hồ sơ nghiên cứu có URL nguồn sơ cấp để truy cập bản gốc.
 
 ## Cách làm việc nhóm
 
