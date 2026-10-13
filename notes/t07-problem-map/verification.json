@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-13",
+  "checks": {
+    "120_unique_questions_in_sequence": true,
+    "12_question_groups": true,
+    "12_priority_cards": true,
+    "13_unique_goals": true,
+    "5_research_programmes": true,
+    "18_new_evidence_records": true,
+    "new_evidence_ids_unique": true,
+    "no_new_title_duplicate_of_original_50": true,
+    "evidence_required_fields": true,
+    "report_and_question_source_ids_resolve": true,
+    "local_links_exist": true,
+    "HARD_scope_visible": true,
+    "segmentation_protocol_visible": true,
+    "hypothesis_vs_module_falsification_explicit": true
+  },
+  "passed": 14,
+  "total": 14,
+  "counts": {
+    "questions": 120,
+    "priority_cards": 12,
+    "goals": 13,
+    "programmes": 5,
+    "added_evidence": 18
+  },
+  "new_evidence_read_depths": {
+    "selected_full_text": 7,
+    "official_dataset_description": 1,
+    "abstract_and_intro": 1,
+    "abstract": 6,
+    "selected_method_excerpt": 1,
+    "selected_dataset_excerpt": 1,
+    "selected_analysis_excerpt": 1
+  },
+  "unresolved_source_ids": [],
+  "broken_local_links": [],
+  "note": "Structural verification only. Does not prove novelty, scientific validity, full-text coverage, external URL reachability, or experimental superiority."
+}

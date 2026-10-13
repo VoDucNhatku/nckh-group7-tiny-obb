@@ -1,0 +1,1269 @@
+[
+  {
+    "id": "B01",
+    "primary_url": "https://arxiv.org/abs/1612.03144",
+    "title": "Feature Pyramid Networks for Object Detection",
+    "citation_date": "2016/12/09",
+    "pdf_url": "https://arxiv.org/pdf/1612.03144",
+    "journal": null,
+    "abstract": "Abstract: Feature pyramids are a basic component in recognition systems for detecting objects at different scales. But recent deep learning object detectors have avoided pyramid representations, in part because they are compute and memory intensive. In this paper, we exploit the inherent multi-scale, pyramidal hierarchy of deep convolutional networks to construct feature pyramids with marginal extra cost. A top-down architecture with lateral connections is developed for building high-level semantic feature maps at all scales. This architecture, called a Feature Pyramid Network (FPN), shows significant improvement as a generic feature extractor in several applications. Using FPN in a basic Faster R-CNN system, our method achieves state-of-the-art single-model results on the COCO detection benchmark without bells and whistles, surpassing all existing single-model entries including those from the COCO 2016 challenge winners. In addition, our method can run at 5 FPS on a GPU and thus is a practical and accurate solution to multi-scale object detection. Code will be made publicly available.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.1612.03144"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Lin, Tsung-Yi",
+      "Dollár, Piotr",
+      "Girshick, Ross",
+      "He, Kaiming",
+      "Hariharan, Bharath",
+      "Belongie, Serge"
+    ],
+    "version_history": "[Submitted on 9 Dec 2016 ( v1 ), last revised 19 Apr 2017 (this version, v2)]"
+  },
+  {
+    "id": "B05",
+    "primary_url": "https://arxiv.org/abs/2304.08069",
+    "title": "DETRs Beat YOLOs on Real-time Object Detection",
+    "citation_date": "2023/04/17",
+    "pdf_url": "https://arxiv.org/pdf/2304.08069",
+    "journal": null,
+    "abstract": "Abstract: The YOLO series has become the most popular framework for real-time object detection due to its reasonable trade-off between speed and accuracy. However, we observe that the speed and accuracy of YOLOs are negatively affected by the NMS. Recently, end-to-end Transformer-based detectors (DETRs) have provided an alternative to eliminating NMS. Nevertheless, the high computational cost limits their practicality and hinders them from fully exploiting the advantage of excluding NMS. In this paper, we propose the Real-Time DEtection TRansformer (RT-DETR), the first real-time end-to-end object detector to our best knowledge that addresses the above dilemma. We build RT-DETR in two steps, drawing on the advanced DETR: first we focus on maintaining accuracy while improving speed, followed by maintaining speed while improving accuracy. Specifically, we design an efficient hybrid encoder to expeditiously process multi-scale features by decoupling intra-scale interaction and cross-scale fusion to improve speed. Then, we propose the uncertainty-minimal query selection to provide high-quality initial queries to the decoder, thereby improving accuracy. In addition, RT-DETR supports flexible speed tuning by adjusting the number of decoder layers to adapt to various scenarios without retraining. Our RT-DETR-R50 / R101 achieves 53.1% / 54.3% AP on COCO and 108 / 74 FPS on T4 GPU, outperforming previously advanced YOLOs in both speed and accuracy. We also develop scaled RT-DETRs that outperform the lighter YOLO detectors (S and M models). Furthermore, RT-DETR-R50 outperforms DINO-R50 by 2.2% AP in accuracy and about 21 times in FPS. After pre-training with Objects365, RT-DETR-R50 / R101 achieves 55.3% / 56.2% AP. The project page: this https URL .",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2304.08069"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Zhao, Yian",
+      "Lv, Wenyu",
+      "Xu, Shangliang",
+      "Wei, Jinman",
+      "Wang, Guanzhong",
+      "Dang, Qingqing",
+      "Liu, Yi",
+      "Chen, Jie"
+    ],
+    "version_history": "[Submitted on 17 Apr 2023 ( v1 ), last revised 3 Apr 2024 (this version, v3)]"
+  },
+  {
+    "id": "D01",
+    "primary_url": "https://arxiv.org/abs/1711.10398",
+    "title": "DOTA: A Large-scale Dataset for Object Detection in Aerial Images",
+    "citation_date": "2017/11/28",
+    "pdf_url": "https://arxiv.org/pdf/1711.10398",
+    "journal": null,
+    "abstract": "Abstract: Object detection is an important and challenging problem in computer vision. Although the past decade has witnessed major advances in object detection in natural scenes, such successes have been slow to aerial imagery, not only because of the huge variation in the scale, orientation and shape of the object instances on the earth's surface, but also due to the scarcity of well-annotated datasets of objects in aerial scenes. To advance object detection research in Earth Vision, also known as Earth Observation and Remote Sensing, we introduce a large-scale Dataset for Object deTection in Aerial images (DOTA). To this end, we collect $2806$ aerial images from different sensors and platforms. Each image is of the size about 4000-by-4000 pixels and contains objects exhibiting a wide variety of scales, orientations, and shapes. These DOTA images are then annotated by experts in aerial image interpretation using $15$ common object categories. The fully annotated DOTA images contains $188,282$ instances, each of which is labeled by an arbitrary (8 d.o.f.) quadrilateral To build a baseline for object detection in Earth Vision, we evaluate state-of-the-art object detection algorithms on DOTA. Experiments demonstrate that DOTA well represents real Earth Vision applications and are quite challenging.",
+    "comments": "Accepted to CVPR 2018",
+    "journal_reference": "IEEE Conference on Computer Vision and Pattern Recognition, 2018",
+    "links": [
+      "https://doi.org/10.48550/arXiv.1711.10398"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xia, Gui-Song",
+      "Bai, Xiang",
+      "Ding, Jian",
+      "Zhu, Zhen",
+      "Belongie, Serge",
+      "Luo, Jiebo",
+      "Datcu, Mihai",
+      "Pelillo, Marcello",
+      "Zhang, Liangpei"
+    ],
+    "version_history": "[Submitted on 28 Nov 2017 ( v1 ), last revised 19 May 2019 (this version, v3)]"
+  },
+  {
+    "id": "D02",
+    "primary_url": "https://arxiv.org/abs/2102.12219",
+    "title": "Object Detection in Aerial Images: A Large-Scale Benchmark and Challenges",
+    "citation_date": "2021/02/24",
+    "pdf_url": "https://arxiv.org/pdf/2102.12219",
+    "journal": null,
+    "abstract": "Abstract: In the past decade, object detection has achieved significant progress in natural images but not in aerial images, due to the massive variations in the scale and orientation of objects caused by the bird's-eye view of aerial images. More importantly, the lack of large-scale benchmarks has become a major obstacle to the development of object detection in aerial images (ODAI). In this paper,we present a large-scale Dataset of Object deTection in Aerial images (DOTA) and comprehensive baselines for ODAI. The proposed DOTA dataset contains 1,793,658 object instances of 18 categories of oriented-bounding-box annotations collected from 11,268 aerial images. Based on this large-scale and well-annotated dataset, we build baselines covering 10 state-of-the-art algorithms with over 70 configurations, where the speed and accuracy performances of each model have been evaluated. Furthermore, we provide a code library for ODAI and build a website for evaluating different algorithms. Previous challenges run on DOTA have attracted more than 1300 teams worldwide. We believe that the expanded large-scale DOTA dataset, the extensive baselines, the code library and the challenges can facilitate the designs of robust algorithms and reproducible research on the problem of object detection in aerial images.",
+    "comments": "Accepted to IEEE TPAMI",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2102.12219",
+      "https://doi.org/10.1109/TPAMI.2021.3117983"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Ding, Jian",
+      "Xue, Nan",
+      "Xia, Gui-Song",
+      "Bai, Xiang",
+      "Yang, Wen",
+      "Yang, Micheal Ying",
+      "Belongie, Serge",
+      "Luo, Jiebo",
+      "Datcu, Mihai",
+      "Pelillo, Marcello",
+      "Zhang, Liangpei"
+    ],
+    "version_history": "[Submitted on 24 Feb 2021 ( v1 ), last revised 4 Dec 2021 (this version, v2)]"
+  },
+  {
+    "id": "D03",
+    "primary_url": "https://arxiv.org/abs/1909.00133",
+    "title": "Object Detection in Optical Remote Sensing Images: A Survey and A New Benchmark",
+    "citation_date": "2019/08/31",
+    "pdf_url": "https://arxiv.org/pdf/1909.00133",
+    "journal": null,
+    "abstract": "Abstract: Substantial efforts have been devoted more recently to presenting various methods for object detection in optical remote sensing images. However, the current survey of datasets and deep learning based methods for object detection in optical remote sensing images is not adequate. Moreover, most of the existing datasets have some shortcomings, for example, the numbers of images and object categories are small scale, and the image diversity and variations are insufficient. These limitations greatly affect the development of deep learning based object detection methods. In the paper, we provide a comprehensive review of the recent deep learning based object detection progress in both the computer vision and earth observation communities. Then, we propose a large-scale, publicly available benchmark for object DetectIon in Optical Remote sensing images, which we name as DIOR. The dataset contains 23463 images and 192472 instances, covering 20 object classes. The proposed DIOR dataset 1) is large-scale on the object categories, on the object instance number, and on the total image number; 2) has a large range of object size variations, not only in terms of spatial resolutions, but also in the aspect of inter- and intra-class size variability across objects; 3) holds big variations as the images are obtained with different imaging conditions, weathers, seasons, and image quality; and 4) has high inter-class similarity and intra-class diversity. The proposed benchmark can help the researchers to develop and validate their data-driven methods. Finally, we evaluate several state-of-the-art approaches on our DIOR dataset to establish a baseline for future research.",
+    "comments": null,
+    "journal_reference": "ISPRS Journal of Photogrammetry and Remote Sensing, 159: 296-307, 2020",
+    "links": [
+      "https://doi.org/10.48550/arXiv.1909.00133",
+      "https://doi.org/10.1016/j.isprsjprs.2019.11.023"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Li, Ke",
+      "Wan, Gang",
+      "Cheng, Gong",
+      "Meng, Liqiu",
+      "Han, Junwei"
+    ],
+    "version_history": "[Submitted on 31 Aug 2019 ( v1 ), last revised 22 Sep 2019 (this version, v2)]"
+  },
+  {
+    "id": "D04",
+    "primary_url": "https://arxiv.org/abs/1905.12886",
+    "title": "iSAID: A Large-scale Dataset for Instance Segmentation in Aerial Images",
+    "citation_date": "2019/05/30",
+    "pdf_url": "https://arxiv.org/pdf/1905.12886",
+    "journal": null,
+    "abstract": "Abstract: Existing Earth Vision datasets are either suitable for semantic segmentation or object detection. In this work, we introduce the first benchmark dataset for instance segmentation in aerial imagery that combines instance-level object detection and pixel-level segmentation tasks. In comparison to instance segmentation in natural scenes, aerial images present unique challenges e.g., a huge number of instances per image, large object-scale variations and abundant tiny objects. Our large-scale and densely annotated Instance Segmentation in Aerial Images Dataset (iSAID) comes with 655,451 object instances for 15 categories across 2,806 high-resolution images. Such precise per-pixel annotations for each instance ensure accurate localization that is essential for detailed scene analysis. Compared to existing small-scale aerial image based instance segmentation datasets, iSAID contains 15$\\times$ the number of object categories and 5$\\times$ the number of instances. We benchmark our dataset using two popular instance segmentation approaches for natural images, namely Mask R-CNN and PANet. In our experiments we show that direct application of off-the-shelf Mask R-CNN and PANet on aerial images provide suboptimal instance segmentation results, thus requiring specialized solutions from the research community. The dataset is publicly available at: this https URL",
+    "comments": "CVPR'19 Workshops (Detecting Objects in Aerial Images). The dataset is publicly available at: this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.1905.12886"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Zamir, Syed Waqas",
+      "Arora, Aditya",
+      "Gupta, Akshita",
+      "Khan, Salman",
+      "Sun, Guolei",
+      "Khan, Fahad Shahbaz",
+      "Zhu, Fan",
+      "Shao, Ling",
+      "Xia, Gui-Song",
+      "Bai, Xiang"
+    ],
+    "version_history": "[Submitted on 30 May 2019 ( v1 ), last revised 28 Aug 2019 (this version, v2)]"
+  },
+  {
+    "id": "D05",
+    "primary_url": "https://arxiv.org/abs/2001.06303",
+    "title": "Detection and Tracking Meet Drones Challenge",
+    "citation_date": "2020/01/16",
+    "pdf_url": "https://arxiv.org/pdf/2001.06303",
+    "journal": null,
+    "abstract": "Abstract: Drones, or general UAVs, equipped with cameras have been fast deployed with a wide range of applications, including agriculture, aerial photography, and surveillance. Consequently, automatic understanding of visual data collected from drones becomes highly demanding, bringing computer vision and drones more and more closely. To promote and track the developments of object detection and tracking algorithms, we have organized three challenge workshops in conjunction with ECCV 2018, ICCV 2019 and ECCV 2020, attracting more than 100 teams around the world. We provide a large-scale drone captured dataset, VisDrone, which includes four tracks, i.e., (1) image object detection, (2) video object detection, (3) single object tracking, and (4) multi-object tracking. In this paper, we first present a thorough review of object detection and tracking datasets and benchmarks, and discuss the challenges of collecting large-scale drone-based object detection and tracking datasets with fully manual annotations. After that, we describe our VisDrone dataset, which is captured over various urban/suburban areas of 14 different cities across China from North to South. Being the largest such dataset ever published, VisDrone enables extensive evaluation and investigation of visual analysis algorithms for the drone platform. We provide a detailed analysis of the current state of the field of large-scale object detection and tracking on drones, and conclude the challenge as well as propose future directions. We expect the benchmark largely boost the research and development in video analysis on drone platforms. All the datasets and experimental results can be downloaded from this https URL .",
+    "comments": "Accepted to TPAMI; arXiv admin note: text overlap with arXiv:1804.07437",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/VisDrone/VisDrone-Dataset",
+      "https://doi.org/10.48550/arXiv.2001.06303"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Zhu, Pengfei",
+      "Wen, Longyin",
+      "Du, Dawei",
+      "Bian, Xiao",
+      "Fan, Heng",
+      "Hu, Qinghua",
+      "Ling, Haibin"
+    ],
+    "version_history": "[Submitted on 16 Jan 2020 ( v1 ), last revised 4 Oct 2021 (this version, v3)]"
+  },
+  {
+    "id": "D06",
+    "primary_url": "https://arxiv.org/abs/2103.05569",
+    "title": "FAIR1M: A Benchmark Dataset for Fine-grained Object Recognition in High-Resolution Remote Sensing Imagery",
+    "citation_date": "2021/03/09",
+    "pdf_url": "https://arxiv.org/pdf/2103.05569",
+    "journal": null,
+    "abstract": "Abstract: With the rapid development of deep learning, many deep learning-based approaches have made great achievements in object detection task. It is generally known that deep learning is a data-driven method. Data directly impact the performance of object detectors to some extent. Although existing datasets have included common objects in remote sensing images, they still have some limitations in terms of scale, categories, and images. Therefore, there is a strong requirement for establishing a large-scale benchmark on object detection in high-resolution remote sensing images. In this paper, we propose a novel benchmark dataset with more than 1 million instances and more than 15,000 images for Fine-grAined object recognItion in high-Resolution remote sensing imagery which is named as FAIR1M. All objects in the FAIR1M dataset are annotated with respect to 5 categories and 37 sub-categories by oriented bounding boxes. Compared with existing detection datasets dedicated to object detection, the FAIR1M dataset has 4 particular characteristics: (1) it is much larger than other existing object detection datasets both in terms of the quantity of instances and the quantity of images, (2) it provides more rich fine-grained category information for objects in remote sensing images, (3) it contains geographic information such as latitude, longitude and resolution, (4) it provides better image quality owing to a careful data cleaning procedure. To establish a baseline for fine-grained object recognition, we propose a novel evaluation method and benchmark fine-grained object detection tasks and a visual classification task using several State-Of-The-Art (SOTA) deep learning-based models on our FAIR1M dataset. Experimental results strongly indicate that the FAIR1M dataset is closer to practical application and it is considerably more challenging than existing datasets.",
+    "comments": "19 pages, 13 figures",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2103.05569"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Sun, Xian",
+      "Wang, Peijin",
+      "Yan, Zhiyuan",
+      "Xu, Feng",
+      "Wang, Ruiping",
+      "Diao, Wenhui",
+      "Chen, Jin",
+      "Li, Jihao",
+      "Feng, Yingchao",
+      "Xu, Tao",
+      "Weinmann, Martin",
+      "Hinz, Stefan",
+      "Wang, Cheng",
+      "Fu, Kun"
+    ],
+    "version_history": "[Submitted on 9 Mar 2021 ( v1 ), last revised 24 Mar 2021 (this version, v2)]"
+  },
+  {
+    "id": "F01",
+    "primary_url": "https://arxiv.org/abs/2603.09411",
+    "title": "RiO-DETR: DETR for Real-time Oriented Object Detection",
+    "citation_date": "2026/03/10",
+    "pdf_url": "https://arxiv.org/pdf/2603.09411",
+    "journal": null,
+    "abstract": "Abstract: We present RiO-DETR: DETR for Real-time Oriented Object Detection, the first real-time oriented detection transformer to the best of our knowledge. Adapting DETR to oriented bounding boxes (OBBs) poses three challenges: semantics-dependent orientation, angle periodicity that breaks standard Euclidean refinement, and an enlarged search space that slows convergence. RiO-DETR resolves these issues with task-native designs while preserving real-time efficiency. First, we propose Content-Driven Angle Estimation by decoupling angle from positional queries, together with Rotation-Rectified Orthogonal Attention to capture complementary cues for reliable orientation. Second, Decoupled Periodic Refinement combines bounded coarse-to-fine updates with a Shortest-Path Periodic Loss for stable learning across angular seams. Third, Oriented Dense O2O injects angular diversity into dense supervision to speed up angle convergence at no extra cost. Extensive experiments on DOTA-1.0, DIOR-R, and FAIR-1M-2.0 demonstrate RiO-DETR establishes a new speed--accuracy trade-off for real-time oriented detection. GitHub Repository: this https URL .",
+    "comments": "Accepted by ECCV 2026, 31 pages, 9 figures",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/RicePasteM/RiO-DETR",
+      "https://doi.org/10.48550/arXiv.2603.09411"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Hu, Zhangchi",
+      "Zhao, Yifan",
+      "Peng, Yansong",
+      "Sun, Wenzhang",
+      "Yin, Xiangchen",
+      "Chen, Jie",
+      "Wu, Peixi",
+      "Li, Hebei",
+      "Wang, Xinghao",
+      "Jiang, Dongsheng",
+      "Sun, Xiaoyan"
+    ],
+    "version_history": "[Submitted on 10 Mar 2026 ( v1 ), last revised 30 Jul 2026 (this version, v2)]"
+  },
+  {
+    "id": "F02",
+    "primary_url": "https://arxiv.org/abs/2604.19233",
+    "title": "Adaptive Slicing-Assisted Hyper Inference for Enhanced Small Object Detection in High-Resolution Imagery",
+    "citation_date": "2026/04/21",
+    "pdf_url": "https://arxiv.org/pdf/2604.19233",
+    "journal": null,
+    "abstract": "Abstract: Deep learning-based object detectors have achieved remarkable success across numerous computer vision applications, yet they continue to struggle with small object detection in high-resolution aerial and satellite imagery, where dense object distributions, variable shooting angles, diminutive target sizes, and substantial inter-class variability pose formidable challenges. Existing slicing strategies that partition high-resolution images into manageable patches have demonstrated promising results for enlarging the effective receptive field of small targets; however, their reliance on fixed slice dimensions introduces significant redundant computation, inflating inference cost and undermining detection speed. In this paper, we propose \\textbf{Adaptive Slicing-Assisted Hyper Inference (ASAHI)}, a novel slicing framework that shifts the paradigm from prescribing a fixed slice size to adaptively determining the optimal number of slices according to image resolution, thereby substantially mitigating redundant computation while preserving beneficial overlap between adjacent patches. ASAHI integrates three synergistic components: (1)an adaptive resolution-aware slicing algorithm that dynamically generates 6 or 12 overlapping patches based on a learned threshold, (2)a slicing-assisted fine-tuning (SAF) strategy that constructs augmented training data comprising both full-resolution and sliced image patches, and (3)a Cluster-DIoU-NMS (CDN) post-processing module that combines the geometric merging efficiency of Cluster-NMS with the center-distance-aware suppression of DIoU-NMS to achieve robust duplicate elimination in crowded scenes. Extensive experiments on VisDrone2019 and xView, demonstrate that ASAHI achieves state-of-the-art performance with 56.8% on VisDrone2019-DET-val and 22.7% on xView-test, while reducing inference time by 20-25% compared to the baseline SAHI method.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2604.19233"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Moretti, Francesco",
+      "Jin, Yi",
+      "Mario, Guiqin"
+    ],
+    "version_history": "[Submitted on 21 Apr 2026]"
+  },
+  {
+    "id": "F03",
+    "primary_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Al-Emadi_Benchmarking_Object_Detectors_under_Real-World_Distribution_Shifts_in_Satellite_Imagery_CVPR_2025_paper.html",
+    "title": "Benchmarking Object Detectors under Real-World Distribution Shifts in Satellite Imagery",
+    "citation_date": "2025",
+    "pdf_url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Al-Emadi_Benchmarking_Object_Detectors_under_Real-World_Distribution_Shifts_in_Satellite_Imagery_CVPR_2025_paper.pdf",
+    "journal": null,
+    "abstract": "Object detectors have achieved remarkable performance in many applications; however, these deep learning models are typically designed under the i.i.d. assumption, meaning they are trained and evaluated on data sampled from the same (source) distribution. In real-world deployment, however, target distributions often differ from source data, leading to substantial performance degradation. Domain Generalisation (DG) seeks to bridge this gap by enabling models to generalise to Out-Of-Distribution (OOD) data without access to target distributions during training, enhancing robustness to unseen conditions. In this work, we examine the generalisability and robustness of state-of-the-art object detectors under real-world distribution shifts, focusing particularly on spatial domain shifts. Despite the need, a standardised benchmark dataset specifically designed for assessing object detection under realistic DG scenarios is currently lacking. To address this, we introduce Real-World Distribution Shifts (RWDS), a suite of three novel DG benchmarking datasets that focus on humanitarian and climate change applications. These datasets enable the investigation of domain shifts across (i) climate zones and (ii) various disasters and geographic regions. To our knowledge, these are the first DG benchmarking datasets tailored for object detection in real-world, high-impact contexts. We aim for these datasets to serve as valuable resources for evaluating the robustness and generalisation of future object detection models. Our datasets and code are available at https://github.com/RWGAI/RWDS.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Al-Emadi, Sara A.",
+      "Yang, Yin",
+      "Ofli, Ferda"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "F04",
+    "primary_url": "https://arxiv.org/abs/2604.25300",
+    "title": "DenseScout: Algorithm-System Co-design for Budgeted Tiny Object Selection on Edge Platforms",
+    "citation_date": "2026/04/28",
+    "pdf_url": "https://arxiv.org/pdf/2604.25300",
+    "journal": null,
+    "abstract": "Abstract: Deploying high-resolution tiny-object perception on edge platforms requires not only accurate localization, but also selecting a small set of informative patches under compute, transport, and latency constraints. We study budgeted tiny-object selection, where a frontend ranks patch centers from a lightweight proxy and a downstream detector processes only the selected regions. DenseScout is a 1.01M-parameter deployment-oriented dense-response selector that removes detector-style box regression and directly optimizes ranked patch-center prioritization. Its contribution lies in the task-specific selector formulation, the alignment among output representation, supervision, and decoding, and its joint design with transport-aware execution and QoS-oriented evaluation. Under unified protocols on VisDrone and DOTA, DenseScout provides stronger low-budget recall than the evaluated detector-derived selectors; controlled fixed-K inspection experiments further demonstrate advantages over selection-style proxy baselines. Cross-platform profiling on Jetson Orin NX and RK3588 shows that deployable utility depends jointly on selector quality, memory movement, and heterogeneous runtime realization. These results support treating edge tiny-object perception as a selection-and-deployment co-design problem rather than evaluating model accuracy and runtime in isolation.",
+    "comments": "18 pages. Accepted at ACM Multimedia 2026. Updated to the final camera-ready version with supplementary material, reproducibility clarifications, and a public source-code repository. Main results and conclusions remain unchanged",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2604.25300",
+      "https://doi.org/10.1145/3767308.3836001"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xiong, Zhouzhi",
+      "Zeng, Zimo",
+      "Chen, Yi",
+      "Xu, Shuqi",
+      "Yan, Yunfeng",
+      "Qi, Donglian"
+    ],
+    "version_history": "[Submitted on 28 Apr 2026 ( v1 ), last revised 4 Sep 2026 (this version, v2)]"
+  },
+  {
+    "id": "F05",
+    "primary_url": "https://www.mdpi.com/1424-8220/26/19/6157",
+    "status": "verified_primary_search_extract",
+    "error": "HTTP Error 403: Forbidden",
+    "title": "Differentiable Resolution Allocation for Tiny Object Detection in UAV Imagery",
+    "citation_date": "2026",
+    "journal": "Sensors",
+    "abstract": "Publisher search extract: AFWD-Net couples differentiable adaptive foveation, local wavelet recovery and density-conditioned sparse detection; full direct HTML fetch blocked.",
+    "verification_note": "Primary publisher page and /notes verified with web search 2026-10-13; direct urllib request blocked.",
+    "links": [
+      "https://doi.org/10.3390/s26196157"
+    ]
+  },
+  {
+    "id": "F06",
+    "primary_url": "https://arxiv.org/abs/2412.06341",
+    "title": "Visual Accommodation: Rethinking Image Scale as a Learnable Variable for Object Detection",
+    "citation_date": "2024/12/09",
+    "pdf_url": "https://arxiv.org/pdf/2412.06341",
+    "journal": null,
+    "abstract": "Abstract: We propose Ciliary-DETR (previous name: Elastic-DETR), a framework for test-time resolution adjustment analogous to biological accommodation. While multi-scale data augmentation improves robustness to scale variation, modern detectors rely on fixed inference resolutions, potentially limiting flexibility and robustness. Similar to the ciliary muscle, we introduce a lightweight scale predictor that dynamically estimates test-time scale factors across a wide range of input scales. The core challenge is that the optimal input scale is inherently unobservable under standard training setups. To address this challenge, we introduce a parametric formulation of desired scaling behavior, leading to loss-driven objectives that guide scale optimization. Overall, our method enables flexible and efficient single-pass inference, bridging the gap between training-time robustness and test-time adaptation.",
+    "comments": "23 pages, 11 figures",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2412.06341"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Seo, Daeun",
+      "Yang, Hoeseok",
+      "Park, Sihyeong",
+      "Kim, Hyungshin"
+    ],
+    "version_history": "[Submitted on 9 Dec 2024 ( v1 ), last revised 13 May 2026 (this version, v2)]"
+  },
+  {
+    "id": "G01",
+    "primary_url": "https://arxiv.org/abs/1812.00155",
+    "title": "Learning RoI Transformer for Detecting Oriented Objects in Aerial Images",
+    "citation_date": "2018/12/01",
+    "pdf_url": "https://arxiv.org/pdf/1812.00155",
+    "journal": null,
+    "abstract": "Abstract: Object detection in aerial images is an active yet challenging task in computer vision because of the birdview perspective, the highly complex backgrounds, and the variant appearances of objects. Especially when detecting densely packed objects in aerial images, methods relying on horizontal proposals for common object detection often introduce mismatches between the Region of Interests (RoIs) and objects. This leads to the common misalignment between the final object classification confidence and localization accuracy. Although rotated anchors have been used to tackle this problem, the design of them always multiplies the number of anchors and dramatically increases the computational complexity. In this paper, we propose a RoI Transformer to address these problems. More precisely, to improve the quality of region proposals, we first designed a Rotated RoI (RRoI) learner to transform a Horizontal Region of Interest (HRoI) into a Rotated Region of Interest (RRoI). Based on the RRoIs, we then proposed a Rotated Position Sensitive RoI Align (RPS-RoI-Align) module to extract rotation-invariant features from them for boosting subsequent classification and regression. Our RoI Transformer is with light weight and can be easily embedded into detectors for oriented object detection. A simple implementation of the RoI Transformer has achieved state-of-the-art performances on two common and challenging aerial datasets, i.e., DOTA and HRSC2016, with a neglectable reduction to detection speed. Our RoI Transformer exceeds the deformable Position Sensitive RoI pooling when oriented bounding-box annotations are available. Extensive experiments have also validated the flexibility and effectiveness of our RoI Transformer. The results demonstrate that it can be easily integrated with other detector architectures and significantly improve the performances.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.1812.00155"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Ding, Jian",
+      "Xue, Nan",
+      "Long, Yang",
+      "Xia, Gui-Song",
+      "Lu, Qikai"
+    ],
+    "version_history": "[Submitted on 1 Dec 2018]"
+  },
+  {
+    "id": "G02",
+    "primary_url": "https://arxiv.org/abs/2008.09397",
+    "title": "Align Deep Features for Oriented Object Detection",
+    "citation_date": "2020/08/21",
+    "pdf_url": "https://arxiv.org/pdf/2008.09397",
+    "journal": null,
+    "abstract": "Abstract: The past decade has witnessed significant progress on detecting objects in aerial images that are often distributed with large scale variations and arbitrary orientations. However most of existing methods rely on heuristically defined anchors with different scales, angles and aspect ratios and usually suffer from severe misalignment between anchor boxes and axis-aligned convolutional features, which leads to the common inconsistency between the classification score and localization accuracy. To address this issue, we propose a Single-shot Alignment Network (S$^2$A-Net) consisting of two modules: a Feature Alignment Module (FAM) and an Oriented Detection Module (ODM). The FAM can generate high-quality anchors with an Anchor Refinement Network and adaptively align the convolutional features according to the anchor boxes with a novel Alignment Convolution. The ODM first adopts active rotating filters to encode the orientation information and then produces orientation-sensitive and orientation-invariant features to alleviate the inconsistency between classification score and localization accuracy. Besides, we further explore the approach to detect objects in large-size images, which leads to a better trade-off between speed and accuracy. Extensive experiments demonstrate that our method can achieve state-of-the-art performance on two commonly used aerial objects datasets (i.e., DOTA and HRSC2016) while keeping high efficiency. The code is available at this https URL .",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://github.com/csuhan/s2anet",
+      "https://doi.org/10.48550/arXiv.2008.09397"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Han, Jiaming",
+      "Ding, Jian",
+      "Li, Jie",
+      "Xia, Gui-Song"
+    ],
+    "version_history": "[Submitted on 21 Aug 2020 ( v1 ), last revised 12 Jul 2021 (this version, v3)]"
+  },
+  {
+    "id": "G03",
+    "primary_url": "https://arxiv.org/abs/2108.05699",
+    "title": "Oriented R-CNN for Object Detection",
+    "citation_date": "2021/08/12",
+    "pdf_url": "https://arxiv.org/pdf/2108.05699",
+    "journal": null,
+    "abstract": "Abstract: Current state-of-the-art two-stage detectors generate oriented proposals through time-consuming schemes. This diminishes the detectors' speed, thereby becoming the computational bottleneck in advanced oriented object detection systems. This work proposes an effective and simple oriented object detection framework, termed Oriented R-CNN, which is a general two-stage oriented detector with promising accuracy and efficiency. To be specific, in the first stage, we propose an oriented Region Proposal Network (oriented RPN) that directly generates high-quality oriented proposals in a nearly cost-free manner. The second stage is oriented R-CNN head for refining oriented Regions of Interest (oriented RoIs) and recognizing them. Without tricks, oriented R-CNN with ResNet50 achieves state-of-the-art detection accuracy on two commonly-used datasets for oriented object detection including DOTA (75.87% mAP) and HRSC2016 (96.50% mAP), while having a speed of 15.1 FPS with the image size of 1024$\\times$1024 on a single RTX 2080Ti. We hope our work could inspire rethinking the design of oriented detectors and serve as a baseline for oriented object detection. Code is available at this https URL .",
+    "comments": "ICCV 2021",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/jbwang1997/OBBDetection",
+      "https://doi.org/10.48550/arXiv.2108.05699"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xie, Xingxing",
+      "Cheng, Gong",
+      "Wang, Jiabao",
+      "Yao, Xiwen",
+      "Han, Junwei"
+    ],
+    "version_history": "[Submitted on 12 Aug 2021]"
+  },
+  {
+    "id": "G04",
+    "primary_url": "https://arxiv.org/abs/2101.11952",
+    "title": "Rethinking Rotated Object Detection with Gaussian Wasserstein Distance Loss",
+    "citation_date": "2021/01/28",
+    "pdf_url": "https://arxiv.org/pdf/2101.11952",
+    "journal": null,
+    "abstract": "Abstract: Boundary discontinuity and its inconsistency to the final detection metric have been the bottleneck for rotating detection regression loss design. In this paper, we propose a novel regression loss based on Gaussian Wasserstein distance as a fundamental approach to solve the problem. Specifically, the rotated bounding box is converted to a 2-D Gaussian distribution, which enables to approximate the indifferentiable rotational IoU induced loss by the Gaussian Wasserstein distance (GWD) which can be learned efficiently by gradient back-propagation. GWD can still be informative for learning even there is no overlapping between two rotating bounding boxes which is often the case for small object detection. Thanks to its three unique properties, GWD can also elegantly solve the boundary discontinuity and square-like problem regardless how the bounding box is defined. Experiments on five datasets using different detectors show the effectiveness of our approach. Codes are available at this https URL and this https URL .",
+    "comments": "15 pages, 6 figures, 9 tables, accepted by ICML21, codes are available at this https URL and this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/yangxue0827/RotationDetection",
+      "https://github.com/open-mmlab/mmrotate",
+      "https://github.com/yangxue0827/RotationDetection",
+      "https://github.com/open-mmlab/mmrotate",
+      "https://doi.org/10.48550/arXiv.2101.11952"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yang, Xue",
+      "Yan, Junchi",
+      "Ming, Qi",
+      "Wang, Wentao",
+      "Zhang, Xiaopeng",
+      "Tian, Qi"
+    ],
+    "version_history": "[Submitted on 28 Jan 2021 ( v1 ), last revised 18 Apr 2022 (this version, v4)]"
+  },
+  {
+    "id": "G05",
+    "primary_url": "https://arxiv.org/abs/2106.01883",
+    "title": "Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-Leibler Divergence",
+    "citation_date": "2021/06/03",
+    "pdf_url": "https://arxiv.org/pdf/2106.01883",
+    "journal": null,
+    "abstract": "Abstract: Existing rotated object detectors are mostly inherited from the horizontal detection paradigm, as the latter has evolved into a well-developed area. However, these detectors are difficult to perform prominently in high-precision detection due to the limitation of current regression loss design, especially for objects with large aspect ratios. Taking the perspective that horizontal detection is a special case for rotated object detection, in this paper, we are motivated to change the design of rotation regression loss from induction paradigm to deduction methodology, in terms of the relation between rotation and horizontal detection. We show that one essential challenge is how to modulate the coupled parameters in the rotation regression loss, as such the estimated parameters can influence to each other during the dynamic joint optimization, in an adaptive and synergetic way. Specifically, we first convert the rotated bounding box into a 2-D Gaussian distribution, and then calculate the Kullback-Leibler Divergence (KLD) between the Gaussian distributions as the regression loss. By analyzing the gradient of each parameter, we show that KLD (and its derivatives) can dynamically adjust the parameter gradients according to the characteristics of the object. It will adjust the importance (gradient weight) of the angle parameter according to the aspect ratio. This mechanism can be vital for high-precision detection as a slight angle error would cause a serious accuracy drop for large aspect ratios objects. More importantly, we have proved that KLD is scale invariant. We further show that the KLD loss can be degenerated into the popular $l_{n}$-norm loss for horizontal detection. Experimental results on seven datasets using different detectors show its consistent superiority, and codes are available at this https URL and this https URL .",
+    "comments": "16 pages, 5 figures, 8 tables, accepted by NeurIPS21, codes are available at this https URL and this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/yangxue0827/RotationDetection",
+      "https://github.com/open-mmlab/mmrotate",
+      "https://github.com/yangxue0827/RotationDetection",
+      "https://github.com/open-mmlab/mmrotate",
+      "https://doi.org/10.48550/arXiv.2106.01883"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yang, Xue",
+      "Yang, Xiaojiang",
+      "Yang, Jirui",
+      "Ming, Qi",
+      "Wang, Wentao",
+      "Tian, Qi",
+      "Yan, Junchi"
+    ],
+    "version_history": "[Submitted on 3 Jun 2021 ( v1 ), last revised 18 Apr 2022 (this version, v5)]"
+  },
+  {
+    "id": "G06",
+    "primary_url": "https://arxiv.org/abs/2201.12558",
+    "title": "The KFIoU Loss for Rotated Object Detection",
+    "citation_date": "2022/01/29",
+    "pdf_url": "https://arxiv.org/pdf/2201.12558",
+    "journal": null,
+    "abstract": "Abstract: Differing from the well-developed horizontal object detection area whereby the computing-friendly IoU based loss is readily adopted and well fits with the detection metrics. In contrast, rotation detectors often involve a more complicated loss based on SkewIoU which is unfriendly to gradient-based training. In this paper, we propose an effective approximate SkewIoU loss based on Gaussian modeling and Gaussian product, which mainly consists of two items. The first term is a scale-insensitive center point loss, which is used to quickly narrow the distance between the center points of the two bounding boxes. In the distance-independent second term, the product of the Gaussian distributions is adopted to inherently mimic the mechanism of SkewIoU by its definition, and show its alignment with the SkewIoU loss at trend-level within a certain distance (i.e. within 9 pixels). This is in contrast to recent Gaussian modeling based rotation detectors e.g. GWD loss and KLD loss that involve a human-specified distribution distance metric which require additional hyperparameter tuning that vary across datasets and detectors. The resulting new loss called KFIoU loss is easier to implement and works better compared with exact SkewIoU loss, thanks to its full differentiability and ability to handle the non-overlapping cases. We further extend our technique to the 3-D case which also suffers from the same issues as 2-D. Extensive results on various public datasets (2-D/3-D, aerial/text/face images) with different base detectors show the effectiveness of our approach.",
+    "comments": "18 pages, 6 figures, 8 tables, accepted by ICLR 2023, TensorFlow code: this https URL , PyTorch code: this https URL , Jittor code: this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/yangxue0827/RotationDetection",
+      "https://github.com/open-mmlab/mmrotate",
+      "https://github.com/Jittor/JDet",
+      "https://doi.org/10.48550/arXiv.2201.12558"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yang, Xue",
+      "Zhou, Yue",
+      "Zhang, Gefan",
+      "Yang, Jirui",
+      "Wang, Wentao",
+      "Yan, Junchi",
+      "Zhang, Xiaopeng",
+      "Tian, Qi"
+    ],
+    "version_history": "[Submitted on 29 Jan 2022 ( v1 ), last revised 6 Feb 2023 (this version, v6)]"
+  },
+  {
+    "id": "G07",
+    "primary_url": "https://arxiv.org/abs/2211.06368",
+    "title": "Phase-Shifting Coder: Predicting Accurate Orientation in Oriented Object Detection",
+    "citation_date": "2022/11/11",
+    "pdf_url": "https://arxiv.org/pdf/2211.06368",
+    "journal": null,
+    "abstract": "Abstract: With the vigorous development of computer vision, oriented object detection has gradually been featured. In this paper, a novel differentiable angle coder named phase-shifting coder (PSC) is proposed to accurately predict the orientation of objects, along with a dual-frequency version (PSCD). By mapping the rotational periodicity of different cycles into the phase of different frequencies, we provide a unified framework for various periodic fuzzy problems caused by rotational symmetry in oriented object detection. Upon such a framework, common problems in oriented object detection such as boundary discontinuity and square-like problems are elegantly solved in a unified form. Visual analysis and experiments on three datasets prove the effectiveness and the potentiality of our approach. When facing scenarios requiring high-quality bounding boxes, the proposed methods are expected to give a competitive performance. The codes are publicly available at this https URL .",
+    "comments": "Accepted to CVPR 2023, 10 pages, 4 figures",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/open-mmlab/mmrotate",
+      "https://doi.org/10.48550/arXiv.2211.06368"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yu, Yi",
+      "Da, Feipeng"
+    ],
+    "version_history": "[Submitted on 11 Nov 2022 ( v1 ), last revised 10 Mar 2023 (this version, v2)]"
+  },
+  {
+    "id": "G08",
+    "primary_url": "https://openaccess.thecvf.com/content/WACV2025/html/Lee_Hausdorff_Distance_Matching_with_Adaptive_Query_Denoising_for_Rotated_Detection_WACV_2025_paper.html",
+    "title": "Hausdorff Distance Matching with Adaptive Query Denoising for Rotated Detection Transformer",
+    "citation_date": "2025",
+    "pdf_url": "https://openaccess.thecvf.com/content/WACV2025/papers/Lee_Hausdorff_Distance_Matching_with_Adaptive_Query_Denoising_for_Rotated_Detection_WACV_2025_paper.pdf",
+    "journal": null,
+    "abstract": "Detection Transformers (DETR) have recently set new benchmarks in object detection. However their performance in detecting rotated objects lags behind established oriented object detectors. Our analysis identifies a key observation: the boundary discontinuity and square-like problem in bipartite matching poses an issue with assigning appropriate ground truths to predictions leading to du plicate low-confidence predictions. To address this we introduce a Hausdorff distance-based cost for bipartite matching which more accurately quantifies the discrepancy between predictions and ground truths. Additionally we find that a static denoising approach impedes the training of rotated DETR especially as the quality of the detector's predictions begins to exceed that of the noised ground truths. To overcome this we propose an adaptive query denoising method that employs bipartite matching to selectively eliminate noised queries that detract from model improvement. When compared to models adopting a ResNet-50 backbone our proposed model yields remarkable improvements achieving +4.18 AP50 +4.59 AP50 and +4.99 AP50 on DOTA-v2.0 DOTA-v1.5 and DIOR-R respectively.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Lee, Hakjin",
+      "Song, MinKi",
+      "Koo, Jamyoung",
+      "Seo, Junghoon"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "G09",
+    "primary_url": "https://arxiv.org/abs/2205.12785",
+    "title": "AO2-DETR: Arbitrary-Oriented Object Detection Transformer",
+    "citation_date": "2022/05/25",
+    "pdf_url": "https://arxiv.org/pdf/2205.12785",
+    "journal": null,
+    "abstract": "Abstract: Arbitrary-oriented object detection (AOOD) is a challenging task to detect objects in the wild with arbitrary orientations and cluttered arrangements. Existing approaches are mainly based on anchor-based boxes or dense points, which rely on complicated hand-designed processing steps and inductive bias, such as anchor generation, transformation, and non-maximum suppression reasoning. Recently, the emerging transformer-based approaches view object detection as a direct set prediction problem that effectively removes the need for hand-designed components and inductive biases. In this paper, we propose an Arbitrary-Oriented Object DEtection TRansformer framework, termed AO2-DETR, which comprises three dedicated components. More precisely, an oriented proposal generation mechanism is proposed to explicitly generate oriented proposals, which provides better positional priors for pooling features to modulate the cross-attention in the transformer decoder. An adaptive oriented proposal refinement module is introduced to extract rotation-invariant region features and eliminate the misalignment between region features and objects. And a rotation-aware set matching loss is used to ensure the one-to-one matching process for direct set prediction without duplicate predictions. Our method considerably simplifies the overall pipeline and presents a new AOOD paradigm. Comprehensive experiments on several challenging datasets show that our method achieves superior performance on the AOOD task.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2205.12785"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Dai, Linhui",
+      "Liu, Hong",
+      "Tang, Hao",
+      "Wu, Zhiwei",
+      "Song, Pinhao"
+    ],
+    "version_history": "[Submitted on 25 May 2022]"
+  },
+  {
+    "id": "G10",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "title": "GauCho: Gaussian Distributions with Cholesky Decomposition for Oriented Object Detection",
+    "citation_date": "2025/02/03",
+    "pdf_url": "https://arxiv.org/pdf/2502.01565",
+    "journal": null,
+    "abstract": "Abstract: Oriented Object Detection (OOD) has received increased attention in the past years, being a suitable solution for detecting elongated objects in remote sensing analysis. In particular, using regression loss functions based on Gaussian distributions has become attractive since they yield simple and differentiable terms. However, existing solutions are still based on regression heads that produce Oriented Bounding Boxes (OBBs), and the known problem of angular boundary discontinuity persists. In this work, we propose a regression head for OOD that directly produces Gaussian distributions based on the Cholesky matrix decomposition. The proposed head, named GauCho, theoretically mitigates the boundary discontinuity problem and is fully compatible with recent Gaussian-based regression loss functions. Furthermore, we advocate using Oriented Ellipses (OEs) to represent oriented objects, which relates to GauCho through a bijective function and alleviates the encoding ambiguity problem for circular objects. Our experimental results show that GauCho can be a viable alternative to the traditional OBB head, achieving results comparable to or better than state-of-the-art detectors for the challenging dataset DOTA",
+    "comments": null,
+    "journal_reference": "The IEEE/CVF Conference on Computer Vision and Pattern Recognition 2025",
+    "links": [
+      "https://doi.org/10.48550/arXiv.2502.01565"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Murrugarra-LLerena, Jeffri",
+      "Marques, Jose Henrique Lima",
+      "Jung, Claudio R."
+    ],
+    "version_history": "[Submitted on 3 Feb 2025]"
+  },
+  {
+    "id": "G11",
+    "primary_url": "https://www.ijcai.org/proceedings/2025/101",
+    "title": "GSDet: Gaussian Splatting for Oriented Object Detection",
+    "citation_date": "2025/09/16",
+    "pdf_url": "https://www.ijcai.org/proceedings/2025/0101.pdf",
+    "journal": null,
+    "abstract": "Primary PDF abstract read: oriented detection via 3D Gaussians in feature space projected to 2D; decoder optimizes Gaussian parameters and supports adaptive count at inference.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.24963/ijcai.2025/101"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Zeyu Ding",
+      "Jiaqi Zhao",
+      "Yong Zhou",
+      "Wen-liang Du",
+      "Hancheng Zhu",
+      "Rui Yao"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "G12",
+    "primary_url": "https://arxiv.org/abs/2603.15497",
+    "title": "Real-Time Oriented Object Detection Transformer in Remote Sensing Images",
+    "citation_date": "2026/03/16",
+    "pdf_url": "https://arxiv.org/pdf/2603.15497",
+    "journal": null,
+    "abstract": "Abstract: Recent real-time detection transformers have gained popularity due to their simplicity and efficiency. However, these detectors do not explicitly model object rotation, especially in remote sensing imagery where objects appear at arbitrary angles, leading to challenges in angle representation, matching cost, and training stability. In this paper, we propose a real-time oriented object detection transformer, the first real-time end-to-end oriented object detector to the best of our knowledge, that addresses the above issues. Specifically, angle distribution refinement is proposed to reformulate angle regression as an iterative refinement of probability distributions, thereby capturing the uncertainty of object rotation and providing a more fine-grained angle representation. Then, we incorporate a Chamfer distance cost into bipartite matching, measuring box distance via vertex sets, enabling more accurate geometric alignment and eliminating ambiguous matches. Moreover, we propose oriented contrastive denoising to stabilize training and analyze four noise modes. We observe that a ground truth can be assigned to different index queries across different decoder layers, and analyze this issue using the proposed instability metric. We design a series of model variants and experiments to validate the proposed method. Notably, our O2-DFINE-L, O2-RTDETR-R50 and O2-DEIM-R50 achieve 77.73%/78.45%/80.15% AP50 on DOTA1.0 and 132/119/119 FPS on the 2080ti GPU. Code is available at this https URL .",
+    "comments": "IEEE Transactions on Geoscience and Remote Sensing, 2026, doi https://doi.org/10.1109/TGRS.2026.3671683",
+    "journal_reference": "IEEE Transactions on Geoscience and Remote Sensing, 2026",
+    "links": [
+      "https://github.com/wokaikaixinxin/ai4rs",
+      "https://doi.org/10.1109/TGRS.2026.3671683",
+      "https://doi.org/10.48550/arXiv.2603.15497",
+      "https://doi.org/10.1109/TGRS.2026.3671683"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Ding, Zeyu",
+      "Zhou, Yong",
+      "Zhao, Jiaqi",
+      "Du, Wen-Liang",
+      "Li, Xixi",
+      "Yao, Rui",
+      "Saddik, Abdulmotaleb El"
+    ],
+    "version_history": "[Submitted on 16 Mar 2026]"
+  },
+  {
+    "id": "R01",
+    "primary_url": "https://arxiv.org/abs/1904.08008",
+    "title": "Clustered Object Detection in Aerial Images",
+    "citation_date": "2019/04/16",
+    "pdf_url": "https://arxiv.org/pdf/1904.08008",
+    "journal": null,
+    "abstract": "Abstract: Detecting objects in aerial images is challenging for at least two reasons: (1) target objects like pedestrians are very small in pixels, making them hardly distinguished from surrounding background; and (2) targets are in general sparsely and non-uniformly distributed, making the detection very inefficient. In this paper, we address both issues inspired by observing that these targets are often clustered. In particular, we propose a Clustered Detection (ClusDet) network that unifies object clustering and detection in an end-to-end framework. The key components in ClusDet include a cluster proposal sub-network (CPNet), a scale estimation sub-network (ScaleNet), and a dedicated detection network (DetecNet). Given an input image, CPNet produces object cluster regions and ScaleNet estimates object scales for these regions. Then, each scale-normalized cluster region is fed into DetecNet for object detection. ClusDet has several advantages over previous solutions: (1) it greatly reduces the number of chips for final object detection and hence achieves high running time efficiency, (2) the cluster-based scale estimation is more accurate than previously used single-object based ones, hence effectively improves the detection for small objects, and (3) the final DetecNet is dedicated for clustered regions and implicitly models the prior context information so as to boost detection accuracy. The proposed method is tested on three popular aerial image datasets including VisDrone, UAVDT and DOTA. In all experiments, ClusDet achieves promising performance in comparison with state-of-the-art detectors. Code will be available in \\url{ this https URL }.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://github.com/fyangneil",
+      "https://doi.org/10.48550/arXiv.1904.08008"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yang, Fan",
+      "Fan, Heng",
+      "Chu, Peng",
+      "Blasch, Erik",
+      "Ling, Haibin"
+    ],
+    "version_history": "[Submitted on 16 Apr 2019 ( v1 ), last revised 27 Aug 2019 (this version, v3)]"
+  },
+  {
+    "id": "R02",
+    "primary_url": "https://arxiv.org/abs/2103.09136",
+    "title": "QueryDet: Cascaded Sparse Query for Accelerating High-Resolution Small Object Detection",
+    "citation_date": "2021/03/16",
+    "pdf_url": "https://arxiv.org/pdf/2103.09136",
+    "journal": null,
+    "abstract": "Abstract: While general object detection with deep learning has achieved great success in the past few years, the performance and efficiency of detecting small objects are far from satisfactory. The most common and effective way to promote small object detection is to use high-resolution images or feature maps. However, both approaches induce costly computation since the computational cost grows squarely as the size of images and features increases. To get the best of two worlds, we propose QueryDet that uses a novel query mechanism to accelerate the inference speed of feature-pyramid based object detectors. The pipeline composes two steps: it first predicts the coarse locations of small objects on low-resolution features and then computes the accurate detection results using high-resolution features sparsely guided by those coarse positions. In this way, we can not only harvest the benefit of high-resolution feature maps but also avoid useless computation for the background area. On the popular COCO dataset, the proposed method improves the detection mAP by 1.0 and mAP-small by 2.0, and the high-resolution inference speed is improved to 3.0x on average. On VisDrone dataset, which contains more small objects, we create a new state-of-the-art while gaining a 2.3x high-resolution acceleration on average. Code is available at this https URL .",
+    "comments": "CVPR 2022",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/ChenhongyiYang/QueryDet-PyTorch",
+      "https://doi.org/10.48550/arXiv.2103.09136"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Yang, Chenhongyi",
+      "Huang, Zehao",
+      "Wang, Naiyan"
+    ],
+    "version_history": "[Submitted on 16 Mar 2021 ( v1 ), last revised 24 Mar 2022 (this version, v2)]"
+  },
+  {
+    "id": "R03",
+    "primary_url": "https://arxiv.org/abs/2303.14488",
+    "title": "Adaptive Sparse Convolutional Networks with Global Context Enhancement for Faster Object Detection on Drone Images",
+    "citation_date": "2023/03/25",
+    "pdf_url": "https://arxiv.org/pdf/2303.14488",
+    "journal": null,
+    "abstract": "Abstract: Object detection on drone images with low-latency is an important but challenging task on the resource-constrained unmanned aerial vehicle (UAV) platform. This paper investigates optimizing the detection head based on the sparse convolution, which proves effective in balancing the accuracy and efficiency. Nevertheless, it suffers from inadequate integration of contextual information of tiny objects as well as clumsy control of the mask ratio in the presence of foreground with varying scales. To address the issues above, we propose a novel global context-enhanced adaptive sparse convolutional network (CEASC). It first develops a context-enhanced group normalization (CE-GN) layer, by replacing the statistics based on sparsely sampled features with the global contextual ones, and then designs an adaptive multi-layer masking strategy to generate optimal mask ratios at distinct scales for compact foreground coverage, promoting both the accuracy and efficiency. Extensive experimental results on two major benchmarks, i.e. VisDrone and UAVDT, demonstrate that CEASC remarkably reduces the GFLOPs and accelerates the inference procedure when plugging into the typical state-of-the-art detection frameworks (e.g. RetinaNet and GFL V1) with competitive performance. Code is available at this https URL .",
+    "comments": "Accepted by CVPR 2023",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/Cuogeihong/CEASC",
+      "https://doi.org/10.48550/arXiv.2303.14488"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Du, Bowei",
+      "Huang, Yecheng",
+      "Chen, Jiaxin",
+      "Huang, Di"
+    ],
+    "version_history": "[Submitted on 25 Mar 2023]"
+  },
+  {
+    "id": "R04",
+    "primary_url": "https://arxiv.org/abs/2202.06934",
+    "title": "Slicing Aided Hyper Inference and Fine-tuning for Small Object Detection",
+    "citation_date": "2022/02/14",
+    "pdf_url": "https://arxiv.org/pdf/2202.06934",
+    "journal": null,
+    "abstract": "Abstract: Detection of small objects and objects far away in the scene is a major challenge in surveillance applications. Such objects are represented by small number of pixels in the image and lack sufficient details, making them difficult to detect using conventional detectors. In this work, an open-source framework called Slicing Aided Hyper Inference (SAHI) is proposed that provides a generic slicing aided inference and fine-tuning pipeline for small object detection. The proposed technique is generic in the sense that it can be applied on top of any available object detector without any fine-tuning. Experimental evaluations, using object detection baselines on the Visdrone and xView aerial object detection datasets show that the proposed inference method can increase object detection AP by 6.8%, 5.1% and 5.3% for FCOS, VFNet and TOOD detectors, respectively. Moreover, the detection accuracy can be further increased with a slicing aided fine-tuning, resulting in a cumulative increase of 12.7%, 13.4% and 14.5% AP in the same order. Proposed technique has been integrated with Detectron2, MMDetection and YOLOv5 models and it is publicly available at this https URL .",
+    "comments": "Presented at ICIP 2022, 5 pages, 4 figures, 2 tables",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/obss/sahi.git",
+      "https://doi.org/10.48550/arXiv.2202.06934",
+      "https://doi.org/10.1109/ICIP46576.2022.9897990"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Akyon, Fatih Cagatay",
+      "Altinuc, Sinan Onur",
+      "Temizel, Alptekin"
+    ],
+    "version_history": "[Submitted on 14 Feb 2022 ( v1 ), last revised 24 Oct 2022 (this version, v5)]"
+  },
+  {
+    "id": "R05",
+    "primary_url": "https://arxiv.org/abs/1812.01600",
+    "title": "AutoFocus: Efficient Multi-Scale Inference",
+    "citation_date": "2018/12/04",
+    "pdf_url": "https://arxiv.org/pdf/1812.01600",
+    "journal": null,
+    "abstract": "Abstract: This paper describes AutoFocus, an efficient multi-scale inference algorithm for deep-learning based object detectors. Instead of processing an entire image pyramid, AutoFocus adopts a coarse to fine approach and only processes regions which are likely to contain small objects at finer scales. This is achieved by predicting category agnostic segmentation maps for small objects at coarser scales, called FocusPixels. FocusPixels can be predicted with high recall, and in many cases, they only cover a small fraction of the entire image. To make efficient use of FocusPixels, an algorithm is proposed which generates compact rectangular FocusChips which enclose FocusPixels. The detector is only applied inside FocusChips, which reduces computation while processing finer scales. Different types of error can arise when detections from FocusChips of multiple scales are combined, hence techniques to correct them are proposed. AutoFocus obtains an mAP of 47.9% (68.3% at 50% overlap) on the COCO test-dev set while processing 6.4 images per second on a Titan X (Pascal) GPU. This is 2.5X faster than our multi-scale baseline detector and matches its mAP. The number of pixels processed in the pyramid can be reduced by 5X with a 1% drop in mAP. AutoFocus obtains more than 10% mAP gain compared to RetinaNet but runs at the same speed with the same ResNet-101 backbone.",
+    "comments": "To appear in Proceedings of International Conference on Computer Vision (ICCV), 2019",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.1812.01600"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Najibi, Mahyar",
+      "Singh, Bharat",
+      "Davis, Larry S."
+    ],
+    "version_history": "[Submitted on 4 Dec 2018 ( v1 ), last revised 1 Aug 2019 (this version, v2)]"
+  },
+  {
+    "id": "R06",
+    "primary_url": "https://arxiv.org/abs/2208.08738",
+    "title": "RFLA: Gaussian Receptive Field based Label Assignment for Tiny Object Detection",
+    "citation_date": "2022/08/18",
+    "pdf_url": "https://arxiv.org/pdf/2208.08738",
+    "journal": null,
+    "abstract": "Abstract: Detecting tiny objects is one of the main obstacles hindering the development of object detection. The performance of generic object detectors tends to drastically deteriorate on tiny object detection tasks. In this paper, we point out that either box prior in the anchor-based detector or point prior in the anchor-free detector is sub-optimal for tiny objects. Our key observation is that the current anchor-based or anchor-free label assignment paradigms will incur many outlier tiny-sized ground truth samples, leading to detectors imposing less focus on the tiny objects. To this end, we propose a Gaussian Receptive Field based Label Assignment (RFLA) strategy for tiny object detection. Specifically, RFLA first utilizes the prior information that the feature receptive field follows Gaussian distribution. Then, instead of assigning samples with IoU or center sampling strategy, a new Receptive Field Distance (RFD) is proposed to directly measure the similarity between the Gaussian receptive field and ground truth. Considering that the IoU-threshold based and center sampling strategy are skewed to large objects, we further design a Hierarchical Label Assignment (HLA) module based on RFD to achieve balanced learning for tiny objects. Extensive experiments on four datasets demonstrate the effectiveness of the proposed methods. Especially, our approach outperforms the state-of-the-art competitors with 4.0 AP points on the AI-TOD dataset. Codes are available at this https URL",
+    "comments": "ECCV2022",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/Chasel-Tsui/mmdet-rfla",
+      "https://doi.org/10.48550/arXiv.2208.08738"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xu, Chang",
+      "Wang, Jinwang",
+      "Yang, Wen",
+      "Yu, Huai",
+      "Yu, Lei",
+      "Xia, Gui-Song"
+    ],
+    "version_history": "[Submitted on 18 Aug 2022 ( v1 ), last revised 17 Oct 2022 (this version, v2)]"
+  },
+  {
+    "id": "R07",
+    "primary_url": "https://arxiv.org/abs/2206.13996",
+    "title": "Detecting tiny objects in aerial images: A normalized Wasserstein distance and a new benchmark",
+    "citation_date": "2022/06/28",
+    "pdf_url": "https://arxiv.org/pdf/2206.13996",
+    "journal": null,
+    "abstract": "Abstract: Tiny object detection (TOD) in aerial images is challenging since a tiny object only contains a few pixels. State-of-the-art object detectors do not provide satisfactory results on tiny objects due to the lack of supervision from discriminative features. Our key observation is that the Intersection over Union (IoU) metric and its extensions are very sensitive to the location deviation of the tiny objects, which drastically deteriorates the quality of label assignment when used in anchor-based detectors. To tackle this problem, we propose a new evaluation metric dubbed Normalized Wasserstein Distance (NWD) and a new RanKing-based Assigning (RKA) strategy for tiny object detection. The proposed NWD-RKA strategy can be easily embedded into all kinds of anchor-based detectors to replace the standard IoU threshold-based one, significantly improving label assignment and providing sufficient supervision information for network training. Tested on four datasets, NWD-RKA can consistently improve tiny object detection performance by a large margin. Besides, observing prominent noisy labels in the Tiny Object Detection in Aerial Images (AI-TOD) dataset, we are motivated to meticulously relabel it and release AI-TOD-v2 and its corresponding benchmark. In AI-TOD-v2, the missing annotation and location error problems are considerably mitigated, facilitating more reliable training and validation processes. Embedding NWD-RKA into DetectoRS, the detection performance achieves 4.3 AP points improvement over state-of-the-art competitors on AI-TOD-v2. Datasets, codes, and more visualizations are available at: this https URL",
+    "comments": "Accepted by ISPRS Journal of Photogrammetry and Remote Sensing",
+    "journal_reference": "ISPRS Journal of Photogrammetry and Remote Sensing (2022) 190:79-93",
+    "links": [
+      "https://doi.org/10.48550/arXiv.2206.13996",
+      "https://doi.org/10.1016/j.isprsjprs.2022.06.002"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xu, Chang",
+      "Wang, Jinwang",
+      "Yang, Wen",
+      "Yu, Huai",
+      "Yu, Lei",
+      "Xia, Gui-Song"
+    ],
+    "version_history": "[Submitted on 28 Jun 2022]"
+  },
+  {
+    "id": "R08",
+    "primary_url": "https://arxiv.org/abs/2412.11582",
+    "title": "Oriented Tiny Object Detection: A Dataset, Benchmark, and Dynamic Unbiased Learning",
+    "citation_date": "2024/12/16",
+    "pdf_url": "https://arxiv.org/pdf/2412.11582",
+    "journal": null,
+    "abstract": "Abstract: Detecting oriented tiny objects, which are limited in appearance information yet prevalent in real-world applications, remains an intricate and under-explored problem. To address this, we systemically introduce a new dataset, benchmark, and a dynamic coarse-to-fine learning scheme in this study. Our proposed dataset, AI-TOD-R, features the smallest object sizes among all oriented object detection datasets. Based on AI-TOD-R, we present a benchmark spanning a broad range of detection paradigms, including both fully-supervised and label-efficient approaches. Through investigation, we identify a learning bias presents across various learning pipelines: confident objects become increasingly confident, while vulnerable oriented tiny objects are further marginalized, hindering their detection performance. To mitigate this issue, we propose a Dynamic Coarse-to-Fine Learning (DCFL) scheme to achieve unbiased learning. DCFL dynamically updates prior positions to better align with the limited areas of oriented tiny objects, and it assigns samples in a way that balances both quantity and quality across different object shapes, thus mitigating biases in prior settings and sample selection. Extensive experiments across eight challenging object detection datasets demonstrate that DCFL achieves state-of-the-art accuracy, high efficiency, and remarkable versatility. The dataset, benchmark, and code are available at this https URL .",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2412.11582"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xu, Chang",
+      "Zhang, Ruixiang",
+      "Yang, Wen",
+      "Zhu, Haoran",
+      "Xu, Fang",
+      "Ding, Jian",
+      "Xia, Gui-Song"
+    ],
+    "version_history": "[Submitted on 16 Dec 2024]"
+  },
+  {
+    "id": "R09",
+    "primary_url": "https://arxiv.org/abs/2407.16424",
+    "title": "ESOD: Efficient Small Object Detection on High-Resolution Images",
+    "citation_date": "2024/07/23",
+    "pdf_url": "https://arxiv.org/pdf/2407.16424",
+    "journal": null,
+    "abstract": "Abstract: Enlarging input images is a straightforward and effective approach to promote small object detection. However, simple image enlargement is significantly expensive on both computations and GPU memory. In fact, small objects are usually sparsely distributed and locally clustered. Therefore, massive feature extraction computations are wasted on the non-target background area of images. Recent works have tried to pick out target-containing regions using an extra network and perform conventional object detection, but the newly introduced computation limits their final performance. In this paper, we propose to reuse the detector's backbone to conduct feature-level object-seeking and patch-slicing, which can avoid redundant feature extraction and reduce the computation cost. Incorporating a sparse detection head, we are able to detect small objects on high-resolution inputs (e.g., 1080P or larger) for superior performance. The resulting Efficient Small Object Detection (ESOD) approach is a generic framework, which can be applied to both CNN- and ViT-based detectors to save the computation and GPU memory costs. Extensive experiments demonstrate the efficacy and efficiency of our method. In particular, our method consistently surpasses the SOTA detectors by a large margin (e.g., 8% gains on AP) on the representative VisDrone, UAVDT, and TinyPerson datasets. Code is available at this https URL .",
+    "comments": "This paper has been recerived by IEEE TIP 2024. Code is available at this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/alibaba/esod",
+      "https://github.com/alibaba/esod",
+      "https://doi.org/10.48550/arXiv.2407.16424"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Liu, Kai",
+      "Fu, Zhihang",
+      "Jin, Sheng",
+      "Chen, Ze",
+      "Zhou, Fan",
+      "Jiang, Rongxin",
+      "Chen, Yaowu",
+      "Ye, Jieping"
+    ],
+    "version_history": "[Submitted on 23 Jul 2024 ( v1 ), last revised 17 Dec 2024 (this version, v2)]"
+  },
+  {
+    "id": "R10",
+    "primary_url": "https://arxiv.org/abs/2106.10409",
+    "title": "AdaZoom: Adaptive Zoom Network for Multi-Scale Object Detection in Large Scenes",
+    "citation_date": "2021/06/19",
+    "pdf_url": "https://arxiv.org/pdf/2106.10409",
+    "journal": null,
+    "abstract": "Abstract: Detection in large-scale scenes is a challenging problem due to small objects and extreme scale variation. It is essential to focus on the image regions of small objects. In this paper, we propose a novel Adaptive Zoom (AdaZoom) network as a selective magnifier with flexible shape and focal length to adaptively zoom the focus regions for object detection. Based on policy gradient, we construct a reinforcement learning framework for focus region generation, with the reward formulated by object distributions. The scales and aspect ratios of the generated regions are adaptive to the scales and distribution of objects inside. We apply variable magnification according to the scale of the region for adaptive multi-scale detection. We further propose collaborative training to complementarily promote the performance of AdaZoom and the detection network. To validate the effectiveness, we conduct extensive experiments on VisDrone2019, UAVDT, and DOTA datasets. The experiments show AdaZoom brings a consistent and significant improvement over different detection networks, achieving state-of-the-art performance on these datasets, especially outperforming the existing methods by AP of 4.64% on Vis-Drone2019.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2106.10409"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Xu, Jingtao",
+      "Li, Yali",
+      "Wang, Shengjin"
+    ],
+    "version_history": "[Submitted on 19 Jun 2021]"
+  },
+  {
+    "id": "R11",
+    "primary_url": "https://arxiv.org/abs/2404.06180",
+    "title": "YOLC: You Only Look Clusters for Tiny Object Detection in Aerial Images",
+    "citation_date": "2024/04/09",
+    "pdf_url": "https://arxiv.org/pdf/2404.06180",
+    "journal": null,
+    "abstract": "Abstract: Detecting objects from aerial images poses significant challenges due to the following factors: 1) Aerial images typically have very large sizes, generally with millions or even hundreds of millions of pixels, while computational resources are limited. 2) Small object size leads to insufficient information for effective detection. 3) Non-uniform object distribution leads to computational resource wastage. To address these issues, we propose YOLC (You Only Look Clusters), an efficient and effective framework that builds on an anchor-free object detector, CenterNet. To overcome the challenges posed by large-scale images and non-uniform object distribution, we introduce a Local Scale Module (LSM) that adaptively searches cluster regions for zooming in for accurate detection. Additionally, we modify the regression loss using Gaussian Wasserstein distance (GWD) to obtain high-quality bounding boxes. Deformable convolution and refinement methods are employed in the detection head to enhance the detection of small objects. We perform extensive experiments on two aerial image datasets, including Visdrone2019 and UAVDT, to demonstrate the effectiveness and superiority of our proposed approach. Code is available at this https URL .",
+    "comments": "accepted to TITS",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/dawn-ech/YOLC",
+      "https://doi.org/10.48550/arXiv.2404.06180"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Liu, Chenguang",
+      "Gao, Guangshuai",
+      "Huang, Ziyue",
+      "Hu, Zhenghui",
+      "Liu, Qingjie",
+      "Wang, Yunhong"
+    ],
+    "version_history": "[Submitted on 9 Apr 2024 ( v1 ), last revised 17 Jun 2024 (this version, v2)]"
+  },
+  {
+    "id": "R12",
+    "primary_url": "https://arxiv.org/abs/2112.10415",
+    "title": "UFPMP-Det: Toward Accurate and Efficient Object Detection on Drone Imagery",
+    "citation_date": "2021/12/20",
+    "pdf_url": "https://arxiv.org/pdf/2112.10415",
+    "journal": null,
+    "abstract": "Abstract: This paper proposes a novel approach to object detection on drone imagery, namely Multi-Proxy Detection Network with Unified Foreground Packing (UFPMP-Det). To deal with the numerous instances of very small scales, different from the common solution that divides the high-resolution input image into quite a number of chips with low foreground ratios to perform detection on them each, the Unified Foreground Packing (UFP) module is designed, where the sub-regions given by a coarse detector are initially merged through clustering to suppress background and the resulting ones are subsequently packed into a mosaic for a single inference, thus significantly reducing overall time cost. Furthermore, to address the more serious confusion between inter-class similarities and intra-class variations of instances, which deteriorates detection performance but is rarely discussed, the Multi-Proxy Detection Network (MP-Det) is presented to model object distributions in a fine-grained manner by employing multiple proxy learning, and the proxies are enforced to be diverse by minimizing a Bag-of-Instance-Words (BoIW) guided optimal transport loss. By such means, UFPMP-Det largely promotes both the detection accuracy and efficiency. Extensive experiments are carried out on the widely used VisDrone and UAVDT datasets, and UFPMP-Det reports new state-of-the-art scores at a much higher speed, highlighting its advantages.",
+    "comments": "8 pages, 6 figures, Accepted by AAAI2022",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2112.10415"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Huang, Yecheng",
+      "Chen, Jiaxin",
+      "Huang, Di"
+    ],
+    "version_history": "[Submitted on 20 Dec 2021 ( v1 ), last revised 1 Jan 2022 (this version, v2)]"
+  },
+  {
+    "id": "R13",
+    "primary_url": "https://arxiv.org/abs/1711.05187",
+    "title": "Dynamic Zoom-in Network for Fast Object Detection in Large Images",
+    "citation_date": "2017/11/14",
+    "pdf_url": "https://arxiv.org/pdf/1711.05187",
+    "journal": null,
+    "abstract": "Abstract: We introduce a generic framework that reduces the computational cost of object detection while retaining accuracy for scenarios where objects with varied sizes appear in high resolution images. Detection progresses in a coarse-to-fine manner, first on a down-sampled version of the image and then on a sequence of higher resolution regions identified as likely to improve the detection accuracy. Built upon reinforcement learning, our approach consists of a model (R-net) that uses coarse detection results to predict the potential accuracy gain for analyzing a region at a higher resolution and another model (Q-net) that sequentially selects regions to zoom in. Experiments on the Caltech Pedestrians dataset show that our approach reduces the number of processed pixels by over 50% without a drop in detection accuracy. The merits of our approach become more significant on a high resolution test set collected from YFCC100M dataset, where our approach maintains high detection performance while reducing the number of processed pixels by about 70% and the detection time by over 50%.",
+    "comments": "CVPR2018",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.1711.05187"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Gao, Mingfei",
+      "Yu, Ruichi",
+      "Li, Ang",
+      "Morariu, Vlad I.",
+      "Davis, Larry S."
+    ],
+    "version_history": "[Submitted on 14 Nov 2017 ( v1 ), last revised 27 Mar 2018 (this version, v2)]"
+  },
+  {
+    "id": "R14",
+    "primary_url": "https://www.microsoft.com/en-us/research/?p=763831",
+    "title": "Flexible High-resolution Object Detection on Edge Devices with Tunable Latency",
+    "citation_date": "2021/10/01",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2021/08/Flexible-High-resolution-Object-Detection-on-Edge-Devices-with-Tunable-Latency.pdf",
+    "journal": null,
+    "abstract": "",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Shiqi Jiang",
+      "Zhiqi Lin",
+      "Yuanchun Li",
+      "Yuanchao Shu",
+      "Yunxin Liu"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "S01",
+    "primary_url": "https://arxiv.org/abs/1703.06870",
+    "title": "Mask R-CNN",
+    "citation_date": "2017/03/20",
+    "pdf_url": "https://arxiv.org/pdf/1703.06870",
+    "journal": null,
+    "abstract": "Abstract: We present a conceptually simple, flexible, and general framework for object instance segmentation. Our approach efficiently detects objects in an image while simultaneously generating a high-quality segmentation mask for each instance. The method, called Mask R-CNN, extends Faster R-CNN by adding a branch for predicting an object mask in parallel with the existing branch for bounding box recognition. Mask R-CNN is simple to train and adds only a small overhead to Faster R-CNN, running at 5 fps. Moreover, Mask R-CNN is easy to generalize to other tasks, e.g., allowing us to estimate human poses in the same framework. We show top results in all three tracks of the COCO suite of challenges, including instance segmentation, bounding-box object detection, and person keypoint detection. Without bells and whistles, Mask R-CNN outperforms all existing, single-model entries on every task, including the COCO 2016 challenge winners. We hope our simple and effective approach will serve as a solid baseline and help ease future research in instance-level recognition. Code has been made available at: this https URL",
+    "comments": "open source; appendix on more results",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/facebookresearch/Detectron",
+      "https://doi.org/10.48550/arXiv.1703.06870"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "He, Kaiming",
+      "Gkioxari, Georgia",
+      "Dollár, Piotr",
+      "Girshick, Ross"
+    ],
+    "version_history": "[Submitted on 20 Mar 2017 ( v1 ), last revised 24 Jan 2018 (this version, v3)]"
+  },
+  {
+    "id": "S02",
+    "primary_url": "https://arxiv.org/abs/2112.01527",
+    "title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+    "citation_date": "2021/12/02",
+    "pdf_url": "https://arxiv.org/pdf/2112.01527",
+    "journal": null,
+    "abstract": "Abstract: Image segmentation is about grouping pixels with different semantics, e.g., category or instance membership, where each choice of semantics defines a task. While only the semantics of each task differ, current research focuses on designing specialized architectures for each task. We present Masked-attention Mask Transformer (Mask2Former), a new architecture capable of addressing any image segmentation task (panoptic, instance or semantic). Its key components include masked attention, which extracts localized features by constraining cross-attention within predicted mask regions. In addition to reducing the research effort by at least three times, it outperforms the best specialized architectures by a significant margin on four popular datasets. Most notably, Mask2Former sets a new state-of-the-art for panoptic segmentation (57.8 PQ on COCO), instance segmentation (50.1 AP on COCO) and semantic segmentation (57.7 mIoU on ADE20K).",
+    "comments": "CVPR 2022. Project page/code/models: this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2112.01527"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Cheng, Bowen",
+      "Misra, Ishan",
+      "Schwing, Alexander G.",
+      "Kirillov, Alexander",
+      "Girdhar, Rohit"
+    ],
+    "version_history": "[Submitted on 2 Dec 2021 ( v1 ), last revised 15 Jun 2022 (this version, v3)]"
+  },
+  {
+    "id": "S03",
+    "primary_url": "https://arxiv.org/abs/2304.02643",
+    "title": "Segment Anything",
+    "citation_date": "2023/04/05",
+    "pdf_url": "https://arxiv.org/pdf/2304.02643",
+    "journal": null,
+    "abstract": "Abstract: We introduce the Segment Anything (SA) project: a new task, model, and dataset for image segmentation. Using our efficient model in a data collection loop, we built the largest segmentation dataset to date (by far), with over 1 billion masks on 11M licensed and privacy respecting images. The model is designed and trained to be promptable, so it can transfer zero-shot to new image distributions and tasks. We evaluate its capabilities on numerous tasks and find that its zero-shot performance is impressive -- often competitive with or even superior to prior fully supervised results. We are releasing the Segment Anything Model (SAM) and corresponding dataset (SA-1B) of 1B masks and 11M images at this https URL to foster research into foundation models for computer vision.",
+    "comments": "Project web-page: this https URL",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2304.02643"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Kirillov, Alexander",
+      "Mintun, Eric",
+      "Ravi, Nikhila",
+      "Mao, Hanzi",
+      "Rolland, Chloe",
+      "Gustafson, Laura",
+      "Xiao, Tete",
+      "Whitehead, Spencer",
+      "Berg, Alexander C.",
+      "Lo, Wan-Yen",
+      "Dollár, Piotr",
+      "Girshick, Ross"
+    ],
+    "version_history": "[Submitted on 5 Apr 2023]"
+  },
+  {
+    "id": "S05",
+    "primary_url": "https://openaccess.thecvf.com/content/ACCV2024/html/Zhang_RS-SAM_Integrating_Multi-Scale_Information_for_Enhanced_Remote_Sensing_Image_Segmentation_ACCV_2024_paper.html",
+    "title": "RS-SAM: Integrating Multi-Scale Information for Enhanced Remote Sensing Image Segmentation",
+    "citation_date": "2024",
+    "pdf_url": "https://openaccess.thecvf.com/content/ACCV2024/papers/Zhang_RS-SAM_Integrating_Multi-Scale_Information_for_Enhanced_Remote_Sensing_Image_Segmentation_ACCV_2024_paper.pdf",
+    "journal": null,
+    "abstract": "The introduction of the Segment Anything Model (SAM) provides a powerful pre-trained model for image segmentation tasks. However, its utilization in remote sensing image segmentation encounters notable challenges. First, SAM is primarily trained on large-scale natural images as a general visual model, which hinders its direct application to remote sensing field. Second, due to the diversity of spatial objects in remote sensing images, the naive columnar ViT structure of SAM leads to poor segmentation performance. Finally, SAM is designed primarily to distinguish between foreground and background, resulting in a simple structure that struggles with precise semantic segmentation. To address the above issues, we introduce RS-SAM, a prompt-free adaptation of SAM in the realm of remote sensing, with multi-scale ViT backbone. More specifically, we start by crafting an adapter for the SAM encoder to transferring SAM to the domain of remote sensing. Next, we addressed the encoder's limitations by integrating a Multi-scale Neck for capturing objects in different sizes. Finally, to enhance the segmentation results, we propose a Multi-scale Progressive Refinement Module to aggregate multi-scale and low-level features. Through experiments conducted on three public remote sensing datasets, our model outperforms the baseline by 0.8% to 6.2% on the Dice metric, which fully proves the effectiveness of our method.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Zhang, Enkai",
+      "Liu, Jingjing",
+      "Cao, Anda",
+      "Sun, Zhen",
+      "Zhang, Haofei",
+      "Wang, Huiqiong",
+      "Sun, Li",
+      "Song, Mingli"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "S06",
+    "primary_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Shan_ROS-SAM_High-Quality_Interactive_Segmentation_for_Remote_Sensing_Moving_Object_CVPR_2025_paper.html",
+    "title": "ROS-SAM: High-Quality Interactive Segmentation for Remote Sensing Moving Object",
+    "citation_date": "2025",
+    "pdf_url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Shan_ROS-SAM_High-Quality_Interactive_Segmentation_for_Remote_Sensing_Moving_Object_CVPR_2025_paper.pdf",
+    "journal": null,
+    "abstract": "The availability of large-scale remote sensing video data underscores the importance of high-quality interactive segmentation. However, challenges such as small object sizes, ambiguous features, and limited generalization make it difficult for current methods to achieve this goal. In this work, we propose ROS-SAM, a method designed to achieve high-quality interactive segmentation while preserving generalization across diverse remote sensing data. The ROS-SAM is built upon three key innovations: 1) LoRA-based fine-tuning, which enables efficient domain adaptation while maintaining SAM's generalization ability, 2) Enhancement of network deep layers to improve the discriminability of extracted features, thereby reducing misclassifications, and 3) Integration of global context with local boundary details in the mask decoder to generate high-quality segmentation masks. Additionally, we redesign the data pipeline to ensure the model learns to better handle objects at varying scales during training while focusing on high-quality predictions during inference. Experiments on remote sensing video datasets show that the data pipeline boosts the IoU by 6%, while ROS-SAM increases the IoU by 13%. Finally, when evaluated on existing remote sensing object tracking datasets, ROS-SAM demonstrates impressive zero-shot capabilities, generating masks that closely resemble manual annotations. These results confirm ROS-SAM as a powerful tool for fine-grained segmentation in remote sensing applications. Code is available at: https://github.com/ShanZard/ROS-SAM.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Shan, Zhe",
+      "Liu, Yang",
+      "Zhou, Lei",
+      "Yan, Cheng",
+      "Wang, Heng",
+      "Xie, Xia"
+    ],
+    "version_history": null
+  },
+  {
+    "id": "S07",
+    "primary_url": "https://arxiv.org/abs/2212.14532",
+    "title": "Scale-MAE: A Scale-Aware Masked Autoencoder for Multiscale Geospatial Representation Learning",
+    "citation_date": "2022/12/30",
+    "pdf_url": "https://arxiv.org/pdf/2212.14532",
+    "journal": null,
+    "abstract": "Abstract: Large, pretrained models are commonly finetuned with imagery that is heavily augmented to mimic different conditions and scales, with the resulting models used for various tasks with imagery from a range of spatial scales. Such models overlook scale-specific information in the data for scale-dependent domains, such as remote sensing. In this paper, we present Scale-MAE, a pretraining method that explicitly learns relationships between data at different, known scales throughout the pretraining process. Scale-MAE pretrains a network by masking an input image at a known input scale, where the area of the Earth covered by the image determines the scale of the ViT positional encoding, not the image resolution. Scale-MAE encodes the masked image with a standard ViT backbone, and then decodes the masked image through a bandpass filter to reconstruct low/high frequency images at lower/higher scales. We find that tasking the network with reconstructing both low/high frequency images leads to robust multiscale representations for remote sensing imagery. Scale-MAE achieves an average of a $2.4 - 5.6\\%$ non-parametric kNN classification improvement across eight remote sensing datasets compared to current state-of-the-art and obtains a $0.9$ mIoU to $1.7$ mIoU improvement on the SpaceNet building segmentation transfer task for a range of evaluation scales.",
+    "comments": "International Conference on Computer Vision 2023",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2212.14532"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Reed, Colorado J.",
+      "Gupta, Ritwik",
+      "Li, Shufan",
+      "Brockman, Sarah",
+      "Funk, Christopher",
+      "Clipp, Brian",
+      "Keutzer, Kurt",
+      "Candido, Salvatore",
+      "Uyttendaele, Matt",
+      "Darrell, Trevor"
+    ],
+    "version_history": "[Submitted on 30 Dec 2022 ( v1 ), last revised 22 Sep 2023 (this version, v4)]"
+  },
+  {
+    "id": "S08",
+    "primary_url": "https://arxiv.org/abs/2207.08051",
+    "title": "SatMAE: Pre-training Transformers for Temporal and Multi-Spectral Satellite Imagery",
+    "citation_date": "2022/07/17",
+    "pdf_url": "https://arxiv.org/pdf/2207.08051",
+    "journal": null,
+    "abstract": "Abstract: Unsupervised pre-training methods for large vision models have shown to enhance performance on downstream supervised tasks. Developing similar techniques for satellite imagery presents significant opportunities as unlabelled data is plentiful and the inherent temporal and multi-spectral structure provides avenues to further improve existing pre-training strategies. In this paper, we present SatMAE, a pre-training framework for temporal or multi-spectral satellite imagery based on Masked Autoencoder (MAE). To leverage temporal information, we include a temporal embedding along with independently masking image patches across time. In addition, we demonstrate that encoding multi-spectral data as groups of bands with distinct spectral positional encodings is beneficial. Our approach yields strong improvements over previous state-of-the-art techniques, both in terms of supervised learning performance on benchmark datasets (up to $\\uparrow$ 7%), and transfer learning performance on downstream remote sensing tasks, including land cover classification (up to $\\uparrow$ 14%) and semantic segmentation. Code and data are available on the project website: this https URL",
+    "comments": "Published at NeurIPS 2022. The first two listed names contributed equally to this project",
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2207.08051"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Cong, Yezhen",
+      "Khanna, Samar",
+      "Meng, Chenlin",
+      "Liu, Patrick",
+      "Rozi, Erik",
+      "He, Yutong",
+      "Burke, Marshall",
+      "Lobell, David B.",
+      "Ermon, Stefano"
+    ],
+    "version_history": "[Submitted on 17 Jul 2022 ( v1 ), last revised 15 Jan 2023 (this version, v3)]"
+  },
+  {
+    "id": "S10",
+    "primary_url": "https://arxiv.org/abs/2306.11029",
+    "title": "RemoteCLIP: A Vision Language Foundation Model for Remote Sensing",
+    "citation_date": "2023/06/19",
+    "pdf_url": "https://arxiv.org/pdf/2306.11029",
+    "journal": null,
+    "abstract": "Abstract: General-purpose foundation models have led to recent breakthroughs in artificial intelligence. In remote sensing, self-supervised learning (SSL) and Masked Image Modeling (MIM) have been adopted to build foundation models. However, these models primarily learn low-level features and require annotated data for fine-tuning. Moreover, they are inapplicable for retrieval and zero-shot applications due to the lack of language understanding. To address these limitations, we propose RemoteCLIP, the first vision-language foundation model for remote sensing that aims to learn robust visual features with rich semantics and aligned text embeddings for seamless downstream application. To address the scarcity of pre-training data, we leverage data scaling which converts heterogeneous annotations into a unified image-caption data format based on Box-to-Caption (B2C) and Mask-to-Box (M2B) conversion. By further incorporating UAV imagery, we produce a 12 $\\times$ larger pretraining dataset than the combination of all available datasets. RemoteCLIP can be applied to a variety of downstream tasks, including zero-shot image classification, linear probing, $\\textit{k}$-NN classification, few-shot classification, image-text retrieval, and object counting in remote sensing images. Evaluation on 16 datasets, including a newly introduced RemoteCount benchmark to test the object counting ability, shows that RemoteCLIP consistently outperforms baseline foundation models across different model scales. Impressively, RemoteCLIP beats the state-of-the-art method by 9.14% mean recall on the RSITMD dataset and 8.92% on the RSICD dataset. For zero-shot classification, our RemoteCLIP outperforms the CLIP baseline by up to 6.39% average accuracy on 12 downstream datasets. Project website: this https URL",
+    "comments": "Accepted by IEEE Transactions on Geoscience and Remote Sensing (TGRS)",
+    "journal_reference": null,
+    "links": [
+      "https://github.com/ChenDelong1999/RemoteCLIP",
+      "https://doi.org/10.48550/arXiv.2306.11029"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Liu, Fan",
+      "Chen, Delong",
+      "Guan, Zhangqingyun",
+      "Zhou, Xiaocong",
+      "Zhu, Jiale",
+      "Ye, Qiaolin",
+      "Fu, Liyong",
+      "Zhou, Jun"
+    ],
+    "version_history": "[Submitted on 19 Jun 2023 ( v1 ), last revised 16 Apr 2024 (this version, v4)]"
+  },
+  {
+    "id": "S11",
+    "primary_url": "https://arxiv.org/abs/2410.01768",
+    "title": "SegEarth-OV: Towards Training-Free Open-Vocabulary Segmentation for Remote Sensing Images",
+    "citation_date": "2024/10/02",
+    "pdf_url": "https://arxiv.org/pdf/2410.01768",
+    "journal": null,
+    "abstract": "Abstract: Remote sensing image plays an irreplaceable role in fields such as agriculture, water resources, military, and disaster relief. Pixel-level interpretation is a critical aspect of remote sensing image applications; however, a prevalent limitation remains the need for extensive manual annotation. For this, we try to introduce open-vocabulary semantic segmentation (OVSS) into the remote sensing context. However, due to the sensitivity of remote sensing images to low-resolution features, distorted target shapes and ill-fitting boundaries are exhibited in the prediction mask. To tackle this issue, we propose a simple and general upsampler, SimFeatUp, to restore lost spatial information in deep features in a training-free style. Further, based on the observation of the abnormal response of local patch tokens to [CLS] token in CLIP, we propose to execute a straightforward subtraction operation to alleviate the global bias in patch tokens. Extensive experiments are conducted on 17 remote sensing datasets spanning semantic segmentation, building extraction, road detection, and flood detection tasks. Our method achieves an average of 5.8%, 8.2%, 4.0%, and 15.3% improvement over state-of-the-art methods on 4 tasks. All codes are released. \\url{ this https URL }",
+    "comments": null,
+    "journal_reference": null,
+    "links": [
+      "https://doi.org/10.48550/arXiv.2410.01768"
+    ],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Li, Kaiyu",
+      "Liu, Ruixun",
+      "Cao, Xiangyong",
+      "Bai, Xueru",
+      "Zhou, Feng",
+      "Meng, Deyu",
+      "Wang, Zhi"
+    ],
+    "version_history": "[Submitted on 2 Oct 2024 ( v1 ), last revised 4 Nov 2024 (this version, v2)]"
+  },
+  {
+    "id": "S12",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/html/Burges_Active_Learning_Meets_Foundation_Models_Fast_Remote_Sensing_Data_Annotation_ICCV_2025_paper.html",
+    "title": "Active Learning Meets Foundation Models: Fast Remote Sensing Data Annotation for Object Detection",
+    "citation_date": "2025",
+    "pdf_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Burges_Active_Learning_Meets_Foundation_Models_Fast_Remote_Sensing_Data_Annotation_ICCV_2025_paper.pdf",
+    "journal": null,
+    "abstract": "Object detection in remote sensing demands extensive, high-quality annotations--a process that is both labor-intensive and time-consuming. In this work, we introduce a real-time active learning and semi-automated labeling framework that leverages foundation models to streamline dataset annotation for object detection in remote sensing imagery. For example, by integrating a Segment Anything Model (SAM), our approach generates mask-based bounding boxes that serve as the basis for dual sampling: (a) uncertainty estimation to pinpoint challenging samples, and (b) diversity assessment to ensure broad data coverage. Furthermore, our Dynamic Box Switching Module (DBS) addresses the well-known cold start problem for object detection models by replacing its suboptimal initial predictions with SAM-derived masks, thereby enhancing early-stage localization accuracy. Extensive evaluations on multiple remote sensing datasets plus a real-world user study, demonstrate that our framework not only reduces annotation effort, but also significantly boosts detection performance compared to traditional active learning sampling methods. The code for training and the user interface will be made available.",
+    "comments": null,
+    "journal_reference": null,
+    "links": [],
+    "retrieved": "2026-10-13",
+    "status": "fetched",
+    "authors": [
+      "Burges, Marvin",
+      "Dias, Philipe Ambrozio",
+      "Woody, Carson",
+      "Walters, Sarah",
+      "Lunga, Dalton"
+    ],
+    "version_history": null
+  }
+]

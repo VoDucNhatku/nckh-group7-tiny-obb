@@ -1,0 +1,17 @@
+{
+  "count": 50,
+  "roles": {
+    "baseline": 4,
+    "data": 6,
+    "direct": 32,
+    "transfer": 8
+  },
+  "read_depth": {
+    "A — abstract/metadata": 39,
+    "M — đọc chọn lọc từ full text": 10,
+    "E — trích đoạn publisher": 1
+  },
+  "crossref_matches": 32,
+  "primary_html_cached": 54,
+  "doi_verified_or_source_linked": 33
+}

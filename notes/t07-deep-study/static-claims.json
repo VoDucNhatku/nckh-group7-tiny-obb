@@ -1,0 +1,427 @@
+[
+  {
+    "id": "ST-QD01",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "source_fact",
+    "claim": "QueryDet computes backbone/FPN densely and sparsifies high-resolution detection/query heads; query targets derive from box centers and per-level small-object scales.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "CVF accepted PDF §3.1–3.3, PDF pp.3–4 (13670–13671)",
+    "scope": "Single-image HBB; not sparse sensor acquisition or temporal fusion",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-QD02",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "author_result",
+    "claim": "Adding high-resolution P2 alone reduced COCO AP in the reported ablation; loss rebalancing and query-head supervision are separate contributors.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "Table3/§4.3, PDF p.6 (13673)",
+    "scope": "RetinaNet ResNet50 COCO mini-val, default1x, batch16/LR0.01, Detectron2 defaults",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "AP",
+      "baseline": 37.46,
+      "high_resolution_only": 36.1
+    }
+  },
+  {
+    "id": "ST-QD03",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "author_result",
+    "claim": "CSQ preserves almost all dense high-resolution QueryDet AP while improving reported inference speed on VisDrone.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "Table2/§4.1–4.2, PDF p.5 (13672)",
+    "scope": "RetinaNet ResNet50 VisDrone val; four non-overlapping training patches/image; 50k iterations; sigma0.15/startP4; 2080Ti; exact Table2 resize not fixed in read main text",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "dense_hr": {
+        "AP": 28.35,
+        "FPS": 1.16
+      },
+      "CSQ": {
+        "AP": 28.32,
+        "FPS": 2.75
+      }
+    }
+  },
+  {
+    "id": "ST-QD04",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "source_fact",
+    "claim": "Reported failures include correct coarse query but failed final localization, and large-object false query activation causing unnecessary computation.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "§4.4–4.5, PDF pp.7–8 (13674–13675)",
+    "scope": "Author-described failure modes",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-QD05",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "inference",
+    "claim": "Aggregate AP gain cannot be attributed solely to sparse inference because P2, loss balance and auxiliary objectness supervision change training.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "Table3 and matched dense-vs-CSQ comparisons",
+    "scope": "Mechanistic inference; no independent experiment",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-QD06",
+    "paper_ids": [
+      "R02"
+    ],
+    "kind": "proposed_test",
+    "claim": "Compare dense heads, CSQ and oracle queries at one frozen checkpoint; stratify size/density/blur and log selector misses versus post-selector misses including sparse-construction latency.",
+    "primary_url": "https://arxiv.org/abs/2103.09136v2",
+    "evidence_locator": "Designed from §4.4–4.5 failures",
+    "scope": "Research proposal only; no execution",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-SY01",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "source_fact",
+    "claim": "SuperYOLO uses native HR reconstruction targets during training with bilinearly downsampled LR inputs, and removes the auxiliary SR branch during inference.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "§IV-B/C/D, PDF pp.5–6; §V-B p.7",
+    "scope": "arXiv2209.13351v2 PDF self-labelled pre-acceptance; not inference-image SR or multiframe SR",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-SY02",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "author_result",
+    "claim": "Ablation reports better mAP50 from an SR-assisted noFocus model at the same stated inference GFLOPs.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "TableIV/§V-D4, PDF p.9",
+    "scope": "VEDAI first fold; YOLOv5s-noFocus; LR train/test512 with HR1024 SR target;300epochs SGD batch2; modality not separately labelled in TableIV",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "mAP50",
+      "noFocus": 69.5,
+      "noFocus_plus_SR": 78,
+      "inference_GFLOPs_both": 20.4
+    }
+  },
+  {
+    "id": "ST-SY03",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "author_result",
+    "claim": "RGB-only SuperYOLO works in VEDAI; adding the paired IR modality improves reported final-fold average.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "TableVII/§V-B/E, PDF pp.7,10,12",
+    "scope": "Final SuperYOLO, eight-class converted HBB,10-fold average,300epoch SGD; same-scene RGB/IR not different viewpoints",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "mAP50",
+      "RGB": 72.49,
+      "RGB_IR": 75.09
+    }
+  },
+  {
+    "id": "ST-SY04",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "source_fact",
+    "claim": "The VEDAI small-scale configuration removes PANet/two heads, whereas single-modal DOTA/NWPU/DIOR experiments retain scale heads for larger objects.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "TableV and §V-F, PDF pp.10–12",
+    "scope": "Architecture regime differs across datasets",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-SY05",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "derived_audit",
+    "claim": "Focus pixel rearrangement alone is not proof of raw-pixel information destruction; removing it also changes resolution/stride/compute and subsequent processing.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "§IV-A and Fig2; TableII, PDF pp.3–4,8",
+    "scope": "Reasoning about described operator; exact code path not audited",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "analytical_audit_requires_implementation_check"
+  },
+  {
+    "id": "ST-SY06",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "source_fact",
+    "claim": "Fig2 caption states MSE whereas §IV-D describes L1 and TableV includes loss variants; reproduction needs exact row/config. Official README explicitly converts labels to HBB.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "PDF p.3 Fig2; p.6 §IV-D; p.10 TableV; https://github.com/icey-zhang/SuperYOLO README",
+    "scope": "Documentation/config alignment warning, not assertion every implementation wrong",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-SY07",
+    "paper_ids": [
+      "N16"
+    ],
+    "kind": "proposed_test",
+    "claim": "Hold architecture/input/steps fixed and compare SR with matched privileged-HR auxiliary reconstruction or teacher distillation; test real degradation against bilinear degradation.",
+    "primary_url": "https://arxiv.org/abs/2209.13351v2",
+    "evidence_locator": "Designed from §IV/V ablation limitations",
+    "scope": "Proposal only; SR-specific attribution may be falsified without negating supervisory-signal utility",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-UGS01",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "source_fact",
+    "claim": "UGS combines classification-based coordinate localization, non-uniform grids, entropy minimization and entropy-sensitive feature perturbation/refinement.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "§3.2, main PDF pp.4–5 (8410–8411)",
+    "scope": "Main HBB VisDrone/COCO/VOC plus separate SODA-A OBB tests",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-UGS02",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "author_result",
+    "claim": "Full UGS improves Faster R-CNN VisDrone AP in Tables1/6.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Table1 p.6 and Table6 p.8",
+    "scope": "ResNet50, VisDrone val,1333x800,batch16,1xSGD,no multiscale for generic baseline",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "AP",
+      "L2_baseline": 21.3,
+      "full_UGS": 24.2
+    }
+  },
+  {
+    "id": "ST-UGS03",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "author_result",
+    "claim": "IN's conditional contribution should be computed against the CE row, rather than using the L2 reference delta from prose.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Table6, main PDF p.8 (8414)",
+    "scope": "Faster R-CNN ResNet50/VisDrone same ablation setup",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "AP",
+      "CE": 22.1,
+      "CE_IN": 22.5
+    }
+  },
+  {
+    "id": "ST-UGS04",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "derived_audit",
+    "claim": "Main Eq13 labels an entropy derivative with respect to logits but prints the probability derivative without softmax chain rule; direct rendered PDF confirms this is not extraction artefact. At uniform softmax, the true entropy logit gradient is zero.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Main §3.2.2 Eq12–13 p.5, rendered X01-p5.png; logits defined in Eq11 p.4",
+    "scope": "Analytical consistency audit, not empirical rejection; implementation not read",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "analytical_audit_requires_implementation_check"
+  },
+  {
+    "id": "ST-UGS05",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "derived_audit",
+    "claim": "Curvature comparison uses different output coordinates: supplement states constant L2 Hessian in normalized coordinates before converting to physical pixels, whereas CE gradient is analysed in logits.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Supplement §1 Eq1–4 p.1; main §3.1–3.2",
+    "scope": "Does not establish complete network-parameter Hessian/stability without Jacobians and normalization controls",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "analytical_audit_requires_implementation_check"
+  },
+  {
+    "id": "ST-UGS06",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "derived_audit",
+    "claim": "The printed IoU derivative chain in supplement Eq8 has the form for negative IoU rather than its stated negative-log IoU; main Eq6–7/supplement Eq8–10 require rederivation before accepting inverse-width curvature exponents.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Main pp.3–4 rendered X01-p3/p4; supplement §2 p.1",
+    "scope": "Math consistency audit; no corrected formula asserted as author result",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "single_worker_analytical_audit_not_independently_checked",
+    "verification_limit": "No independent agent/human validation or numerical derivative check was performed for this IoU audit."
+  },
+  {
+    "id": "ST-UGS07",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "inference",
+    "claim": "AP gains may arise from distributional coordinates, grid design and regularization; reduced gradient maps can partly reflect changed scale. Entropy sharpening is not predictive calibration.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Table6, Fig5–6, §3/4",
+    "scope": "Competing explanations requiring tests; no novelty inference",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-UGS08",
+    "paper_ids": [
+      "X01"
+    ],
+    "kind": "proposed_test",
+    "claim": "Recheck derivatives, then compare capacity/coordinate-normalization/gradient-scale matched heads and random versus uncertainty-sensitive perturbations, measuring the same parameter/layer gradients.",
+    "primary_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+    "evidence_locator": "Designed from Eq13 audit and Table6 limitations",
+    "scope": "Proposal only; no detector implementation",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-GC01",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "source_fact",
+    "claim": "GauCho predicts Gaussian parameters via positive-diagonal Cholesky factors, supports Gaussian losses and decodes covariance into OBB or oriented ellipse.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "§3.1–3.4, accepted CVF PDF pp.3–5",
+    "scope": "Oriented geometric representation; covariance is shape extent, not predictive error covariance",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-GC02",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "author_result",
+    "claim": "With FCOS R50 and identical ProbIoU loss, GauCho improves reported single-scale DOTA-v1.5 AP50.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "Table2, PDF p.7 (3599), directly rendered G10-p7.png",
+    "scope": "DOTA-v1.5;12epochs/default MMRotate/random flips;same single-scale head comparison",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "AP50",
+      "OBB_ProbIoU": 64.26,
+      "GauCho_ProbIoU": 65.09
+    }
+  },
+  {
+    "id": "ST-GC03",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "author_result",
+    "claim": "GauCho reduces reported average orientation error of FCOS ships under synthetic rotations.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "§5/Fig4 PDF p.8 (3600)",
+    "scope": "HRSC,FCOS,ProbIoU both heads;72epoch train;flips/rotation policy;test1–360degrees step1;geometrically oriented ships",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced",
+    "numerical_comparison": {
+      "metric": "AOE_degrees",
+      "OBB": 1.36,
+      "GauCho": 1.11
+    }
+  },
+  {
+    "id": "ST-GC04",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "source_fact",
+    "claim": "GauCho retains square-like decoding ambiguity; semantic orientation cannot in general be recovered from isotropic Gaussian/ellipse. Authors acknowledge some head differences may be random-seed effects and only FCOS is tested for tiny-enriched DOTA-v1.5 due anchor-config availability.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "§3.4/§4/§5, PDF pp.5–8",
+    "scope": "Author-stated limitations; not all UAV tiny classes",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "source_verified_not_reproduced"
+  },
+  {
+    "id": "ST-GC05",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "inference",
+    "claim": "Ellipse evaluation changes the geometric target/metric, so an AP increase there is not automatically improved OBB localization or semantic heading.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "Table1 UCAS-AOD OBB/OE plus §5",
+    "scope": "Metric/observability distinction",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  },
+  {
+    "id": "ST-GC06",
+    "paper_ids": [
+      "G10"
+    ],
+    "kind": "proposed_test",
+    "claim": "Hold loss/assignment/postprocessing/OBB metric fixed across head types and seeds; stratify aspect ratio/size/blur and geometric versus semantic orientation.",
+    "primary_url": "https://arxiv.org/abs/2502.01565",
+    "evidence_locator": "Designed from §3.4/4/5",
+    "scope": "Proposal only; tests continuity explanation rather than assuming it",
+    "read_depth": "method_experiments_ablations_limitations_selectively_read",
+    "independently_reproduced": false,
+    "confidence": "inference_or_design_not_verified"
+  }
+]

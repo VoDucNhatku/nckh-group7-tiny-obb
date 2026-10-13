@@ -26,6 +26,17 @@
 !/notes/t07-tier-upgrade.md
 !/notes/synthesize-gaps-t07-q4-priority.md
 !/notes/t07-proposal.md
+# --- research restart and deep-study deliverables (2026-10-13) ---
+!/notes/INDEX.md
+!/notes/RESEARCH-START-HERE.md
+!/notes/t07-fresh-research/
+!/notes/t07-problem-map/
+!/notes/t07-deep-study/
+# Keep downloaded paper PDFs, extracted text, HTML and rendered pages local.
+/notes/t07-fresh-research/sources/*
+!/notes/t07-fresh-research/sources/README.md
+/notes/t07-deep-study/sources/*
+!/notes/t07-deep-study/sources/README.md
 !/notes/figs/
 !/notes/t07-critique-q2-2026-10-11.md
 !/notes/t07-dl-digest-2026-10-11.md

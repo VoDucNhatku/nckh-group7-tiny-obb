@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-13",
+  "worker": "critic_astra",
+  "scope": "UAV-view tiny-object detection; multiview scope and causal critique; research only",
+  "read_level": "selected full-text methods and evaluations; no code audit or replication",
+  "sources": [
+    {
+      "id": "MV01",
+      "title": "Where2comm: Communication-Efficient Collaborative Perception via Spatial Confidence Maps",
+      "year": 2022,
+      "status": "NeurIPS 2022 main conference",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/1f5c5cd01b864d53cc5fa0a3472e152e-Paper-Conference.pdf",
+      "support_url": "https://siheng-chen.github.io/dataset/coperception-uav/",
+      "locator": "Sections 3, 4.1-4.4, 5.1-5.4; Figures 5-6",
+      "task": "Cooperative UAV camera 3D/BEV detection",
+      "environment": "UAV component synthetic",
+      "claim_boundary": "Not measured real UAV network latency or tiny 2D AP",
+      "artifact_section": "MULTIVIEW-AND-CRITIQUE.md section 3 MV01"
+    },
+    {
+      "id": "MV02",
+      "title": "UCDNet: Multi-UAV Collaborative 3D Object Detection Network by Reliable Feature Mapping",
+      "year": 2024,
+      "version_read": "arXiv 2406.04648v1, submitted 2024-06-07",
+      "status": "IEEE TGRS volume 63 publisher record verified; full method review uses arXiv v1, not a final-version comparison",
+      "url": "https://arxiv.org/html/2406.04648v1",
+      "publisher_url": "https://ieeexplore.ieee.org/document/10802930/",
+      "doi": "10.1109/TGRS.2024.3517594",
+      "locator": "Sections 3.1-3.5, 4.1-4.4; Appendix A.2-A.3",
+      "task": "Camera-based multi-UAV 3D detection",
+      "environment": "Synthetic AeroCollab3D and CoPerception-UAVs",
+      "unresolved": "Key-frame wording versus two-frame setting in sections 4.2/4.3; do not assert purely single-frame evaluation",
+      "artifact_section": "MULTIVIEW-AND-CRITIQUE.md section 3 MV02"
+    },
+    {
+      "id": "MV03",
+      "title": "UAV3D: A Large-scale 3D Perception Benchmark for Unmanned Aerial Vehicles",
+      "year": 2024,
+      "status": "NeurIPS 2024 Datasets and Benchmarks",
+      "url": "https://papers.neurips.cc/paper_files/paper/2024/file/643ea9b3843bd8f525ad8801437a2022-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "html_read": "https://arxiv.org/html/2410.11125v1",
+      "support_url": "https://huiyegit.github.io/UAV3D_Benchmark/",
+      "locator": "Sections 3.1-3.3, 4.1, 4.3; Tables 7-8",
+      "task": "Single-UAV and collaborative 3D detection/tracking",
+      "environment": "Synthetic",
+      "claim_boundary": "Single-UAV is not single-camera; metrics not directly tiny 2D AP; empirical upper-bound naming is not a theorem",
+      "artifact_section": "MULTIVIEW-AND-CRITIQUE.md section 3 MV03"
+    },
+    {
+      "id": "X01-audit",
+      "title": "Uncertainty-Aware Gradient Stabilization for Small Object Detection",
+      "year": 2025,
+      "status": "ICCV 2025",
+      "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+      "locator": "Figure 4; Equations 11-13 printed pp.8410-8411; Table 6 and prose printed p.8414",
+      "local_visual_verification": ["sources/X01-p4.png", "sources/X01-p5.png", "sources/X01-p8.png"],
+      "role": "Independent derivative and ablation-attribution check; not a multiview exemplar",
+      "claim_boundary": "Printed equation issue does not establish implementation error or invalidate empirical AP",
+      "artifact_section": "MULTIVIEW-AND-CRITIQUE.md section 8"
+    }
+  ],
+  "excluded_as_core_evidence": [
+    {
+      "title": "Dual-View Drone Dataset: Can Multi-view Improve Aerial Visual Perception?",
+      "url": "https://mavrec.github.io/src/main_paper.pdf",
+      "reason": "Accessed document is anonymous submitted draft; aerial-ground views; not used as verified multi-UAV benchmark"
+    }
+  ],
+  "limitations": [
+    "Three exemplars do not exhaust real, uncalibrated, asynchronous or 2D UAV fusion research.",
+    "No code, training, deployment, benchmark reproduction or data-download validation performed.",
+    "Decision tables and causal hypotheses are designs, not proven gaps."
+  ]
+}

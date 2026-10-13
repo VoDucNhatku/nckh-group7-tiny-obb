@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-13",
+  "checks": {
+    "50_records": true,
+    "unique_id": true,
+    "unique_title": true,
+    "unique_primary_url": true,
+    "csv_matches_json": true,
+    "required_fields": true,
+    "primary_sources_only": true,
+    "crossref_matches_32": true,
+    "exact_read_counts": true,
+    "local_links_exist": true,
+    "paper_ids_resolve": true,
+    "l4_budget_arithmetic": true,
+    "28_calendar_days": true,
+    "design_and_limits_visible": true
+  },
+  "passed": 14,
+  "total": 14,
+  "broken_links": [],
+  "unresolved_ids": [],
+  "hourly_example_costs": {
+    "T4": 0.812592,
+    "L4": 1.021392,
+    "A10": 1.323792,
+    "A100_40": 2.320992
+  },
+  "note": "Structural checks only; not experiment validation or full literature novelty clearance."
+}
