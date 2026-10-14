@@ -1,58 +1,22 @@
-# Whitelist: ignore everything, then re-include only what the team shares.
-# Paper PDFs, SLR reading notes, raw caches (~1.3 GB) and logs stay local on purpose
-# (copyright + size). To share a new file, add a "!path" line below.
+# Whitelist at the root: ignore everything, then re-include only what the team shares.
+# Paper PDFs, raw caches (~1.3 GB), data and logs stay local on purpose (copyright + size).
+# Inside notes/ everything is shared EXCEPT any `_local/` folder and `sources/` caches.
+# Rules for where files go: AGENTS.md.
 /*
 !/.gitignore
 !/README.md
+!/AGENTS.md
+!/CLAUDE.md
 !/ROADMAP.md
-!/ROADMAP-14w-backup.md
 
-# --- proposal & decisions (notes/) ---
+# --- research notes (notes/): shared by default ---
 !/notes/
-/notes/*
-!/notes/t07-c3-proposal-v2-EN.md
-!/notes/Group7.pdf
-!/notes/Group7-proposal-presentation.pptx
-!/notes/t07-foundation-G7-VI-v2.pdf
-!/notes/t07-foundation-G7-VI-v3.pdf
-!/notes/t07-foundation-review-2026-10-09.md
-!/notes/t07-session-qa-2026-10-09.md
-!/notes/t07-c3-proposal-template-EN.docx
-!/notes/t07-c3-introduction-EN.pptx
-!/notes/t07-c3-evidence-dossier.md
-!/notes/t07-c3-novelty-rescan.md
-!/notes/claims-ledger.md
-!/notes/r3-final-comparison.md
-!/notes/t07-tier-upgrade.md
-!/notes/synthesize-gaps-t07-q4-priority.md
-!/notes/t07-proposal.md
-# --- research restart and deep-study deliverables (2026-10-13) ---
-!/notes/INDEX.md
-!/notes/RESEARCH-START-HERE.md
-!/notes/t07-fresh-research/
-!/notes/t07-problem-map/
-!/notes/t07-deep-study/
-# Keep downloaded paper PDFs, extracted text, HTML and rendered pages local.
-/notes/t07-fresh-research/sources/*
-!/notes/t07-fresh-research/sources/README.md
-/notes/t07-deep-study/sources/*
-!/notes/t07-deep-study/sources/README.md
-!/notes/figs/
-!/notes/t07-critique-q2-2026-10-11.md
-!/notes/t07-dl-digest-2026-10-11.md
-!/notes/t07-dl-from-slides-VI.pdf
-!/notes/t07-dl-from-slides/
-# --- 14-15/10 venue analysis (historical, superseded by C-19), C-19 audit, error analysis ---
-!/notes/t07-venue-assessment-2026-10-14.md
-!/notes/t07-q2-path-2026-10-14.md
-!/notes/t07-direction-map-2026-10-15.md
-!/notes/t07-q2-audit-2026-10-15/
-/notes/t07-q2-audit-2026-10-15/sources/*
-!/notes/t07-q2-audit-2026-10-15/sources/README.md
-!/notes/t07-error-analysis-2026-10-15/
-/notes/t07-dl-from-slides/_qa/
-/notes/t07-dl-from-slides/*.print.html
-/notes/t07-dl-from-slides/lab_err.txt
+_local/
+/notes/**/sources/*
+!/notes/**/sources/README.md
+/notes/**/_qa/
+/notes/**/*.print.html
+/notes/**/lab_err.txt
 
 # --- scripts that rebuild the proposal figures / docx ---
 !/scripts/

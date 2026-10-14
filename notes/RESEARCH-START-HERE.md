@@ -4,22 +4,22 @@ Cập nhật 13/10/2026. Đây là đầu ra nghiên cứu tài liệu, chưa c�
 
 ## Cập nhật 15/10/2026 — đọc trước
 
-Các lượt nghiên cứu ngày 14–15/10 (ledger C-16 → C-18) đã được audit lại và sửa bằng **C-19**. Bản đúng hiện hành là [REPORT của audit](t07-q2-audit-2026-10-15/REPORT.md).
+Các lượt nghiên cứu ngày 14–15/10 (ledger C-16 → C-18) đã được audit lại và sửa bằng **C-19**. Bản đúng hiện hành là [REPORT của audit](07-audits/t07-q2-audit-2026-10-15/REPORT.md).
 
 - Ba đề tài ứng viên (R1, R2, R3) và các phép thử phân biệt chúng: xem REPORT §3.
 - Những kết luận cũ đã bị rút: xem REPORT §2.
-- [Phân tích lỗi của phiên 14–15/10](t07-error-analysis-2026-10-15/ANALYSIS.md): sai ở đâu, vì sao, và việc nào đáng giữ.
+- [Phân tích lỗi của phiên 14–15/10](07-audits/t07-error-analysis-2026-10-15/ANALYSIS.md): sai ở đâu, vì sao, và việc nào đáng giữ.
 
 Hướng dẫn đọc bên dưới (13/10) vẫn còn hiệu lực. "Ưu tiên A" ở đây là **tách tác động của scale khỏi cách học**. Đây không phải "hướng A" trong các note ngày 14/10 (STAL/coverage, C-16).
 
 ## Thứ tự đọc
 
-1. [DEEP-REPORT](t07-deep-study/DEEP-REPORT.md): kết luận hiện tại, tám nền tảng, ba chương trình nghiên cứu và khi nào cần multi-view.
-2. [CASEBOOK-STATIC](t07-deep-study/CASEBOOK-STATIC.md) và [CASEBOOK-TEMPORAL-MASKS](t07-deep-study/CASEBOOK-TEMPORAL-MASKS.md): tám cases có method, table/page, controls và giới hạn.
-3. [MULTIVIEW-AND-CRITIQUE](t07-deep-study/MULTIVIEW-AND-CRITIQUE.md) và [REVIEW](t07-deep-study/REVIEW.md): kiểm tra multi-view, toán và phạm vi kết luận.
-4. [PROBLEM-MAP](t07-problem-map/PROBLEM-MAP.md) và [QUESTION-BANK](t07-problem-map/QUESTION-BANK.md): 13 mục tiêu/120 câu hỏi, dùng để tìm hiện tượng cần giải thích.
-5. [CORPUS-50](t07-fresh-research/CORPUS-50.md): bản đồ tài liệu nền, kèm CSV/JSON. Mức đọc của corpus gốc là 39 abstract/metadata, 10 selected full-text excerpts, 1 publisher excerpts; casebooks sau đó nâng độ sâu một số nguồn. Không gọi đây là 50 full-method audits.
-6. [RESEARCH-PROMPT](t07-deep-study/RESEARCH-PROMPT.md): yêu cầu bằng chứng và phản biện để tiếp tục nghiên cứu.
+1. [DEEP-REPORT](06-uav-research-2026-10-13/t07-deep-study/DEEP-REPORT.md): kết luận hiện tại, tám nền tảng, ba chương trình nghiên cứu và khi nào cần multi-view.
+2. [CASEBOOK-STATIC](06-uav-research-2026-10-13/t07-deep-study/CASEBOOK-STATIC.md) và [CASEBOOK-TEMPORAL-MASKS](06-uav-research-2026-10-13/t07-deep-study/CASEBOOK-TEMPORAL-MASKS.md): tám cases có method, table/page, controls và giới hạn.
+3. [MULTIVIEW-AND-CRITIQUE](06-uav-research-2026-10-13/t07-deep-study/MULTIVIEW-AND-CRITIQUE.md) và [REVIEW](06-uav-research-2026-10-13/t07-deep-study/REVIEW.md): kiểm tra multi-view, toán và phạm vi kết luận.
+4. [PROBLEM-MAP](06-uav-research-2026-10-13/t07-problem-map/PROBLEM-MAP.md) và [QUESTION-BANK](06-uav-research-2026-10-13/t07-problem-map/QUESTION-BANK.md): 13 mục tiêu/120 câu hỏi, dùng để tìm hiện tượng cần giải thích.
+5. [CORPUS-50](06-uav-research-2026-10-13/t07-fresh-research/CORPUS-50.md): bản đồ tài liệu nền, kèm CSV/JSON. Mức đọc của corpus gốc là 39 abstract/metadata, 10 selected full-text excerpts, 1 publisher excerpts; casebooks sau đó nâng độ sâu một số nguồn. Không gọi đây là 50 full-method audits.
+6. [RESEARCH-PROMPT](06-uav-research-2026-10-13/t07-deep-study/RESEARCH-PROMPT.md): yêu cầu bằng chứng và phản biện để tiếp tục nghiên cứu.
 
 ## Đề xuất bước tiếp theo — vẫn nghiên cứu trước
 

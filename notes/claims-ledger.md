@@ -2,6 +2,8 @@
 
 > **Current #7 interpretation (2026-10-15): C-19 below supersedes the venue mapping and overstrong geometric/causal interpretations in C-16–18 and their ancestors.** Historical rows remain for provenance. C-13–15 research-only scope remains in force; there are no new detector results or verified Q2/Q1 prospects.
 
+> **Đường dẫn (15/10/2026):** `notes/` đã được sắp xếp lại thành các thư mục số. Các dòng ledger giữ nguyên đường dẫn cũ (ledger chỉ thêm, không sửa); tra đường dẫn mới ở [MOVED-2026-10-15.json](MOVED-2026-10-15.json).
+
 | ID | Date | Proposal | Tier | Venue band + conditions | Status | Artifact |
 |---|---|---|---|---|---|---|
 | C-1 | 2026-09-29 | Geo-hierarchical dialect LoRA adapters + DI soft routing for Vietnamese multi-dialect ASR (ViMD) | T1 | Domestic/regional conf or Q3–Q4; Q2–Q3 only if T2 confirmed by lit scan + ≥2 datasets + full ablation; not Q1 | revised→C-5 | notes/nckh-topic-proposals.md §3 |
