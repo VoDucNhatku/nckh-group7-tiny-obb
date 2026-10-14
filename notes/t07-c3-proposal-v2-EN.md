@@ -1,5 +1,7 @@
 # Where Do Tiny Oriented Objects Lose Their Positives? Candidate-Region Geometry in Real-Time YOLO-OBB Detectors on AI-TOD-R
 
+> **Interpretation correction, 2026-10-15 (C-19).** See [the research audit](t07-q2-audit-2026-10-15/REPORT.md) and [mathematical critique](t07-q2-audit-2026-10-15/LOGIC-CRITIQUE.md). Equal area gives equal expected candidate count under uniform lattice phase; it does **not** imply equal zero-candidate probability, a second-order effect, or similar AP. The √2s closed-lattice coverage guarantee does not guarantee final TAL positives or an optimal AP floor. A0/A1/A2/A8 remain exploratory contrasts; withdraw deterministic intervention-tier→journal-quartile claims below. Earlier revision boxes and body are retained as historical design, with this correction taking precedence. No new experiments or venue band are established.
+
 **Research proposal: topic #7, direction C-3, revised (v2)**
 
 | Field | Value |
@@ -30,6 +32,22 @@
 >
 > Tier and band are unchanged: **T1**, Scopus conference (ICORE C–B) / Q4, conditional; Q2/Q1 not
 > defensible (C-11).
+
+> **Revision v2.2 (2026-10-14, ledger C-16).** Positioning update, design unchanged
+> (`notes/t07-venue-assessment-2026-10-14.md`):
+> 1. **OSCAR** (Dai et al., IEEE TGRS 2023, DOI 10.1109/tgrs.2023.3243062) already sweeps a square
+>    pseudo-box p ∈ {none, s, 1.5s, 2s} for sub-stride targets (HBB, infrared, one level) and reports a
+>    non-monotonic optimum. "Floor size matters" is therefore not new; A8 is framed as the
+>    **orientation-invariant** coverage condition (short side ≥ √2·s_min, tight for a 45° square;
+>    axis-aligned boxes need only s) tested in YOLO's multi-level point-in-box step on dense tiny OBB.
+>    Add OSCAR to Table 1.
+> 2. **MCSA** full text read (2026-10-14): RetinaNet-OBB with a dynamic prior block, metric t = s + u + d
+>    and a DGMM filter, on DOTA-v1.0/1.5/2.0 and DIOR-R; no AI-TOD-R, no YOLO, no STAL. Cite as the
+>    closest "oriented tiny sample assignment" work; it does not occupy RQ2.
+> 3. Preregistration: the sign of A8 vs A2 is not assumed (OSCAR favours ≈1.5s; YOLO26 Table 6 shows
+>    s_ref = 8 below TAL on COCO); predictions are stratified by density.
+> 4. Q3 is above the T1 band and additionally requires the √2·s condition to predict the best floor on
+>    two source-independent datasets.
 
 **Evidence conventions.**
 - Bracketed numbers [n] refer to §16. Every factual statement about a paper is traceable to a page, table or code line in Appendix A.

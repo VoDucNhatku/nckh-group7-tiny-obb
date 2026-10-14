@@ -2,6 +2,16 @@
 
 Cập nhật 13/10/2026. Đây là đầu ra nghiên cứu tài liệu, chưa có detector runs. Người dùng đã yêu cầu đưa các đầu ra nghiên cứu lên GitHub và giữ repo public. Bản proposal nộp trường được giữ để đối chiếu; các hướng dưới đây chưa thay thế nó.
 
+## Cập nhật 15/10/2026 — đọc trước
+
+Các lượt nghiên cứu ngày 14–15/10 (ledger C-16 → C-18) đã được audit lại và sửa bằng **C-19**. Bản đúng hiện hành là [REPORT của audit](t07-q2-audit-2026-10-15/REPORT.md).
+
+- Ba đề tài ứng viên (R1, R2, R3) và các phép thử phân biệt chúng: xem REPORT §3.
+- Những kết luận cũ đã bị rút: xem REPORT §2.
+- [Phân tích lỗi của phiên 14–15/10](t07-error-analysis-2026-10-15/ANALYSIS.md): sai ở đâu, vì sao, và việc nào đáng giữ.
+
+Hướng dẫn đọc bên dưới (13/10) vẫn còn hiệu lực. "Ưu tiên A" ở đây là **tách tác động của scale khỏi cách học**. Đây không phải "hướng A" trong các note ngày 14/10 (STAL/coverage, C-16).
+
 ## Thứ tự đọc
 
 1. [DEEP-REPORT](t07-deep-study/DEEP-REPORT.md): kết luận hiện tại, tám nền tảng, ba chương trình nghiên cứu và khi nào cần multi-view.

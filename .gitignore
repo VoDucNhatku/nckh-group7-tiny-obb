@@ -42,6 +42,14 @@
 !/notes/t07-dl-digest-2026-10-11.md
 !/notes/t07-dl-from-slides-VI.pdf
 !/notes/t07-dl-from-slides/
+# --- 14-15/10 venue analysis (historical, superseded by C-19), C-19 audit, error analysis ---
+!/notes/t07-venue-assessment-2026-10-14.md
+!/notes/t07-q2-path-2026-10-14.md
+!/notes/t07-direction-map-2026-10-15.md
+!/notes/t07-q2-audit-2026-10-15/
+/notes/t07-q2-audit-2026-10-15/sources/*
+!/notes/t07-q2-audit-2026-10-15/sources/README.md
+!/notes/t07-error-analysis-2026-10-15/
 /notes/t07-dl-from-slides/_qa/
 /notes/t07-dl-from-slides/*.print.html
 /notes/t07-dl-from-slides/lab_err.txt

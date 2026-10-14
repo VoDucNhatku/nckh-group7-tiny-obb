@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-15",
+  "purpose": "Preserve prior-search provenance, not new paper validation",
+  "counts": {
+    "scan.json": {
+      "queries": 16,
+      "returned_records": 162
+    },
+    "scan2.json": {
+      "queries": 8,
+      "returned_records": 52
+    },
+    "oa.json": {
+      "queries": 7,
+      "returned_records": 84
+    }
+  },
+  "arxiv_unique_returned_ids": 174,
+  "arxiv_unique_known_false": 155,
+  "query_parse_errors": [],
+  "files": [
+    {
+      "name": "known_ids.txt",
+      "bytes": 2867,
+      "sha256": "870539084e7f3908e6da0fd8d8166cf15050f489704c4dd5a357b0b463b360ef"
+    },
+    {
+      "name": "oa.json",
+      "bytes": 142729,
+      "sha256": "b0530a89b0989d8224fdd4a4a88414670e5e5ce591ac77ad604d0a9dad1e496f"
+    },
+    {
+      "name": "oa.py",
+      "bytes": 1851,
+      "sha256": "e55ada819abcf9e2d9d68b4a1f4c3b442e6457d912bd3d670650a383691b30bd"
+    },
+    {
+      "name": "scan.json",
+      "bytes": 286942,
+      "sha256": "a6787ad6acefbadfb6e18c1c99535b69449ee8e3226ad4b61912752158616aa3"
+    },
+    {
+      "name": "scan.py",
+      "bytes": 4262,
+      "sha256": "cf2bd49727f16fd817ca831341ce9fc83a2dddbbf534cb25ce3f4dd4006933a2"
+    },
+    {
+      "name": "scan2.json",
+      "bytes": 86216,
+      "sha256": "b37dbf560d9799aeb69feb9d1c586e317736c5e539f59c9c6cf0b3ef2d2d08b0"
+    },
+    {
+      "name": "scan2.py",
+      "bytes": 2810,
+      "sha256": "1e860b01e2bde7e5129ed9c77a91360f45fa7e750fbefe6af91d721946e5f8db"
+    }
+  ],
+  "limits": "Counts are returned records, not relevant papers or proof of reading. Approximately45 is the previous analyst selection claim; not independently reconstructed here. known flags inherited, not recomputed."
+}
