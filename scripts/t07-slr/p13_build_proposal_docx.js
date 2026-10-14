@@ -8,7 +8,7 @@ const {
 } = require("docx");
 
 const NCKH = "D:/DEMO kế hoạch kì 5-20260915T034926Z-1-001/DEMO kế hoạch kì 5/DPL302m/NCKH";
-const OUT = path.join(NCKH, "notes", "t07-c3-proposal-template-EN.docx");
+const OUT = path.join(NCKH, "notes", "02-proposal", "t07-c3-proposal-template-EN.docx");
 const FONT = "Times New Roman";
 const TW = 9354; // text width in DXA (A4 minus margins)
 const NAVY = "1A2B47";
@@ -88,7 +88,7 @@ function table(headers, rows, widths, opt = {}) {
   return new Table({ width: { size: total, type: WidthType.DXA }, columnWidths: widths, rows: [hdr, ...body] });
 }
 function img(file, widthPx) {
-  const buf = fs.readFileSync(path.join(NCKH, "notes", "figs", file));
+  const buf = fs.readFileSync(path.join(NCKH, "notes", "02-proposal", "figs", file));
   const w = buf.readUInt32BE(16), h = buf.readUInt32BE(20);
   return new Paragraph({
     alignment: AlignmentType.CENTER, spacing: { before: 80, after: 40 }, keepNext: true,

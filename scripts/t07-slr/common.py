@@ -1,4 +1,4 @@
-"""Shared helpers for the #7 SLR (protocol: notes/t07-slr-prompt.md v1.2)."""
+"""Shared helpers for the #7 SLR (protocol: notes/04-slr/_local/t07-slr-prompt.md v1.2)."""
 import json
 import time
 import urllib.parse

@@ -1,8 +1,8 @@
 # ROADMAP: kế hoạch 4 tuần (11/10/2026 → 08/11/2026)
 
-> **Thay cho kế hoạch 14 tuần cũ** (12/10/2026 → 17/01/2027, lưu ở [ROADMAP-14w-backup.md](ROADMAP-14w-backup.md)).
+> **Thay cho kế hoạch 14 tuần cũ** (12/10/2026 → 17/01/2027, lưu ở [ROADMAP-14w-backup.md](notes/99-archive/ROADMAP-14w-backup.md)).
 > Cập nhật 2026-10-13 theo quyết định của nhóm trưởng: **cả đề tài gói trong 4 tuần**.
-> Căn cứ: phản biện [notes/t07-critique-q2-2026-10-11.md](notes/t07-critique-q2-2026-10-11.md) §4 (ngân sách), §6 (kế hoạch, cổng, danh sách cắt).
+> Căn cứ: phản biện [notes/05-venue-direction/t07-critique-q2-2026-10-11.md](notes/05-venue-direction/t07-critique-q2-2026-10-11.md) §4 (ngân sách), §6 (kế hoạch, cổng, danh sách cắt).
 
 ## Đọc trước khi làm
 
@@ -110,4 +110,4 @@
 
 - [ ] Sửa milestone/due date trên GitHub theo Cổng 0–5 (milestone hiện vẫn theo kế hoạch 14 tuần).
 - [ ] Proposal §11 và Bảng 5 của `Group7.pdf` vẫn ghi timeline 14 tuần. Ghi chú thay đổi nếu mentor hỏi; không sửa bản đã nộp.
-- [ ] Vòng tự phản biện (#19): đã có [notes/t07-critique-q2-2026-10-11.md](notes/t07-critique-q2-2026-10-11.md). Đóng issue sau khi nhóm đọc và chốt so sánh chính.
+- [ ] Vòng tự phản biện (#19): đã có [notes/05-venue-direction/t07-critique-q2-2026-10-11.md](notes/05-venue-direction/t07-critique-q2-2026-10-11.md). Đóng issue sau khi nhóm đọc và chốt so sánh chính.

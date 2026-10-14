@@ -1,7 +1,7 @@
 """Figures for the C-3 v2 proposal (school template version).
 Fig 1: research framework. Fig 2: candidate regions of four rules for one 4x12 px rotated box (anchor
 counts computed geometrically for one placement; expected counts follow Proposition 1 of the proposal).
-Output: notes/figs/fig1_framework.png, notes/figs/fig2_regions.png"""
+Output: notes/02-proposal/figs/fig1_framework.png, notes/02-proposal/figs/fig2_regions.png"""
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, Polygon
 from common import ROOT
 
-OUT = ROOT / "notes" / "figs"
+OUT = ROOT / "notes" / "02-proposal" / "figs"
 OUT.mkdir(exist_ok=True)
 plt.rcParams["font.family"] = "Times New Roman"
 NAVY, ACC, GREY, GREEN = "#1A2B47", "#C8553D", "#E9EDF3", "#4F7A3A"
