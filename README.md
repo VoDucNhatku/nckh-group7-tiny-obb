@@ -16,6 +16,31 @@ Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt 
 
 Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
 
+## Trạng thái hiện hành — 15/10/2026 (C-19)
+
+**Bản đúng nhất hiện tại:** [báo cáo audit C-19](notes/t07-q2-audit-2026-10-15/REPORT.md). Ba báo cáo chi tiết đi kèm: [toán và logic](notes/t07-q2-audit-2026-10-15/LOGIC-CRITIQUE.md), [prior về góc](notes/t07-q2-audit-2026-10-15/ANGLE-PRIOR.md), [dữ liệu và chuyển miền](notes/t07-q2-audit-2026-10-15/DATA-AND-TRANSFER.md).
+
+- **Đã rút** (C-16 → C-18, ngày 14–15/10):
+  - quy đổi tier → quartile;
+  - "phải đổi head mới lên Q2";
+  - "thiếu 3 dataset thì trần Q3";
+  - √2·s dự báo mức sàn AP tối ưu;
+  - "cùng diện tích ⇒ hiệu ứng hình dạng chỉ bậc hai";
+  - arctan(2δ/L) là giới hạn khả năng xác định góc;
+  - O2-DETR không phụ thuộc kích thước;
+  - CSCWD là đối thủ trực tiếp.
+- **Còn giữ:**
+  - OSCAR là prior của việc nâng sàn ứng viên;
+  - định lý phủ √2·s, chỉ như điều kiện có ứng viên;
+  - cặp nhãn AI-TOD-v2/R dùng chung ảnh, chỉ để kiểm sự nhất quán và nguồn gốc nhãn, không phải hai phép đo độc lập.
+- **Ba hướng cạnh tranh, chưa chọn hướng nào:**
+  - R1: độ tin cậy hình học của góc; chỉ làm nếu bài toán thật sự cần OBB.
+  - R2: từ có ứng viên tới giám sát hữu ích.
+  - R3: tách độ phân giải quan sát khỏi hiệu ứng huấn luyện.
+- **Chưa có:** kết quả detector, kiến trúc được chọn, novelty đã xác nhận, band venue.
+- Ba note 14–15/10 ([venue](notes/t07-venue-assessment-2026-10-14.md), [đường Q2](notes/t07-q2-path-2026-10-14.md), [bản đồ hướng](notes/t07-direction-map-2026-10-15.md)) giữ làm lịch sử. Mỗi note có hộp đính chính C-19 ở đầu; đọc hộp đó trước.
+- **[Phân tích lỗi của phiên 14–15/10](notes/t07-error-analysis-2026-10-15/ANALYSIS.md):** 14 lỗi đã xác nhận, nguyên nhân, việc đáng giữ, bài học cho các lượt nghiên cứu sau.
+
 | | |
 |---|---|
 | Mentor | Hà Anh |
@@ -47,7 +72,7 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 | RQ3 | OA-STAL v2 kèm quy tắc giải quyết xung đột. So sánh chính: **A4 với A2** |
 | RQ4 | Kiểm lại trên dataset thứ hai (SODA-A, dự phòng DOTA-v2.0) |
 
-- **Mức kỳ vọng:** novelty tier **T1** → Q4 hoặc hội nghị Scopus, **có điều kiện**. Điều kiện ghi trong `notes/claims-ledger.md`, dòng C-10. Không có claim Q1/Q2.
+- **Mức kỳ vọng:** novelty tier **T1** → Q4 hoặc hội nghị Scopus, **có điều kiện**. Điều kiện ghi trong `notes/claims-ledger.md`, dòng C-10. Không có claim Q1/Q2. *(Lịch sử: từ C-19 ngày 15/10, tier chỉ mô tả loại can thiệp, không quy ra quartile; hiện chưa gán band.)*
 
 ## Đọc gì trước
 
@@ -79,6 +104,9 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 │   ├── t07-dl-from-slides-VI.pdf       ← sổ tay 54 trang: khái niệm slide DPL302m → dự án (nguồn + lab ở t07-dl-from-slides/)
 │   ├── r3-final-comparison.md          ← vì sao chọn #7 (so sánh 4 đề tài)
 │   ├── t07-tier-upgrade.md             ← hướng nâng cấp C-7 (ứng viên)
+│   ├── t07-q2-audit-2026-10-15/        ← audit C-19: bản đúng hiện hành (REPORT.md)
+│   ├── t07-error-analysis-2026-10-15/  ← phân tích lỗi phiên 14–15/10 + script kiểm toán học
+│   ├── t07-venue-assessment-2026-10-14.md, t07-q2-path-2026-10-14.md, t07-direction-map-2026-10-15.md ← lịch sử, có hộp đính chính C-19
 │   ├── synthesize-gaps-t07-q4-priority.md ← hướng dự phòng C-8, C-9
 │   └── t07-proposal.md                 ← proposal v1 (đã thay thế, giữ để đối chiếu)
 ├── scripts/t07-slr/
@@ -104,7 +132,7 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 1. **Không bịa.** Mọi con số (mAP, kích thước dataset, giờ GPU) phải có nguồn: URL, trang/bảng của bài, hoặc thư mục run trong `experiments/`. Chưa xác minh thì ghi `[chưa xác minh]`. Số ước lượng thì ghi `[ước lượng]` kèm cách tính.
 2. **Chỉ dùng nguồn học thuật hoặc chính thức:** arXiv, CVF, IEEE, Springer, Elsevier, OpenReview, trang dataset, GitHub chính thức. Không lấy số liệu từ blog, Medium hay bản tóm tắt AI.
 3. **Ghi giả thuyết trước khi train RQ3.** Ghi vào `experiments/preregistration.md` ở tuần 3, có ngày. Sau đó không sửa dự đoán.
-4. **Claim venue** (Q1–Q4) phải theo novelty tier T1/T2/T3 kèm điều kiện, và ghi vào `notes/claims-ledger.md`. Khi đổi claim thì thêm dòng mới, **không sửa thầm**.
+4. **Claim venue** (Q1–Q4) phải kèm điều kiện và ghi vào `notes/claims-ledger.md`. Khi đổi claim thì thêm dòng mới, **không sửa thầm**. Từ C-19: tier T1/T2/T3 chỉ mô tả loại can thiệp, **không tự quy ra quartile**. Chưa có bằng chứng thì ghi "chưa gán band". Mỗi lần REVISION ghi loại bằng chứng: kết quả chạy, đọc method, abstract hay suy luận.
 5. **Đặt tên:** ghi chú là `notes/t07-<chủ đề>.md`; mỗi lần chạy là một thư mục `experiments/<YYYY-MM-DD>-<run-name>/`.
 
 ## Lịch sử
@@ -120,3 +148,6 @@ Tiến độ chi tiết xem [ROADMAP.md](ROADMAP.md) và tab **Issues / Mileston
 | 2026-10-08 | Tạo repo GitHub, ROADMAP, Issues/Milestones | README.md, ROADMAP.md |
 | 2026-10-08 | Group7.pdf thành bản nộp duy nhất; slide thuyết trình proposal | notes/Group7.pdf, notes/Group7-proposal-presentation.pptx |
 | 2026-10-11 → 13 | Digest DL của dự án; phản biện mức Q2 (kết luận: Q2 không bảo vệ được trong 4 tuần); ledger C-12 (REVISION của C-7); ROADMAP nén còn 4 tuần | notes/t07-dl-digest-2026-10-11.md, notes/t07-critique-q2-2026-10-11.md, ROADMAP.md |
+| 2026-10-13 | Mở lại nghiên cứu từ #7 theo hướng UAV-view tiny-object: corpus 50 bài, problem map, deep study; C-13 → C-15 | notes/RESEARCH-START-HERE.md |
+| 2026-10-14 → 15 | Đánh giá venue, đường Q2 và quét rộng 8 giả thuyết; C-16 → C-18 | notes/t07-venue-assessment-2026-10-14.md, notes/t07-q2-path-2026-10-14.md, notes/t07-direction-map-2026-10-15.md |
+| 2026-10-15 | Audit độc lập (C-19) rút các kết luận quá mạnh của C-16 → C-18; phân tích lỗi của phiên 14–15/10 | notes/t07-q2-audit-2026-10-15/, notes/t07-error-analysis-2026-10-15/ |

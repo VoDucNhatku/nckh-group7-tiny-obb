@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-15",
+  "scope": "Artifact integrity only; not empirical or exhaustive claim validation",
+  "missing_files": [],
+  "cache_files": [
+    {
+      "name": "known_ids.txt",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "oa.json",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "oa.py",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "scan.json",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "scan.py",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "scan2.json",
+      "sha256_matches": true,
+      "bytes_match": true
+    },
+    {
+      "name": "scan2.py",
+      "sha256_matches": true,
+      "bytes_match": true
+    }
+  ],
+  "broken_local_markdown_links": [],
+  "c19_rows": 1,
+  "malformed_ledger_rows": [],
+  "diff_check_exit": 0,
+  "diff_check_output": "",
+  "changed_span_review_pass_recorded": true,
+  "no_detector_experiment_run": true,
+  "publication": "Local only; no commit/push this turn"
+}

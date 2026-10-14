@@ -1,6 +1,10 @@
 # #7 — Có thể nâng lên mức mới T2 / T3 không?
 
+> **Đính chính 15/10/2026 — C-19:** [audit mới](t07-q2-audit-2026-10-15/REPORT.md) thay thế cách dùng tier để suy quartile và kết luận phải đổi head. arctan(2δ/L) là cận trên sensitivity với giả định nhiễu vuông góc, chưa là sàn loss hay giới hạn thông tin ảnh. O2-DETR có phụ thuộc kích thước hình học; AQE có quality góc và loss theo aspect ratio. Novelty riêng theo size/calibration chưa được xác lập. Nội dung và mốc thời gian phía dưới là lịch sử, không phải đánh giá venue hiện hành.
+
 > **Cập nhật 2026-10-13 (ledger C-12, REVISION của C-7).** "Gated angle supervision" nếu chỉ đổi trọng số một loss có sẵn thì là **T1** theo rubric, không phải T2 — đây là lỗi áp rubric lúc đề xuất. Hướng T2 thật (C-7′) phải đổi **đầu dự đoán/biểu diễn góc** (đầu góc xuất thêm độ tập trung + cổng đổi cả giám sát lẫn giải mã) và thắng đối chứng "chỉ gate loss". Bằng chứng mới thu hẹp độ mới: TOLF (arXiv 2601.00617), oriented DETR thời gian thực (arXiv 2603.15497). Mở hay đóng C-7′ tại Cổng 4 (01/11/2026); không đạt được trước 08/11/2026. Chi tiết: `notes/t07-critique-q2-2026-10-11.md` §5.2.
+
+> **Cập nhật 2026-10-14 (ledger C-17, REVISION của C-12).** C-7′ được mở rộng thành bài toán *phát hiện vật tí hon có hướng theo mức khả năng xác định*: ba cận [derived] (phủ vị trí √2·s, IoU (w−δ)/(w+δ), góc arctan(2δ/L)); hướng A (C-16) thành chương "giới hạn vị trí". Bằng chứng mới thu hẹp độ mới: Unc-SOD (TIP 2026, chọn mẫu theo bất định cho vật nhỏ trên SODA-A); phân phối góc của O2-DETR không phụ thuộc kích thước (đã kiểm toàn văn). Thêm phép thử chỉ cần nhãn (phân bố góc theo bin kích thước) trước G4, và dùng cặp nhãn AI-TOD-v2 (HBB) / AI-TOD-R (OBB) trên cùng ảnh. Nút thắt Q2: hiện chỉ 1 dataset tiny OBB chắc chắn. Chi tiết: `notes/t07-q2-path-2026-10-14.md`.
 
 
 - **Ngày:** 2026-10-02 · **Câu hỏi của user:** "t muốn mức mới T2 T3 của #7 thì theo m nghĩ có thể k"
