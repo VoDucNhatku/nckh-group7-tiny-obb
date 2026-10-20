@@ -1,4 +1,4 @@
-# experiments/ Nhật lz
+# experiments/
 
 One folder per run: `experiments/<YYYY-MM-DD>-<run-name>/`, containing
 
