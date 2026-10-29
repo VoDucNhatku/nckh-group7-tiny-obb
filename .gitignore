@@ -8,6 +8,8 @@
 !/AGENTS.md
 !/CLAUDE.md
 !/ROADMAP.md
+!/C11_colab.ipynb
+!/notebooks/
 
 # --- research notes (notes/): shared by default ---
 !/notes/
@@ -26,6 +28,10 @@ _local/
 !/scripts/t07-slr/common.py
 !/scripts/t07-slr/p12_proposal_figures.py
 !/scripts/t07-slr/p13_build_proposal_docx.js
+
+# --- C11 / C11x experiment code (C11 code still lives on the team Drive; push it here via a PR) ---
+!/scripts/c11/
+!/scripts/c11x/
 
 # --- experiments & manuscript (shared from day one) ---
 !/experiments/

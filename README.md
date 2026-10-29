@@ -16,7 +16,15 @@ Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt 
 
 Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
 
-## Trạng thái hiện hành — 15/10/2026 (C-19)
+## Trạng thái hiện hành — 30/10/2026 (C-20)
+
+- **Đã chạy C-11 (thăm dò, chưa preregistration):** 12 run YOLO26n-OBB = 4 quy tắc vùng ứng viên (A0/A1/A8/A2) × 3 seed, AI-TOD-R giao thức woX (chỉ ảnh không thuộc xView), Colab A100. Notebook: [`C11_colab.ipynb`](C11_colab.ipynb); giải thích: [notes/08-c11-execution/](notes/08-c11-execution/README.md).
+  - Head e2e: sàn ứng viên tăng AP_vt khoảng +0,007 đến +0,009; AP tổng chỉ tăng ≤ +0,0035, nhỏ hơn dao động theo seed; A1/A8/A2 chưa phân biệt được.
+  - Code `scripts/c11` và kết quả JSON vẫn chỉ có trên Drive của nhóm.
+- **Kế hoạch tiếp theo (C11x):** [kế hoạch các hướng tính mới](notes/08-c11-execution/t07-c11-novelty-plan-2026-10-30.md); [preregistration PREREG-C11X-v1](experiments/preregistration.md), phải merge trước mọi phép chấm hoặc run mới. Code: [`scripts/c11x/`](scripts/c11x/README.md). Notebook Colab: [`notebooks/`](notebooks/).
+- **Chưa có:** kết quả xác nhận, band venue (C-19 và C-20 giữ "chưa gán band").
+
+## Trạng thái 15/10/2026 (C-19) — lịch sử, xem mục 30/10 ở trên
 
 **Bản đúng nhất hiện tại:** [báo cáo audit C-19](notes/07-audits/t07-q2-audit-2026-10-15/REPORT.md). Ba báo cáo chi tiết đi kèm: [toán và logic](notes/07-audits/t07-q2-audit-2026-10-15/LOGIC-CRITIQUE.md), [prior về góc](notes/07-audits/t07-q2-audit-2026-10-15/ANGLE-PRIOR.md), [dữ liệu và chuyển miền](notes/07-audits/t07-q2-audit-2026-10-15/DATA-AND-TRANSFER.md).
 
@@ -46,12 +54,12 @@ Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế ho
 | Mentor | Hà Anh |
 | Thành viên | Võ Đức Nhật · Trần Lợi Kiều Nhi · Trần Nguyễn Minh Hải · Nguyễn Tấn Tài |
 | Đề tài gốc | Tier 1 #7 trong danh sách đề tài của giảng viên: *Multi-scale Aerial Object Detection and Segmentation* |
-| Hướng đã chốt | **C-10**: benchmark YOLO-OBB trên AI-TOD-R, chẩn đoán quy tắc chọn vùng ứng viên (STAL), thử OA-STAL v2 |
+| Hướng đang chạy | **C-11** (REVISION của C-10): chẩn đoán quy tắc vùng ứng viên A0/A1/A2/A8 trên AI-TOD-R; 12 run thăm dò xong 21/10; kế hoạch C11x ngày 30/10 (C-20) |
 | Thời gian | **4 tuần, 11/10/2026 → 08/11/2026** (đổi ngày 2026-10-13; kế hoạch 14 tuần cũ lưu ở `ROADMAP-14w-backup.md`) |
 
-## Trạng thái hiện tại (cập nhật 2026-10-08)
+## Trạng thái ngày 2026-10-08 (lịch sử)
 
-**Proposal đã viết xong. Chưa chạy thí nghiệm nào.** Proposal tự ghi là *chưa chạy được như mô tả* cho tới khi qua **Pha 0**, gồm 4 việc:
+**Proposal đã viết xong. Lúc đó chưa chạy thí nghiệm nào** (từ 21/10 đã có 12 run thăm dò, xem mục 30/10). Proposal tự ghi là *chưa chạy được như mô tả* cho tới khi qua **Pha 0**, gồm 4 việc:
 - đăng ký xView;
 - chạy được bộ đánh giá AITODReval;
 - đo tốc độ pilot trên Kaggle;
@@ -109,7 +117,10 @@ Sắp xếp lại ngày 15/10/2026. Quy tắc đặt file và quy tắc bằng c
 ├── scripts/t07-slr/
 │   ├── p12_proposal_figures.py    ← vẽ notes/02-proposal/figs/*.png
 │   └── p13_build_proposal_docx.js ← dựng file .docx theo mẫu trường
-├── experiments/                 ← mỗi lần chạy 1 thư mục (xem experiments/README.md)
+├── C11_colab.ipynb              ← notebook C-11 (12 run thăm dò, 20–21/10)
+├── notebooks/                   ← notebook Colab C11x: phân tích (hướng 1, 2, 4, 5) và train sàn K (hướng 3)
+├── scripts/c11x/                ← code C11x + test (code C11 cũ vẫn ở Drive)
+├── experiments/                 ← preregistration.md; mỗi lần chạy 1 thư mục (xem experiments/README.md)
 └── paper/                       ← bản thảo bài báo (khi bắt đầu viết)
 ```
 
@@ -149,3 +160,5 @@ Sắp xếp lại ngày 15/10/2026. Quy tắc đặt file và quy tắc bằng c
 | 2026-10-13 | Mở lại nghiên cứu từ #7 theo hướng UAV-view tiny-object: corpus 50 bài, problem map, deep study; C-13 → C-15 | notes/RESEARCH-START-HERE.md |
 | 2026-10-14 → 15 | Đánh giá venue, đường Q2 và quét rộng 8 giả thuyết; C-16 → C-18 | notes/05-venue-direction/t07-venue-assessment-2026-10-14.md, notes/05-venue-direction/t07-q2-path-2026-10-14.md, notes/05-venue-direction/t07-direction-map-2026-10-15.md |
 | 2026-10-15 | Audit độc lập (C-19) rút các kết luận quá mạnh của C-16 → C-18; phân tích lỗi của phiên 14–15/10 | notes/07-audits/t07-q2-audit-2026-10-15/, notes/07-audits/t07-error-analysis-2026-10-15/ |
+| 2026-10-20 → 21 | C-11 trên Colab: Cổng 0, oracle evaluator, 12 run thăm dò A0/A1/A8/A2 × 3 seed (woX) | C11_colab.ipynb |
+| 2026-10-30 | Kế hoạch C11x, preregistration PREREG-C11X-v1, code phân tích + train sàn K; ledger C-20 | notes/08-c11-execution/t07-c11-novelty-plan-2026-10-30.md, experiments/preregistration.md |
