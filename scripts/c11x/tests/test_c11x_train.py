@@ -19,6 +19,7 @@ def test_recipe_matches_itself_and_reports_diff():
     assert ct.check_recipe({**ct.RECIPE_C11, "epochs": 100, "extra": 1}) == ["epochs", "extra"]
 
 
+@pytest.mark.heavy
 def test_train_interrupt_resume_done(tiny_dataset, tmp_path):
     def boom(trainer):
         if trainer.epoch == 0:

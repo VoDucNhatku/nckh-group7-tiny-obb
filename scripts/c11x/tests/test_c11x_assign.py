@@ -151,6 +151,7 @@ def _batch():
 
 
 @pytest.mark.parametrize("arm", ["A0", "A2", "K3"])
+@pytest.mark.heavy
 def test_recorder_counts_are_consistent(arm):
     ca.apply_arm(arm)
     m = _yaml_model()

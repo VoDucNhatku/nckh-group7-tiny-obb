@@ -61,7 +61,7 @@
 
 ## 5. Cổng go cho hướng 3
 
-Chỉ train 15 run khi **H2a qua** ở mô hình chính (τ = 0,25). Ghi kết quả này vào ô `GO_H2` của notebook train trước khi chạy.
+Chỉ train 15 run khi **H2a qua** ở mô hình chính (τ = 0,25). Notebook tự tính bằng `c11x_pergt.h2_gate`, ghi vào `experiments/c11x-h2-gate.json` trên Drive **trước** khi train, và dừng nếu trượt.
 - Nếu H2a trượt: không train hướng 3; chuyển sang hướng 5.
 - Nếu bảng recall theo n_pos cho điểm bão hoà k* ∉ {1, 4}: được thêm **một** arm K<k*> bằng phụ lục có ngày, trước khi train. Không bỏ K1 hay K4.
 

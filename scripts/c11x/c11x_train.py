@@ -129,3 +129,54 @@ def train_arm(data_yaml, arm: str, seed: int, project, recipe: dict | None = Non
     finally:
         ca.remove_patch()
     return rd
+
+
+# ---------------------------------------------------------------- ước lượng thời gian và CU sau epoch đầu
+
+# Tốc độ tiêu CU của A100 trên Colab không có trên trang giá chính thức mà tôi đọc được; các nguồn bên thứ ba
+# (2023–2026) ghi từ khoảng 5,4 đến khoảng 15 CU/giờ. Đọc đúng tốc độ ở Colab (biểu tượng RAM/Disk → tài nguyên)
+# rồi sửa CU_PER_HOUR trong notebook. [ước lượng]
+CU_PER_HOUR_DEFAULT = 5.4
+EVAL_S_PER_RUN_HEAD = 337.0  # chấm một run, một head, đường nhanh: C11_colab.ipynb #29
+BOOT_S_PER_HEAD_B10K = 5700.0  # 570 s cho B = 1.000 ở #34, giả định tăng tuyến tính [ước lượng]
+
+
+def estimate(epoch_s: float, epochs_left: int, n_eval: int, n_boot_heads: int = 2,
+             cu_per_hour: float = CU_PER_HOUR_DEFAULT) -> dict:
+    """Giờ còn lại = train (epoch_s × số epoch còn) + chấm (n_eval lần) + bootstrap. CU = giờ × cu_per_hour."""
+    train_h = epoch_s * epochs_left / 3600
+    eval_h = n_eval * EVAL_S_PER_RUN_HEAD / 3600
+    boot_h = n_boot_heads * BOOT_S_PER_HEAD_B10K / 3600
+    total = train_h + eval_h + boot_h
+    return dict(train_h=train_h, eval_h=eval_h, boot_h=boot_h, total_h=total, cu=total * cu_per_hour,
+                cu_per_hour=cu_per_hour)
+
+
+class EtaPrinter:
+    """Callback in ước lượng **một lần** mỗi phiên, sau epoch đầu tiên chạy trong phiên (tính cả val).
+
+    `epochs_left_fn()` trả về tổng số epoch còn phải train của mọi run trong hàng đợi, đọc lúc in.
+    """
+
+    def __init__(self, epochs_left_fn, n_eval: int, cu_per_hour: float = CU_PER_HOUR_DEFAULT):
+        self.epochs_left_fn, self.n_eval, self.cu_per_hour = epochs_left_fn, n_eval, cu_per_hour
+        self.t_start = None
+        self.printed = False
+
+    def on_train_epoch_start(self, trainer):
+        if not self.printed:
+            self.t_start = time.time()
+
+    def on_fit_epoch_end(self, trainer):
+        if self.printed or self.t_start is None:
+            return
+        dt = time.time() - self.t_start
+        left = self.epochs_left_fn()  # results.csv đã có epoch vừa xong (save_metrics chạy trước on_fit_epoch_end)
+        e = estimate(dt, left, self.n_eval, cu_per_hour=self.cu_per_hour)
+        print(f"\n[ETA] 1 epoch (train + val) = {dt:.0f} s. Còn khoảng {left} epoch → train {e['train_h']:.1f} giờ, "
+              f"chấm {e['eval_h']:.1f} giờ, bootstrap {e['boot_h']:.1f} giờ. Tổng ≈ {e['total_h']:.1f} giờ A100 "
+              f"≈ {e['cu']:.0f} CU (ở {self.cu_per_hour} CU/giờ; kiểm tốc độ thật trong Colab).\n", flush=True)
+        self.printed = True
+
+    def callbacks(self) -> dict:
+        return {"on_train_epoch_start": self.on_train_epoch_start, "on_fit_epoch_end": self.on_fit_epoch_end}

@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -5,6 +6,32 @@ import numpy as np
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+
+def _heavy_enabled() -> bool:
+    """Test nặng (dựng YOLO, predict, train) chỉ chạy khi có GPU (Colab) hoặc khi đặt C11X_HEAVY=1."""
+    if os.environ.get("C11X_HEAVY") == "1":
+        return True
+    try:
+        import torch
+
+        return torch.cuda.is_available()
+    except ImportError:
+        return False
+
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "heavy: dựng model YOLO hoặc train; chỉ chạy khi có GPU hoặc C11X_HEAVY=1")
+
+
+def pytest_collection_modifyitems(config, items):
+    if _heavy_enabled():
+        return
+    skip = pytest.mark.skip(reason="test nặng (dựng YOLO/train): chạy trên Colab GPU hoặc đặt C11X_HEAVY=1")
+    for item in items:
+        if "heavy" in item.keywords:
+            item.add_marker(skip)
+
 
 NAMES = ["airplane", "bridge", "storage-tank", "ship", "swimming-pool", "vehicle", "person", "wind-mill"]
 

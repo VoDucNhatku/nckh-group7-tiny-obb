@@ -308,3 +308,46 @@ def angle_table(df: pd.DataFrame, min_aspect=1.5) -> pd.DataFrame:
     d = df[(df["angle_err_deg"].notna()) & (df["long"] / df["short"].clip(lower=1e-6) >= min_aspect)]
     return (d.groupby(["arm", "head", "size_bin"], observed=True)["angle_err_deg"]
             .agg(median="median", p90=lambda s: s.quantile(0.9), n="size").reset_index())
+
+
+# ---------------------------------------------------------------- vòng cho 12 run cũ và cổng H2 (preregistration §5)
+
+
+def pergt_for_runs(runs_dir, data_yaml, images_val, out_dir, device="cuda:0", heads=("e2e", "nms")) -> pd.DataFrame:
+    """Bước 1 + 2 cho mọi run có `c11_done.json`; mỗi run một file parquet trong out_dir (có rồi thì bỏ qua)."""
+    import json
+    import time
+
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for rd in sorted(Path(runs_dir).glob("c11_*_s*")):
+        done_f = rd / "c11_done.json"
+        f = out_dir / f"{rd.name}.parquet"
+        if not done_f.exists() or f.exists():
+            continue
+        done = json.loads(done_f.read_text())
+        t0 = time.time()
+        g = record_assignment(rd / "weights" / "last.pt", data_yaml, done["arm"], split="val", device=device)
+        g["seed"] = done["seed"]
+        parts = [predict_and_match(rd / "weights" / "last.pt", g, images_val, head=h) for h in heads]
+        tmp = f.with_suffix(".tmp")
+        pd.concat(parts, ignore_index=True).to_parquet(tmp)
+        tmp.replace(f)  # ghi xong mới đổi tên: phiên bị ngắt giữa chừng không để lại file dở
+        print(rd.name, len(g), "GT", f"{time.time() - t0:.0f}s", flush=True)
+    return add_features(pd.concat([pd.read_parquet(f) for f in sorted(out_dir.glob("*.parquet"))],
+                                  ignore_index=True))
+
+
+def h2_gate(pg: pd.DataFrame, tau: float = 0.25, head: str = "nms", branch: str = "o2m") -> dict:
+    """Cổng go của hướng 3 (preregistration §5): H2a qua khi hệ số log1p(n_pos) > 0 và CI 95% không chứa 0."""
+    d = pg[pg["head"] == head]
+    p = fit_recall_models(d, tau, branch=branch)["pooled"]
+    lo, hi = (float(v) for v in p.conf_int().loc["lpos"])
+    coef = float(p.params["lpos"])
+    small = add_features(d) if "size_bin" not in d else d
+    small = small[(small["short"] < 8) & small["in_loss"]]
+    by_pos = (small.assign(det=(small["score"] >= tau).astype(int))
+              .groupby(f"{branch}_pos_bin", observed=True)["det"].agg(["mean", "size"]))
+    return dict(tau=tau, head=head, branch=branch, coef=coef, ci_lo=lo, ci_hi=hi, n=int(p.nobs),
+                go=bool(coef > 0 and lo > 0),
+                recall_lt8_by_npos={str(k): [float(v["mean"]), int(v["size"])] for k, v in by_pos.iterrows()})

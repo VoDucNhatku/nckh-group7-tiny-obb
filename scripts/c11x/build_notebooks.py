@@ -42,6 +42,11 @@ RUNS_OLD   = EXP_DRIVE / "runs-woX"                    # 12 run thăm dò của 
 RUNS_NEW   = EXP_DRIVE / "runs-woX-c11x"               # run mới theo preregistration
 BRANCH     = "admin/c11-novelty-plan"                  # đổi thành "main" sau khi merge
 GH_DIR     = Path("/content/nckh_gh")
+PERGT_DIR  = EXP_DRIVE / "c11x-pergt-val"              # bảng theo GT trên val của 12 run cũ (dùng chung 2 notebook)
+GATE_FILE  = EXP_DRIVE / "c11x-h2-gate.json"           # kết quả cổng H2 (preregistration §5)
+
+class StopRun(Exception):
+    """Dừng có chủ đích, kèm lý do (Run all dừng ở ô này)."""
 
 def today():
     """Ngày lúc ghi file (không cố định từ đầu phiên như biến TODAY của C11)."""
@@ -69,9 +74,17 @@ assert ENV["ultralytics"] == "8.4.174"
 '''
 
 TESTS = r'''
-# Test cũ (55, trên Drive) + test mới (bỏ file train chậm ~6 phút; chạy riêng nếu muốn)
-!cd /content/c11 && python -m pytest -q test_stal_arms.py test_evalkit.py test_data_rq2.py test_bootstrap.py test_fastpath.py 2>&1 | tail -1
-!cd "{GH_DIR}/scripts/c11x" && python -m pytest -q tests --ignore=tests/test_c11x_train.py -p no:cacheprovider 2>&1 | tail -1
+# Test cũ (55, code C11 trên Drive) + test mới. Bỏ test train trên CPU (vài phút); test nặng khác chạy vì có GPU.
+def run_pytest(cwd, args):
+    r = subprocess.run([sys.executable, "-m", "pytest", "-q", *args], cwd=str(cwd), capture_output=True, text=True)
+    tail = (r.stdout.strip().splitlines() or [r.stderr.strip()])[-1]
+    print(cwd, "→", tail)
+    if r.returncode != 0:
+        print(r.stdout[-6000:], r.stderr[-2000:])
+        raise StopRun(f"Test hỏng ở {cwd}. Sửa trước khi chạy tiếp.")
+run_pytest("/content/c11", ["test_stal_arms.py", "test_evalkit.py", "test_data_rq2.py", "test_bootstrap.py",
+                            "test_fastpath.py"])
+run_pytest(GH_DIR / "scripts/c11x", ["tests", "--ignore=tests/test_c11x_train.py", "-p", "no:cacheprovider"])
 '''
 
 DATA_MD = """
@@ -260,21 +273,10 @@ display(diag.head(3).T)
 '''),
         code(r'''
 import c11x_pergt as cg
-PERGT = OUT / "pergt"
-PERGT.mkdir(exist_ok=True)
-for rd in sorted(RUNS_OLD.glob("c11_*_s*")):
-    if not (rd / "c11_done.json").exists():
-        continue
-    done = json.loads((rd / "c11_done.json").read_text())
-    f = PERGT / f"{rd.name}.parquet"
-    if f.exists():
-        continue
-    t0 = time.time()
-    g = cg.record_assignment(rd / "weights" / "last.pt", DATA_YAML, done["arm"], split="val", device="cuda:0")
-    g["seed"] = done["seed"]
-    parts = [cg.predict_and_match(rd / "weights" / "last.pt", g, DS / "images" / "val", head=h) for h in ("e2e", "nms")]
-    pd.concat(parts, ignore_index=True).to_parquet(f)
-    print(rd.name, len(g), "GT", f"{time.time() - t0:.0f}s")
+pg = cg.pergt_for_runs(RUNS_OLD, DATA_YAML, DS / "images" / "val", PERGT_DIR)   # có rồi thì bỏ qua
+gate = cg.h2_gate(pg)                                                            # preregistration §5
+GATE_FILE.write_text(json.dumps(gate, indent=2))
+print("Cổng H2:", json.dumps(gate, indent=1, ensure_ascii=False))
 '''),
         md("""
 ## 6. Mô hình recall (H2a–H2c), góc (H4), số seed cần (H5)
@@ -283,7 +285,6 @@ for rd in sorted(RUNS_OLD.glob("c11_*_s*")):
 o2o cho head e2e (preregistration §3).
 """),
         code(r'''
-pg = cg.add_features(pd.concat([pd.read_parquet(f) for f in sorted(PERGT.glob("*.parquet"))], ignore_index=True))
 print(pg.groupby(["head", "arm"]).size())
 # Mẫu dương theo arm × kích thước (giải thích H2b: các sàn có cùng đưa GT tí hon qua ngưỡng bão hoà không)
 display(pg[pg["head"] == "e2e"].groupby(["arm", "size_bin"], observed=True)[["o2m_n_cand", "o2m_n_pos", "o2o_n_pos"]]
@@ -330,105 +331,171 @@ sv = pd.DataFrame(rows); display(sv.round(4)); sv.to_csv(OUT / "seed_variance.cs
 def train_notebook():
     cells = [
         md("""
-# C11x · Hướng 3 — sàn theo số ứng viên (K1, K4) so với sàn cố định (A0, A8, A2), seed 4–6
+# C11x · Hướng 3 — sàn theo số ứng viên (K1, K4) so với A0, A8, A2 · seed 4–6 · chạy thật
 
-Giao thức C11: YOLO26n-OBB, AI-TOD-R woX, 24 epoch, `ultralytics==8.4.174`, A100, khởi tạo `yolo26n.pt` (COCO).
-Run mới ghi vào `RUNS_NEW` trên Drive, lưu checkpoint mỗi epoch (`save_period=1`), chạy lại ô train là **tự
-resume**. Mọi arm (kể cả A0/A8/A2) train bằng **cùng một đường code** `c11x_train.py`.
+**Cách chạy**
+- Runtime → Change runtime type → **A100 GPU** → **Run all**.
+- Bị ngắt (hết phiên, mất mạng): kết nối lại rồi **Run all lần nữa**. Run đã xong tự bỏ qua; run dở chạy tiếp từ epoch cuối đã lưu trên Drive (`save_period=1`).
 
-**Cổng (preregistration §5):** chỉ chạy phần 3 khi
-1. `experiments/preregistration.md` (PREREG-C11X-v1) đã có trên GitHub — ô dưới kiểm;
-2. hướng 2 đã cho tín hiệu "go" theo đúng tiêu chí §5 của preregistration (ghi kết quả vào ô "GO_H2").
-3. Run kiểm tái lập R0 (phần 2) khớp trong ngưỡng.
+**Giao thức đầy đủ của C11, không rút gọn, không có chế độ demo:**
+- YOLO26n-OBB, AI-TOD-R woX đủ 8.426 ảnh train, 24 epoch;
+- `ultralytics==8.4.174`, khởi tạo `yolo26n.pt` (COCO), cùng recipe.
 
-| Phần | Việc | Thời gian A100 [ước lượng: 0,55–0,57 giờ/run ở #23 của C11; chấm ~6 phút/run/head ở #29] |
-|---|---|---|
-| 2 | R0: train lại A2 seed 1 bằng code mới, so với run cũ | ~0,6 giờ |
-| 3 | 5 arm × 3 seed = 15 run | ~8,5 giờ |
-| 4 | Chấm 2 head × 15 run | ~3 giờ |
-| 5 | Bảng, bootstrap B = 10.000, gộp seed | ~3 giờ |
+**Một lần Run all làm hết:**
+1. kiểm tra trước (vài giây sau khi cài);
+2. test;
+3. dữ liệu;
+4. cổng H2;
+5. train R0 + 15 run;
+6. chấm hai head;
+7. kiểm R0;
+8. bảng tổng hợp và bootstrap B = 10.000.
+
+Ngay sau epoch đầu tiên, notebook in **tổng thời gian và CU dự kiến**.
+
+**Notebook dừng sớm, có chủ đích, khi:**
+1. Ô kiểm tra trước báo lỗi: thiếu A100, thiếu dữ liệu hay code C11 trên Drive, sai phiên bản, thiếu dung lượng.
+2. Test hỏng.
+3. **Cổng H2 trượt** (preregistration §5). Theo quy tắc đã đăng ký, khi đó **không** train hướng 3. Đây là kết quả nghiên cứu, không phải lỗi.
+
+**Thời gian** [ước lượng: 0,55–0,57 giờ/run ở #23 của C11; chấm ~337 giây/run/head ở #29]:
+
+| Việc | Thời gian |
+|---|---|
+| Cổng H2, nếu chưa chạy notebook phân tích | ~1 giờ |
+| Train 16 run | ~9 giờ |
+| Chấm | ~3 giờ |
+| Bootstrap | ~3 giờ |
+
+Một phiên Colab thường không đủ dài cho tất cả, nên sẽ phải Run all lại vài lần; mỗi lần chạy tiếp từ chỗ dừng.
 """),
-        md(SETUP_MD), code(SETUP), code(INSTALL),
-        code(r'''
-# Cổng 1: preregistration có trên nhánh đã clone, đúng mã phiên bản
-prereg = GH_DIR / "experiments" / "preregistration.md"
-assert prereg.exists() and "PREREG-C11X-v1" in prereg.read_text(encoding="utf-8"), "chưa có preregistration — dừng"
-print(subprocess.check_output(["git", "-C", str(GH_DIR), "log", "-1", "--format=%H %ci", "--", "experiments/preregistration.md"]).decode())
-'''),
+        md(SETUP_MD), code(SETUP + r"""
+# Tốc độ tiêu CU của A100: đọc trong Colab (biểu tượng RAM/Disk → tài nguyên) và sửa nếu khác. [ước lượng]
+CU_PER_HOUR = 5.4
+ARMS  = ["A0", "A8", "A2", "K1", "K4"]       # preregistration §4; không đổi sau khi thấy kết quả
+SEEDS = [4, 5, 6]
+R0_DIR = EXP_DRIVE / "runs-woX-c11x-R0"
+"""), code(INSTALL),
+        md("## 0.1 Kiểm tra trước (vài giây). Có lỗi thì in hết ra rồi dừng."),
+        code(r"""
+import c11x_preflight as pf
+warns = pf.run_all(code_dir=CODE_DIR, data_drive=DATA_DRIVE, local=LOCAL, runs_old=RUNS_OLD, exp_drive=EXP_DRIVE,
+                   prereg=GH_DIR / "experiments" / "preregistration.md", drive=DRIVE)
+for w in warns:
+    print("CẢNH BÁO:", w)
+print("Kiểm tra trước: OK")
+print(subprocess.check_output(["git", "-C", str(GH_DIR), "log", "-1", "--format=preregistration: %H %ci", "--",
+                               "experiments/preregistration.md"]).decode())
+"""),
         code(TESTS),
         md(DATA_MD), code(DATA),
         code(r'''
 import c11x_train as ct, c11_pipeline as cp
 diff = ct.check_recipe(cp.RECIPE)
-print("recipe lệch so với C11:", diff)
-assert not diff, "RECIPE_C11 khác c11_pipeline.RECIPE trên Drive — sửa trước khi train"
+if diff:
+    raise StopRun(f"RECIPE_C11 khác c11_pipeline.RECIPE trên Drive ở các khoá {diff}. Sửa trước khi train.")
+print("recipe khớp C11")
 '''),
         md("""
-## 2. R0 — kiểm tái lập: A2 seed 1 bằng code mới so với `c11_A2_s1` cũ
+## 2. Cổng H2 (preregistration §5)
 
-A2 trong `c11x_assign` trùng mã gốc 8.4.174 (đã test). Cùng seed, `deterministic=True`, cùng recipe nên đường
-mAP50-95 trên val phải gần như trùng run cũ. Ngưỡng (preregistration §6): |ΔmAP50-95 val ở epoch 24| ≤ 0,003 và
-|ΔAP test e2e| ≤ 0,002. Không đạt thì **không** dừng các so sánh mới (chúng cùng một đường code), nhưng không được
-gộp run mới với 12 run cũ, và phải ghi lệch vào báo cáo.
+- Nếu notebook phân tích đã chạy, dùng kết quả của nó (`c11x-h2-gate.json`).
+- Nếu chưa, tính ngay tại đây trên 12 run cũ (khoảng 1 giờ). Kết quả ghi vào cùng thư mục với notebook phân tích, nên không phải làm lại hai lần.
 """),
         code(r'''
-import pandas as pd
-R0_DIR = EXP_DRIVE / "runs-woX-c11x-R0"
-rd0 = ct.train_arm(DATA_YAML, "A2", 1, R0_DIR)
-new = pd.read_csv(rd0 / "results.csv")
-old = pd.read_csv(RUNS_OLD / "c11_A2_s1" / "results.csv")   # [chưa kiểm] run cũ có results.csv
-col = [c for c in new.columns if "mAP50-95" in c][0]
-print("mAP50-95 val epoch 24: mới", round(float(new[col].iloc[-1]), 4), "| cũ", round(float(old[col].iloc[-1]), 4))
-print("lệch lớn nhất theo epoch:", float((new[col] - old[col]).abs().max()))
+import c11x_pergt as cg
+if GATE_FILE.exists():
+    gate = json.loads(GATE_FILE.read_text())
+else:
+    pg = cg.pergt_for_runs(RUNS_OLD, DATA_YAML, DS / "images" / "val", PERGT_DIR)
+    gate = cg.h2_gate(pg)
+    GATE_FILE.write_text(json.dumps(gate, indent=2))
+print(json.dumps(gate, indent=1, ensure_ascii=False))
+if not gate["go"]:
+    raise StopRun("Cổng H2 trượt: hệ số log1p(n_pos) không dương với CI loại 0. Theo preregistration §5 không train "
+                  "hướng 3; chuyển sang hướng 5. Đây là kết quả, không phải lỗi.")
 '''),
         md("""
-## 3. Train 5 arm × seed 4–6 (tự resume)
+## 3. Train R0 (A2 seed 1, kiểm tái lập) rồi 5 arm × seed 4–6
 
-Thứ tự: seed ngoài, arm trong (các arm cùng seed chạy sát nhau, cùng loại GPU). Colab ngắt thì chạy lại ô này.
+- Thứ tự: R0 trước, sau đó seed ngoài, arm trong.
+- Sau epoch đầu tiên của phiên, notebook in ước lượng tổng thời gian và CU.
 """),
         code(r'''
-GO_H2 = None   # ghi True/False theo tiêu chí go của hướng 2 (preregistration §5) TRƯỚC khi chạy ô dưới
-assert GO_H2 is True, "chưa có kết quả go của hướng 2 — xem preregistration §5"
-ARMS  = ["A0", "A8", "A2", "K1", "K4"]       # đúng preregistration §4; không đổi sau khi đã thấy kết quả
-SEEDS = [4, 5, 6]
-QUEUE = [(a, s) for s in SEEDS for a in ARMS]
-for arm, seed in QUEUE:
+EPOCHS = ct.RECIPE_C11["epochs"]
+JOBS = [("A2", 1, R0_DIR)] + [(a, s, RUNS_NEW) for s in SEEDS for a in ARMS]
+
+def run_dir(a, s, p):
+    return Path(p) / ct.run_name(a, s)
+
+def epochs_left():
+    return sum(0 if (run_dir(*j) / "c11x_done.json").exists() else EPOCHS - min(ct.epochs_logged(run_dir(*j)), EPOCHS)
+               for j in JOBS)
+
+EVALS = [(run_dir("A2", 1, R0_DIR), "e2e")] + [(run_dir(a, s, p), h) for a, s, p in JOBS[1:] for h in ("e2e", "nms")]
+n_eval_left = sum(not (rd / f"eval_{h}.json").exists() for rd, h in EVALS)
+print(f"còn {epochs_left()} epoch và {n_eval_left} lần chấm")
+eta = ct.EtaPrinter(epochs_left, n_eval=n_eval_left, cu_per_hour=CU_PER_HOUR)
+for a, s, p in JOBS:
     t0 = time.time()
-    rd = ct.train_arm(DATA_YAML, arm, seed, RUNS_NEW)
-    print(rd.name, "xong", f"{(time.time() - t0) / 3600:.2f} giờ phiên này")
+    rd = ct.train_arm(DATA_YAML, a, s, p, extra_callbacks=eta.callbacks())
+    print(rd.name, "xong", f"({(time.time() - t0) / 3600:.2f} giờ trong phiên này)", flush=True)
 '''),
-        md("## 4. Chấm hai head bằng AITODReval gốc (code C11 trên Drive)"),
+        md("## 4. Chấm bằng AITODReval gốc (code C11 trên Drive): hai head cho 15 run, head e2e cho R0"),
         code(r'''
 import importlib, aitodr_evalkit as ek, c11_bootstrap as cb
 for m in (ek, cp, cb): importlib.reload(m)
 TEST_IMAGES = DS / "images" / "test"
-for rd in sorted(RUNS_NEW.glob("c11x_*_s*")):
-    if not (rd / "c11x_done.json").exists():
+for rd, head in EVALS:
+    out = rd / f"eval_{head}.json"
+    if out.exists():
         continue
-    for head in ("e2e", "nms"):
-        out = rd / f"eval_{head}.json"
-        if out.exists():
-            continue
-        st = cp.predict_and_eval(rd / "weights" / "last.pt", LABELS / "test", TEST_IMAGES, out, head=head,
-                                 version=VERSION, exclude_stems=EXCLUDE, save_dota_dir=rd / f"dota_{head}")
-        print(rd.name, head, {k: round(st[k], 4) for k in ("AP", "AP_vt", "AP_t", "AP_s")})
+    if not (rd / "c11x_done.json").exists():
+        raise StopRun(f"{rd.name} chưa train xong; chạy lại ô train.")
+    st = cp.predict_and_eval(rd / "weights" / "last.pt", LABELS / "test", TEST_IMAGES, out, head=head,
+                             version=VERSION, exclude_stems=EXCLUDE, save_dota_dir=rd / f"dota_{head}")
+    print(rd.name, head, {k: round(st[k], 4) for k in ("AP", "AP_vt", "AP_t", "AP_s")}, flush=True)
 '''),
         md("""
-## 5. Bảng, bootstrap B = 10.000, gộp bất định theo seed
+## 5. Kiểm tái lập R0 (preregistration §6)
 
-Chỉ dùng run trong `RUNS_NEW` (seed 4–6). **Không** trộn với 12 run thăm dò.
+- **Khớp** khi |Δ mAP50-95 val ở epoch 24| ≤ 0,003 và |Δ AP test e2e| ≤ 0,002.
+- **Không khớp:** vẫn dùng 15 run (cùng một đường code), nhưng không gộp chúng với 12 run cũ, và phải báo độ lệch.
 """),
         code(r'''
-import pandas as pd, c11x_results as cr
+import pandas as pd
+rd0, old0 = run_dir("A2", 1, R0_DIR), RUNS_OLD / "c11_A2_s1"
+r0 = {"ap_new": json.loads((rd0 / "eval_e2e.json").read_text())["AP"],
+      "ap_old": json.loads((old0 / "eval_e2e.json").read_text())["AP"]}
+r0["d_ap"] = r0["ap_new"] - r0["ap_old"]
+if (old0 / "results.csv").exists():
+    new, old = pd.read_csv(rd0 / "results.csv"), pd.read_csv(old0 / "results.csv")
+    new.columns, old.columns = new.columns.str.strip(), old.columns.str.strip()
+    col = [c for c in new.columns if "mAP50-95" in c][0]
+    r0["d_val_ep24"] = float(new[col].iloc[-1] - old[col].iloc[-1])
+    r0["max_abs_d_val_any_epoch"] = float((new[col] - old[col]).abs().max())
+r0["match"] = abs(r0["d_ap"]) <= 0.002 and abs(r0.get("d_val_ep24", 0.0)) <= 0.003
+(EXP_DRIVE / "c11x-r0-check.json").write_text(json.dumps(r0, indent=2))
+print(json.dumps(r0, indent=1))
+'''),
+        md("""
+## 6. Bảng, bootstrap B = 10.000, gộp bất định theo seed
+
+- Chỉ dùng 15 run trong `RUNS_NEW` (seed 4–6); **không** trộn với 12 run thăm dò.
+- Cặp xác nhận: K4 − A2 và A2 − A0 (preregistration §4).
+"""),
+        code(r'''
+import c11x_results as cr
 from aitodr_data import scene_key
-OUT = EXP_DRIVE / f"{today()}-c11x-kfloor"
+OUT = EXP_DRIVE / "c11x-kfloor-results"
 OUT.mkdir(parents=True, exist_ok=True)
 res = cr.collect_runs(RUNS_NEW)
+assert (res.groupby(["head", "arm"]).size() == len(SEEDS)).all(), res.groupby(["head", "arm"]).size()
 display(cr.summary_table(res).round(4))
 for h in ("e2e", "nms"):
     display(cr.per_seed_table(res, h).round(4))
 res.to_csv(OUT / "results_long.csv", index=False)
-PAIRS = [("K1", "A0"), ("K4", "A0"), ("K1", "A8"), ("K4", "A2"), ("A2", "A0"), ("A8", "A0")]
+PAIRS = [("K4", "A2"), ("A2", "A0"), ("K1", "A0"), ("K1", "A8"), ("K4", "A0"), ("A8", "A0")]
 KEYS = ("AP_vt", "AP_t", "AP_s", "AP_m", "AP")
 rows = []
 for head in ("e2e", "nms"):
@@ -439,14 +506,15 @@ for head in ("e2e", "nms"):
             sc, sd = boot[f"{x}-{y}"][m], cr.paired_seed_deltas(res, head, x, y, m)
             cmb = cr.combine_scene_seed(sc, sd)
             rows.append(dict(head=head, pair=f"{x}-{y}", metric=m, delta=sc["delta"], scene_lo=sc["ci_lo"],
-                             scene_hi=sc["ci_hi"], seed_min=sd.get("min"), seed_max=sd.get("max"),
-                             comb_lo=cmb["lo"], comb_hi=cmb["hi"], comb_excl0=cmb.get("excludes_zero")))
+                             scene_hi=sc["ci_hi"], skew=cr.ci_skew(sc), seed_t_lo=sd.get("t_lo"), seed_t_hi=sd.get("t_hi"),
+                             seed_min=sd.get("min"), seed_max=sd.get("max"), comb_lo=cmb["lo"], comb_hi=cmb["hi"],
+                             comb_excl0=cmb.get("excludes_zero")))
 ci = pd.DataFrame(rows); display(ci.round(4)); ci.to_csv(OUT / "ci_scene_seed.csv", index=False)
-# Thống kê quy tắc K theo epoch: bao nhiêu GT phải nới, tới mức sàn nào
 for rd in sorted(RUNS_NEW.glob("c11x_K*_s*")):
     ks = [json.loads(x) for x in (rd / "c11x_kstats.jsonl").read_text().splitlines()]
-    print(rd.name, "epoch cuối:", ks[-1])
+    print(rd.name, "thống kê quy tắc K ở epoch cuối:", ks[-1])
 (OUT / "env.json").write_text(json.dumps(ENV, indent=2))
+print("XONG. Kết quả ở", OUT)
 '''),
     ]
     return cells

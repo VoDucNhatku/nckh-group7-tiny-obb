@@ -224,7 +224,8 @@ Dùng lại 12 run thăm dò và 15 run của hướng 3 nếu có.
 
 ## 8. Những gì PR này chưa kiểm
 
-- Chưa chạy trên Colab hay A100. Test chạy trên CPU với Ultralytics 8.4.174, torch 2.15 CPU, Python 3.13 — khác torch 2.11 + CUDA của C11.
+- Chưa chạy trên Colab hay A100, nên chưa notebook nào được chạy thật từ đầu đến cuối. Test chạy trên CPU với Ultralytics 8.4.174, torch 2.15 CPU, Python 3.13 — khác torch 2.11 + CUDA của C11.
+- Test nặng (5 test: dựng YOLO, predict, train) từ nay tự bỏ qua trên máy không có GPU. Chúng đã qua một lần trên CPU trước khi đổi quy tắc này; lần kiểm cuối chỉ chạy 45 test nhẹ. Trên Colab chúng chạy lại ở ô test.
 - Chưa chạy được 55 test của `scripts/c11` vì code đó chỉ có trên Drive. Notebook chạy lại chúng ở đầu.
 - Tên khoá và cấu trúc file của `scripts/c11` (`predict_and_eval`, `multi_pair_bootstrap`, `load_cache`, `evalcache_nms.npz`, `results.csv` của run cũ) chỉ suy ra từ cách `C11_colab.ipynb` gọi. Lần chạy đầu trên Colab sẽ lộ chỗ lệch.
 - Thời gian và bộ nhớ của quy tắc K trên A100 chưa đo.

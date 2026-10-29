@@ -73,6 +73,7 @@ def test_recall_model_recovers_positive_effect():
     assert tab["n"].sum() == n
 
 
+@pytest.mark.heavy
 def test_record_and_match_end_to_end(tiny_dataset, random_weights):
     """Chạy cả đường ống trên CPU với mô hình ngẫu nhiên: đủ GT, khoá (im_file, gt_idx) duy nhất, đếm hợp lệ."""
     from pathlib import Path
