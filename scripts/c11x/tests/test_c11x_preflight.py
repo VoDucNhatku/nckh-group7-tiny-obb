@@ -139,12 +139,14 @@ def test_h2_gate_go_and_no_go():
     n = 3000
     base = pd.DataFrame(dict(im_file=[f"im{i % 150}.png" for i in range(n)], cls=rng.integers(0, 3, n),
                              short=rng.uniform(2, 20, n), long=rng.uniform(20, 30, n), n_gt_img=rng.integers(1, 40, n),
-                             nn_px=rng.uniform(1, 50, n), o2m_n_pos=rng.integers(0, 11, n), in_loss=True,
+                             nn_px=rng.uniform(1, 50, n), o2m_n_pos=rng.integers(0, 11, n),
+                             o2m_n_cand=rng.integers(0, 30, n), in_loss=True,
                              arm=rng.choice(["A0", "A2"], n), head="nms"))
     base = cg.add_features(base)
     for effect, go in ((1.0, True), (-1.0, False)):
-        logit = -1.0 + effect * np.log1p(base["o2m_n_pos"])
+        logit = -1.0 + effect * np.log1p(base["o2m_n_cand"])           # phụ lục A1: cổng theo n_cand
         df = base.assign(score=(rng.random(n) < 1 / (1 + np.exp(-logit))).astype(float))
         g = cg.h2_gate(df)
-        assert g["go"] is go and g["n"] == n
+        assert g["go"] is go and g["n"] == n and g["count"] == "n_cand" and g["rule"] == cg.GATE_RULE
+        assert "n_pos_coef" in g
         assert set(g["recall_lt8_by_npos"]) <= {"0", "1", "2", "3-4", "5-9", "10+"}

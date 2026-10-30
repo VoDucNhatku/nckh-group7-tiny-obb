@@ -215,7 +215,7 @@ Dùng lại 12 run thăm dò và 15 run của hướng 3 nếu có.
 | Train trước preregistration | Khai 12 run là thăm dò; preregistration có mã PREREG-C11X-v1, phải merge trước mọi phép chấm hay run mới; notebook train kiểm có file | `experiments/preregistration.md`, `notebooks/C11x_train_kfloor_colab.ipynb` |
 | Ô #32 đếm trùng | `collect_runs` đọc đúng tên file, `assert` không trùng; có test tái hiện lỗi cũ | `scripts/c11x/c11x_results.py`, `tests/test_c11x_results.py` |
 | Thiếu bảng theo seed | `per_seed_table`, `paired_seed_deltas` | như trên |
-| B = 1.000, CI chỉ theo cảnh | B = 10.000; `combine_scene_seed` gộp se theo cảnh với se theo seed [design]; luôn báo kèm khoảng t theo seed và min–max | như trên |
+| B = 1.000, CI chỉ theo cảnh | B = 10.000; `combine_scene_seed` gộp se theo cảnh với se theo seed, nhân t₀,₉₇₅;ₙ₋₁ (phụ lục A1 của preregistration) [design]; luôn báo kèm khoảng t theo seed và min–max | như trên |
 | CI lệch | `ci_skew`, báo kèm | như trên |
 | `scene_key` của phần không-xView chưa kiểm | `scene_key_audit`: ô cắt cùng ảnh gốc có bị tách nhóm không | như trên |
 | Thiếu AP theo lớp, AP_s, AP_m trong bootstrap | thêm AP_s, AP_m vào KEYS. AP theo lớp phụ thuộc `predict_and_eval` trên Drive: **chưa làm** | notebook phân tích |

@@ -80,4 +80,24 @@ Train A2 seed 1 bằng `c11x_train.py`, so với `c11_A2_s1` cũ.
 
 ## Phụ lục
 
-_(chưa có)_
+### A1 · 30/10/2026: cổng H2 theo n_cand, CI gộp dùng t, H1 chỉ mô tả
+
+**Thời điểm.** PR chứa file này chưa merge vào `main` khi nhóm trưởng bắt đầu chạy notebook phân tích (commit `4e7b693` trên nhánh `admin/c11-novelty-plan`, A100, 30/10). Lúc viết phụ lục, notebook đã xong phần 0–2 và đã in điểm test head nms của 3/8 run chưa xem (`c11_A1_s2`, `c11_A1_s3`, `c11_A2_s1`). Chưa có bảng theo GT trên val, cổng H2 hay bootstrap B = 10.000. Cả ba thay đổi dưới đây làm kết luận khó đạt hơn; không thay đổi nào chọn theo các số đã thấy.
+
+**1. Cổng §5 dùng n_cand thay n_pos.**
+- Lý do: TAL chọn mẫu dương theo điểm căn chỉnh tính từ chính dự đoán của mô hình, nên GT mà mô hình đã bắt tốt có n_pos cao hơn. Hệ số dương của log1p(n_pos) vì vậy gần như chắc có, kể cả khi không có quan hệ nhân quả, nên không dùng làm cổng được. n_cand chỉ phụ thuộc hình học, vị trí GT so với lưới điểm neo và quy tắc của arm.
+- H2a (cổng): mô hình §3 với log1p(n_cand) của nhánh o2m thay cho log1p(n_pos); head nms, τ = 0,25. Qua khi hệ số > 0 và CI 95% không chứa 0.
+- Hệ số của log1p(n_pos) vẫn ước lượng và báo, chỉ để mô tả. H2b, H2c giữ nguyên.
+- Khi đã cố định kích thước và aspect, n_cand chỉ còn biến thiên theo vị trí trên lưới và theo arm, nên CI có thể rộng. Trượt cổng vì lý do này vẫn tính là trượt.
+- Code: `c11x_pergt.h2_gate(count="n_cand")`; file `c11x-h2-gate.json` có khoá `rule = "PREREG-C11X-v1 + A1"`. Notebook train tính lại cổng nếu file thiếu khoá này.
+
+**2. CI gộp §4 dùng t thay z.**
+- CI gộp = Δ ± t₀,₉₇₅;ₙ₋₁ · √(se_cảnh² + se_seed²), n = số seed. Với 3 seed, t ≈ 4,30 thay cho 1,96.
+- Lý do: se_seed chỉ có 2 bậc tự do, nên z cho khoảng quá hẹp. Lấy bậc tự do của nguồn ít bậc nhất nên khoảng thiên về rộng.
+- Áp dụng cho mọi chỗ dùng CI gộp, kể cả H3a, H3b và định nghĩa "cải thiện" ở §4. Code: `c11x_results.combine_scene_seed`.
+
+**3. H1 chỉ mô tả.**
+- §3 có khoảng 40 khoảng tin cậy (2 head × 4 cặp × 5 chỉ số), không hiệu chỉnh nhiều phép so. Không gọi một Δ nào của H1 là "có ý nghĩa" chỉ vì CI không chứa 0.
+- Tiêu chí "có tương tác" của H1b (cùng dấu ở 3/3 seed và |trung bình| ≥ MEI_vt) giữ nguyên, làm tiêu chí mô tả.
+
+**Hệ quả cho lần chạy đang dở.** Notebook phân tích đang chạy dùng code của `4e7b693` (quy tắc cũ). Hai file `ci_scene_seed.csv` và `c11x-h2-gate.json` của lần chạy đó phải tính lại bằng code có phụ lục này trước khi dùng. Bootstrap và bảng theo GT đã lưu, nên không phải chạy lại phần nặng.

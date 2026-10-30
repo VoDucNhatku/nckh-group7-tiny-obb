@@ -84,20 +84,25 @@ def paired_seed_deltas(df: pd.DataFrame, head: str, x: str, y: str, metric: str)
 
 
 def combine_scene_seed(scene: dict, seed: dict, z: float = 1.959964) -> dict:
-    """[design] Khoảng gộp xấp xỉ: Δ ± z·√(se_cảnh² + se_seed²).
+    """[design] Khoảng gộp xấp xỉ: Δ ± q·√(se_cảnh² + se_seed²), q = t_{0,975; n − 1} với n = số seed.
 
+    Phụ lục A1 của preregistration: bản v1 dùng q = z ≈ 1,96, quá hẹp khi se_seed chỉ có n − 1 = 2 bậc tự do
+    (t_{0,975; 2} ≈ 4,30). Lấy bậc tự do của nguồn ít bậc nhất nên khoảng thiên về rộng.
     se_cảnh suy từ CI percentile của bootstrap theo cảnh: (hi − lo) / (2z). Nếu JSON bootstrap có `sd` thì dùng sd.
-    se_seed = sd(Δ theo seed) / √n. Giả định hai nguồn độc lập và xấp xỉ chuẩn; với n = 3 seed thì se_seed rất bất
-    định, nên luôn báo kèm khoảng t thuần theo seed (`paired_seed_deltas`). Đây là quy ước báo cáo đã khai trong
-    preregistration, không phải phép thử chính xác.
+    se_seed = sd(Δ theo seed) / √n. Giả định hai nguồn độc lập; luôn báo kèm khoảng t thuần theo seed
+    (`paired_seed_deltas`). Đây là quy ước báo cáo đã khai trong preregistration, không phải phép thử chính xác.
     """
+    from scipy import stats
+
     se_scene = scene.get("sd") or (scene["ci_hi"] - scene["ci_lo"]) / (2 * z)
     se_seed = seed.get("se", math.nan)
-    if not np.isfinite(se_seed):
+    n = seed.get("n", 0)
+    if not np.isfinite(se_seed) or n < 2:
         return {"delta": scene["delta"], "lo": math.nan, "hi": math.nan, "se_scene": se_scene, "se_seed": se_seed}
+    q = float(stats.t.ppf(0.975, n - 1))
     se = math.sqrt(se_scene ** 2 + se_seed ** 2)
-    return {"delta": scene["delta"], "lo": scene["delta"] - z * se, "hi": scene["delta"] + z * se,
-            "se_scene": se_scene, "se_seed": se_seed, "excludes_zero": abs(scene["delta"]) > z * se}
+    return {"delta": scene["delta"], "lo": scene["delta"] - q * se, "hi": scene["delta"] + q * se, "q": q,
+            "se_scene": se_scene, "se_seed": se_seed, "excludes_zero": abs(scene["delta"]) > q * se}
 
 
 def ci_skew(scene: dict) -> float:

@@ -210,7 +210,9 @@ inter.to_csv(OUT / "head_interaction_per_seed.csv", index=False)
 ## 4. Bootstrap theo cụm cảnh B = 10.000, hai head, rồi gộp bất định theo seed
 
 - Cặp và chỉ số đúng như preregistration §4. B = 10.000 như proposal §8.6 (C11 chạy 1.000).
-- `combine_scene_seed`: khoảng xấp xỉ Δ ± 1,96·√(se_cảnh² + se_seed²) [design]; luôn báo kèm khoảng t theo seed.
+- `combine_scene_seed`: khoảng xấp xỉ Δ ± t₀,₉₇₅;ₙ₋₁·√(se_cảnh² + se_seed²) [design], với 3 seed t ≈ 4,30
+  (phụ lục A1); luôn báo kèm khoảng t theo seed.
+- H1 chỉ mô tả (phụ lục A1): khoảng 40 khoảng tin cậy, không hiệu chỉnh nhiều phép so.
 - `ci_skew`: CI lệch (> 2 hoặc < 0,5) thì ghi chú; không đổi phép thử sau khi thấy số.
 """),
         code(r'''
@@ -274,7 +276,7 @@ display(diag.head(3).T)
         code(r'''
 import c11x_pergt as cg
 pg = cg.pergt_for_runs(RUNS_OLD, DATA_YAML, DS / "images" / "val", PERGT_DIR)   # có rồi thì bỏ qua
-gate = cg.h2_gate(pg)                                                            # preregistration §5
+gate = cg.h2_gate(pg)                                              # preregistration §5 + phụ lục A1 (n_cand)
 GATE_FILE.write_text(json.dumps(gate, indent=2))
 print("Cổng H2:", json.dumps(gate, indent=1, ensure_ascii=False))
 '''),
@@ -404,15 +406,14 @@ print("recipe khớp C11")
 """),
         code(r'''
 import c11x_pergt as cg
-if GATE_FILE.exists():
-    gate = json.loads(GATE_FILE.read_text())
-else:
+gate = json.loads(GATE_FILE.read_text()) if GATE_FILE.exists() else {}
+if gate.get("rule") != cg.GATE_RULE:          # file cổng tính theo quy tắc cũ (n_pos) thì tính lại; bảng GT đã lưu
     pg = cg.pergt_for_runs(RUNS_OLD, DATA_YAML, DS / "images" / "val", PERGT_DIR)
     gate = cg.h2_gate(pg)
     GATE_FILE.write_text(json.dumps(gate, indent=2))
 print(json.dumps(gate, indent=1, ensure_ascii=False))
 if not gate["go"]:
-    raise StopRun("Cổng H2 trượt: hệ số log1p(n_pos) không dương với CI loại 0. Theo preregistration §5 không train "
+    raise StopRun("Cổng H2 trượt: hệ số log1p(n_cand) không dương với CI loại 0. Theo preregistration §5 không train "
                   "hướng 3; chuyển sang hướng 5. Đây là kết quả, không phải lỗi.")
 '''),
         md("""

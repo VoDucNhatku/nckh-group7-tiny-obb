@@ -338,16 +338,27 @@ def pergt_for_runs(runs_dir, data_yaml, images_val, out_dir, device="cuda:0", he
                                   ignore_index=True))
 
 
-def h2_gate(pg: pd.DataFrame, tau: float = 0.25, head: str = "nms", branch: str = "o2m") -> dict:
-    """Cổng go của hướng 3 (preregistration §5): H2a qua khi hệ số log1p(n_pos) > 0 và CI 95% không chứa 0."""
+GATE_RULE = "PREREG-C11X-v1 + A1"
+
+
+def h2_gate(pg: pd.DataFrame, tau: float = 0.25, head: str = "nms", branch: str = "o2m",
+            count: str = "n_cand") -> dict:
+    """Cổng go của hướng 3 (preregistration §5, sửa ở phụ lục A1): qua khi hệ số log1p(n_cand) > 0 và CI 95% không
+    chứa 0. n_cand chỉ phụ thuộc hình học và quy tắc của arm. Hệ số của n_pos (TAL chọn theo điểm dự đoán, nên có
+    thể nhân quả ngược) ghi kèm để mô tả, không quyết định cổng."""
     d = pg[pg["head"] == head]
-    p = fit_recall_models(d, tau, branch=branch)["pooled"]
-    lo, hi = (float(v) for v in p.conf_int().loc["lpos"])
-    coef = float(p.params["lpos"])
+
+    def coef_ci(c):
+        p = fit_recall_models(d, tau, branch=branch, count=c)["pooled"]
+        lo, hi = (float(v) for v in p.conf_int().loc["lpos"])
+        return float(p.params["lpos"]), lo, hi, int(p.nobs)
+
+    coef, lo, hi, n = coef_ci(count)
+    pos_coef, pos_lo, pos_hi, _ = coef_ci("n_pos")
     small = add_features(d) if "size_bin" not in d else d
     small = small[(small["short"] < 8) & small["in_loss"]]
     by_pos = (small.assign(det=(small["score"] >= tau).astype(int))
               .groupby(f"{branch}_pos_bin", observed=True)["det"].agg(["mean", "size"]))
-    return dict(tau=tau, head=head, branch=branch, coef=coef, ci_lo=lo, ci_hi=hi, n=int(p.nobs),
-                go=bool(coef > 0 and lo > 0),
+    return dict(rule=GATE_RULE, tau=tau, head=head, branch=branch, count=count, coef=coef, ci_lo=lo, ci_hi=hi, n=n,
+                go=bool(coef > 0 and lo > 0), n_pos_coef=pos_coef, n_pos_ci_lo=pos_lo, n_pos_ci_hi=pos_hi,
                 recall_lt8_by_npos={str(k): [float(v["mean"]), int(v["size"])] for k, v in by_pos.iterrows()})

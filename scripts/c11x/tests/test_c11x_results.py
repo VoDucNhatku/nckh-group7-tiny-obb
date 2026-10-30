@@ -59,12 +59,14 @@ def test_paired_seed_deltas(runs):
 
 def test_combine_scene_seed_widens_interval():
     scene = {"delta": 0.0035, "ci_lo": 0.0018, "ci_hi": 0.0057}
-    seed = {"se": 0.002}
+    seed = {"se": 0.002, "n": 3}
     c = cr.combine_scene_seed(scene, seed)
     se_scene = (0.0057 - 0.0018) / (2 * 1.959964)
     assert math.isclose(c["se_scene"], se_scene)
-    assert math.isclose(c["hi"] - c["lo"], 2 * 1.959964 * math.sqrt(se_scene ** 2 + 0.002 ** 2))
+    assert math.isclose(c["q"], 4.302653, rel_tol=1e-5)     # t_{0,975; 2}, phụ lục A1
+    assert math.isclose(c["hi"] - c["lo"], 2 * c["q"] * math.sqrt(se_scene ** 2 + 0.002 ** 2))
     assert (c["hi"] - c["lo"]) > (scene["ci_hi"] - scene["ci_lo"])
+    assert math.isnan(cr.combine_scene_seed(scene, {"se": 0.002, "n": 1})["lo"])
 
 
 def test_ci_skew_flags_asymmetry():
