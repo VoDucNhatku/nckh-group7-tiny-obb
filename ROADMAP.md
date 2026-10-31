@@ -4,6 +4,10 @@
 > Cập nhật 2026-10-13 theo quyết định của nhóm trưởng: **cả đề tài gói trong 4 tuần**.
 > Căn cứ: phản biện [notes/05-venue-direction/t07-critique-q2-2026-10-11.md](notes/05-venue-direction/t07-critique-q2-2026-10-11.md) §4 (ngân sách), §6 (kế hoạch, cổng, danh sách cắt).
 
+> **Cập nhật 30/10/2026 (C-20).** Cổng 0, Cổng 1 (nhánh woX), 2(a) pilot (trên A100) và 2(b) oracle (AP 0,996) đã qua trong `C11_colab.ipynb` ngày 20–21/10.
+> 2(c) vòng tròn chưa đạt theo câu chữ (31,4% GT có IoU ≥ 0,999). 2(d) preregistration trễ: PREREG-C11X-v1 ngày 30/10, viết **sau** 12 run, nên 12 run đó là thăm dò.
+> Đợt 1 có 12/15 run (thiếu A4). Phần còn lại của tuần 3–4 theo [kế hoạch C11x](notes/08-c11-execution/t07-c11-novelty-plan-2026-10-30.md) §1, thay cho các mục tương ứng bên dưới.
+
 ## Đọc trước khi làm
 
 - **Mức kỳ vọng không đổi: T1 → hội nghị Scopus (ICORE C–B) hoặc Q4, có điều kiện.** Phản biện kết luận **Q2 không bảo vệ được trong 4 tuần**: chưa có ứng viên T2 nào đứng vững, và đường găng *dữ liệu → bằng chứng → cài đặt* dài hơn 4 tuần. Hướng Q2 (C-7′, đổi đầu/biểu diễn góc) chỉ **thu bằng chứng** trong 4 tuần; mở hay đóng ở Cổng 4. Xem `notes/claims-ledger.md` (C-10, C-12).
@@ -41,7 +45,7 @@
 
 - [ ] **Đăng ký xView ngay** (#4). Song song: tải gói `AI-TOD_wo_xview` và `labels.zip`.
 - [ ] Xác minh 4 tài khoản Kaggle đã xác thực số điện thoại (#3).
-- [ ] **Cổng 0 (13/10):** mở `labels.zip`, chạy thống kê nhãn (bin, tỉ lệ cạnh, GT < 2 px, số GT/ảnh lớn nhất, có nhãn test không).
+- [x] **Cổng 0 (13/10):** mở `labels.zip`, chạy thống kê nhãn (bin, tỉ lệ cạnh, GT < 2 px, số GT/ảnh lớn nhất, có nhãn test không). *(xong 20/10, `C11_colab.ipynb` #12)*
 - [ ] **RQ2 offline ngay**, vì chỉ cần nhãn (#10): số ứng viên theo quy tắc A0/A1/A2/A4/A8, tỉ lệ GT không có ứng viên, cấu hình hàng xóm (cạnh nhau / nối đuôi), đối chiếu Proposition 1.
 - [ ] Pin fork Ultralytics 8.4.174 (#5). Viết hàm `surrogate` có thêm A8. Unit test P1–P5 + test "luật phủ" (#6).
 - [ ] Converter dự đoán → AITODReval (#8). **`max_det` ≥ 12.000**, vì AITODReval giới hạn 1.500 phát hiện **mỗi (ảnh, lớp)** × 8 lớp, còn `max_det` của Ultralytics tính cho cả ảnh.
@@ -51,8 +55,8 @@
 
 ## Tuần 2 · 19/10 – 25/10 · Pilot, preregistration, đợt run 1
 
-- [ ] Pilot P100 / 2×T4, đo ảnh/giây thực tế (#7).
-- [ ] **Commit `experiments/preregistration.md` trước 21/10** (#11): so sánh chính, dấu dự báo theo mật độ/cấu hình (lấy từ RQ2 offline), hiệu ứng tối thiểu, code phân tích.
+- [x] Pilot P100 / 2×T4, đo ảnh/giây thực tế (#7). *(làm trên Colab A100 thay vì Kaggle, 20/10, #21)*
+- [x] **Commit `experiments/preregistration.md` trước 21/10** (#11): so sánh chính, dấu dự báo theo mật độ/cấu hình (lấy từ RQ2 offline), hiệu ứng tối thiểu, code phân tích. *(trễ: PREREG-C11X-v1, 30/10, sau 12 run thăm dò)*
 - [ ] **Cổng 2 (21/10):** kiểm thử oracle + converter vòng tròn.
 - [ ] Đợt 1: YOLO26n × {A0, A1, A2, A4, A8} × seed 1–3 = **15 run**. 24 epoch, `optimizer` ghi tường minh, `max_det` = 12.000, 1 GPU/run. Mỗi cặp cùng seed chạy cùng tài khoản và cùng loại GPU. Bật log chẩn đoán online (số mẫu dương/GT, xung đột) cho cả hai nhánh o2m/o2o.
 - [ ] RetinaNet-O (MMRotate) trên một tài khoản riêng (#9).
