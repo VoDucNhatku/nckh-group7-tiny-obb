@@ -1,0 +1,132 @@
+% Skeleton for IJCNN 2027 (6 pages, IEEE two-column) / IGARSS 2027 (4 pages).
+% Rule (AGENTS.md §6, paper/README.md): every number must come from a file in experiments/.
+% Generated inputs: tables/rq2_*.tex, figs/rq2_stages.pdf  <- scripts/rq2/rq2_report.py
+% TODO markers (\todo{}) are things the team must fill or verify before submission.
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\input{tables/rq2_macros}
+
+\begin{document}
+\title{Where Do Tiny Oriented Objects Lose Their Positives?\\
+Candidate-Region Floors in YOLO26n-OBB on AI-TOD-R}
+\author{\IEEEauthorblockN{\todo{Group 7 authors}}
+\IEEEauthorblockA{FPT University, Vietnam}}
+\maketitle
+
+\begin{abstract}
+Objects in aerial benchmarks such as AI-TOD-R are often smaller than the finest feature stride, so
+a one-stage detector may give them no training signal at all. Recent YOLO releases enlarge tiny
+ground-truth (GT) boxes during candidate selection (STAL), but the rule was ablated only on COCO with
+horizontal boxes and its oriented-box threshold changed across releases. We trace, for every GT of
+the non-xView part of AI-TOD-R, the label-assignment stages of YOLO26n-OBB under four candidate
+rules: no floor (A0), the published STAL rule (A1), the coverage-minimal floor
+$\sqrt{2}\,s_{\min}$ (A8) and the current library rule (A2). Without a floor,
+\rqZeroCandVtA\% of very tiny GTs ($<8$ px) have no candidate anchor. Any floor removes this loss but
+moves it to anchor conflicts in dense clusters, where a label-only proxy predicts that smaller floors
+starve more GTs. In 12 exploratory training runs, every floor raises AP$_{vt}$ consistently across
+seeds while overall AP changes stay within seed variation. \todo{confirmatory result (seeds 4--5) and
+per-GT recall link (H1--H2 of the preregistration).}
+\end{abstract}
+
+\begin{IEEEkeywords}
+tiny object detection, oriented object detection, label assignment, YOLO, aerial images
+\end{IEEEkeywords}
+
+\section{Introduction}
+\todo{1 column. Problem: sub-stride GTs receive no candidate (AI-TOD-R \cite{aitodr}, §IV-D).
+STAL \cite{yolo26} and its library history \cite{ultralytics}. Gap: no stage-wise measurement of
+where tiny oriented GTs lose supervision in a real-time YOLO-OBB detector. Contributions:
+(i) an exact label-only decomposition of candidate / top-$k$ / conflict losses per GT, validated
+against the library code; (ii) a controlled comparison of four floors with a pre-registered
+confirmation; (iii) evidence linking per-GT assignment geometry to detection recall. No ``first''
+claim.}
+
+\section{Related Work}
+\textbf{Tiny-object label assignment.} RFLA \cite{rfla}, NWD-based assignment \cite{aitodv2},
+DCFL on AI-TOD-R \cite{aitodr}. \textbf{Floors and pseudo-boxes.} STAL \cite{yolo26};
+OSCAR \cite{oscar} sweeps square pseudo-boxes for sub-stride infrared targets (HBB, one level) and
+reports a non-monotonic optimum, so ``floor size matters'' is known; we study the oriented,
+multi-level, dense case. \textbf{Shape-aware oriented assignment.} EARL \cite{earl},
+SARFA-Net \cite{sarfa}; MCSA \todo{cite MCSA (Sci.\ Rep.\ 2025)}. \textbf{YOLO-OBB on AI-TOD.}
+DIA-YOLO \cite{diayolo} uses the same 18{,}730 non-xView images with a different protocol.
+
+\section{Assignment Stages and Candidate Floors}
+YOLO26-OBB places anchor centres at $((i+\tfrac12)s,(j+\tfrac12)s)$ for $s\in\{8,16,32\}$. Training
+uses the task-aligned assigner \cite{tood} with ProbIoU \cite{probiou}: (1) an anchor is a
+\emph{candidate} of a GT if it lies inside the GT's candidate region; (2) the top-$k$ candidates by
+alignment metric are kept ($k=10$ one-to-many; $k=7$ then $k_2=1$ one-to-one); (3) an anchor kept by
+several GTs goes to the GT of highest predicted-box overlap. A floor rule replaces each side
+$<\tau$ by $f$ in step (1) only: A0 none; A1 $\tau=8, f=16$; A8 $\tau=f=8\sqrt2$; A2 $\tau=f=16$.
+A region whose short side is at least $\sqrt2\,s$ contains an anchor of stride $s$ for every position
+and angle; this guarantees a candidate, not a positive or an AP optimum.
+
+\textbf{Label-only stage analysis.} Step (1) is exact: our implementation reproduces the library's
+candidate mask on random boxes (unit test). Steps (2)--(3) need predictions; we replace the
+alignment metric by anchor-to-centre distance and report it as a \emph{proxy}, bracketed by two exact
+quantities: GTs with no candidate (lower bound) and GTs whose every candidate is shared (upper
+bound). With no mosaic, scaling or translation and $800\times800$ inputs, flips map the lattice onto
+itself, so the counts hold for every training sample.
+
+\section{Experimental Setup}
+\textbf{Data.} AI-TOD-R \cite{aitodr}, non-xView protocol (woX): 8{,}426 train / 936 val / 9{,}261 test
+images; val split by scene. Not comparable with the full-benchmark Table II.
+\textbf{Training.} YOLO26n-OBB \cite{yolo26}, Ultralytics 8.4.174 pinned, 24 epochs, SGD, imgsz 800,
+flips only, batch 16, A100. \textbf{Evaluation.} Official AITODReval (1{,}500 detections per image and
+class, \texttt{max\_det}=12{,}000), oracle AP 0.996; \texttt{last.pt}; both heads reported.
+\textbf{Statistics.} Paired scene-clustered bootstrap (B=1{,}000) and per-seed spread.
+\todo{state preregistration date and MEI.}
+
+\section{Results}
+\subsection{Where GTs lose candidates and positives (labels only)}
+Table~\ref{tab:stages} and Fig.~\ref{fig:stages} use all \rqNgt{} GTs of woX train+val.
+Relative to A0, A2 rescues \rqRescuedTwo{} GTs from zero positives (proxy) and newly starves
+\rqStarvedTwo{}; A8: \rqRescuedEight{} vs \rqStarvedEight{}; A1: \rqRescuedOne{} vs \rqStarvedOne{}.
+Table~\ref{tab:density} shows that the residual loss under a floor is confined to dense clusters.
+
+\begin{table}[t]\centering\caption{Assignment stages per GT, woX train+val (labels only).}
+\label{tab:stages}\footnotesize\input{tables/rq2_stages}\end{table}
+\begin{table}[t]\centering\caption{GTs without any positive (proxy, \%) by number of GT centres within 16 px.}
+\label{tab:density}\footnotesize\input{tables/rq2_density}\end{table}
+\begin{figure}[t]\centering\includegraphics[width=\columnwidth]{figs/rq2_stages}
+\caption{Share of GTs without a positive, split into no candidate (exact) and lost at conflict (proxy).}
+\label{fig:stages}\end{figure}
+
+\subsection{Detection accuracy (exploratory, 3 seeds)}
+\todo{Regenerate from experiments/*/eval\_e2e.json and eval\_nms.json after fixing the duplicated
+A0\_s1 row; add nms head for all runs and AP$_s$. Values below are from the saved notebook output
+(C11\_colab.ipynb cells 30, 32, 34), e2e head.}
+\begin{table}[t]\centering\caption{Test AP, e2e head, woX, mean $\pm$ sd over 3 seeds (exploratory).}
+\label{tab:ap}\footnotesize
+\begin{tabular}{lccc}\toprule
+Arm & AP & AP$_{vt}$ & AP$_t$\\\midrule
+A0 & 0.130$^\dagger$ & 0.041$^\dagger$ & 0.117$^\dagger$\\
+A1 & 0.130 $\pm$ 0.002 & 0.048 $\pm$ 0.004 & 0.119 $\pm$ 0.004\\
+A8 & 0.132 $\pm$ 0.003 & 0.048 $\pm$ 0.003 & 0.122 $\pm$ 0.002\\
+A2 & 0.133 $\pm$ 0.005 & 0.050 $\pm$ 0.006 & 0.124 $\pm$ 0.004\\\bottomrule
+\multicolumn{4}{l}{$^\dagger$ 3-seed mean recovered from bootstrap $\Delta$; summary row double-counted s1.}
+\end{tabular}\end{table}
+Paired bootstrap, $\Delta$ vs A0 [95\% CI]: AP$_{vt}$ A2 +0.009 [0.005, 0.015], A1 +0.007
+[0.003, 0.016], A8 +0.007 [$-$0.000, 0.011]; AP A2 +0.004 [0.002, 0.006]. A2 vs A8: CIs contain 0.
+
+\subsection{Linking assignment geometry to recall}
+\todo{Run scripts/rq2/rq2\_recall.py on the saved DOTA predictions; report recall change vs A0 for
+A0-starved vs non-starved very tiny GTs (H1) and A2$-$A8 in dense clusters (H2), with the logistic
+model and scene-clustered SEs.}
+
+\section{Discussion and Limitations}
+\todo{Floors trade candidate loss for conflict loss; why A8 does not beat A2 (fewer candidates per GT,
+so a dense GT more often loses all of them). Limits: one detector size, 24-epoch recipe, woX subset
+only, one dataset, proxy for steps 2--3, head choice.}
+
+\section{Conclusion}
+\todo{3--4 sentences.}
+
+\section*{Reproducibility}
+Code: \texttt{scripts/rq2/} (this repo) and \texttt{scripts/c11/} \todo{publish}. Configs, seeds and
+DOTA-format predictions: \todo{release link}.
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+\end{document}

@@ -16,6 +16,10 @@ Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt 
 
 Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
 
+## Cập nhật 05/11/2026 — RQ2 offline và khung bài báo
+
+Đã chạy RQ2 offline trên toàn bộ nhãn woX, có bản nháp preregistration và khung bài IEEE: xem [notes/09-q4-plan/](notes/09-q4-plan/README.md). Ledger không đổi; venue vẫn chưa gán band.
+
 ## Trạng thái hiện hành — 15/10/2026 (C-19)
 
 **Bản đúng nhất hiện tại:** [báo cáo audit C-19](notes/07-audits/t07-q2-audit-2026-10-15/REPORT.md). Ba báo cáo chi tiết đi kèm: [toán và logic](notes/07-audits/t07-q2-audit-2026-10-15/LOGIC-CRITIQUE.md), [prior về góc](notes/07-audits/t07-q2-audit-2026-10-15/ANGLE-PRIOR.md), [dữ liệu và chuyển miền](notes/07-audits/t07-q2-audit-2026-10-15/DATA-AND-TRANSFER.md).

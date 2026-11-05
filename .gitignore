@@ -26,10 +26,19 @@ _local/
 !/scripts/t07-slr/common.py
 !/scripts/t07-slr/p12_proposal_figures.py
 !/scripts/t07-slr/p13_build_proposal_docx.js
+!/scripts/rq2/
 
 # --- experiments & manuscript (shared from day one) ---
 !/experiments/
 !/paper/
+/paper/*.aux
+/paper/*.bbl
+/paper/*.blg
+/paper/*.fdb_latexmk
+/paper/*.fls
+/paper/*.log
+/paper/*.out
+/paper/*.pdf
 
 # --- never commit, even inside shared folders ---
 ~$*
