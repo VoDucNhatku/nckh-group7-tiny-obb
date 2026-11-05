@@ -1,0 +1,170 @@
+% Journal draft. Neutral layout: move to the chosen journal's template once the journal is fixed.
+% Rule (AGENTS.md §6, paper/README.md): every number comes from a file in experiments/, through generated macros and tables.
+% Generated inputs: tables/rq2_*.tex, figs/rq2_stages.pdf <- scripts/rq2/rq2_report.py
+%                   tables/c11x_explor.tex, tables/c11x_macros.tex <- scripts/c11x/export_explor.py
+% Red [TODO: ...] marks what is missing. Nothing marked TODO may be read as a finding.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,url,longtable}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\input{tables/rq2_macros}
+\input{tables/c11x_macros}
+
+\begin{document}
+\title{Candidate Floors for Tiny Oriented Objects:\\
+A Stage-Wise Audit of Label Assignment in YOLO26n-OBB on AI-TOD-R}
+\author{\todo{Group 7 authors, FPT University}}
+\date{}
+\maketitle
+
+\begin{abstract}
+One-stage detectors can give a tiny object no training signal when its box contains no anchor centre. Recent YOLO
+releases address this by enlarging tiny boxes during candidate selection, a rule ablated on COCO with horizontal boxes
+in single runs. We audit such candidate floors for oriented tiny objects, using YOLO26n-OBB on the non-xView part of
+AI-TOD-R. We trace every ground-truth box through the assignment stages under no floor and three floor rules, and find
+that without a floor \rqZeroCandVtA\% of very tiny boxes ($<8$ px) have no candidate anchor, while any floor removes
+this loss and moves the remaining loss to anchor conflicts in dense clusters (a label-only proxy for the later stages).
+Twelve exploratory training runs show higher AP$_{vt}$ under every floor, yet no comparison remains clear of zero once
+seed variation is included. \todo{Confirmatory result of P1 on seeds 4--9. Fate of tiny boxes that a floor rescues
+(M1, M3). One sentence on what limits AP$_{vt}$ once candidates are no longer the bottleneck.}
+\end{abstract}
+
+\section{Introduction}
+Aerial benchmarks contain objects far smaller than the coarsest assumptions of general detectors. In AI-TOD-R the mean
+object size is about 10.6 px \cite{aitodr}, close to the finest stride of a typical feature pyramid. Under task-aligned
+assignment \cite{tood}, an anchor can become a positive only if its centre lies inside the box, so a very small box can
+receive no positive at all. YOLO26 \cite{yolo26} introduces Small-Target-Aware Label Assignment (STAL): sides below a
+threshold are replaced by a larger value during candidate selection only, while scoring, target assignment and
+regression keep the original box.
+
+Three gaps motivate this audit. First, the published ablation of STAL uses COCO with horizontal boxes and reports single
+values without repeated runs \cite[Table 6]{yolo26}; its oriented-box section does not evaluate the rule. Second, the
+rule used for oriented boxes has changed across library releases \cite{ultralytics}\todo{cite the exact commits from
+notes/02-proposal}, so results depend on the version. Third, tiny-object work reports that small objects receive fewer
+positives \cite{aitodr} but we found no per-box account of where they lose them, and none of what happens to a box after
+it is given candidates. \todo{Confirm after the full reads listed in paper/README.md; do not claim ``first''.}
+
+We ask: (Q1) at which assignment stage do tiny oriented boxes lose supervision, under each floor? (Q2) does a floor raise
+AP$_{vt}$ on seeds independent of those used to form the hypothesis? (Q3) if a floor gives almost every box a candidate,
+why does AP$_{vt}$ stay low: are the rescued boxes missed, poorly localised, or taken by neighbours?
+
+Our contributions are an exact label-only decomposition of the candidate stage, validated against the library code; a
+preregistered comparison on six new seeds that reports scene and seed uncertainty together; and a per-box error analysis
+linking assignment geometry to detection outcome. This is an audit of an existing rule, not a new detector.
+
+\section{Related Work}
+\textbf{Label assignment for tiny objects.} RFLA \cite{rfla} and NWD-based assignment \cite{aitodv2} replace IoU-based
+matching with measures less sensitive to small offsets. DCFL \cite{aitodr} assigns oriented tiny objects dynamically and
+sets the benchmark for AI-TOD-R; that paper notes qualitatively that tiny objects receive fewer positives, and its
+benchmark table has no YOLO-family row. \todo{Add NGLA (Remote Sensing 18(3):396) and DALA (CAAI TRIT, DOI
+10.1049/cit2.70083), read so far at abstract level only.}
+
+\textbf{Floors and pseudo-boxes.} STAL \cite{yolo26} is ablated with reference sizes 8, 16 and 32 on COCO. OSCAR
+\cite{oscar} sweeps square pseudo-boxes for sub-stride infrared targets with horizontal boxes and reports a non-monotonic
+optimum, so ``floor size matters'' is known. We study the oriented, multi-level, dense case.
+
+\textbf{Oriented assignment.} EARL \cite{earl} and SARFA-Net \cite{sarfa} make assignment shape-aware; \todo{MCSA (read in
+full on 14/10, see the ledger C-16), MFN-Net and ARA (abstract only; paywalled, a team member needs library access).}
+
+\textbf{YOLO-OBB on AI-TOD.} DIA-YOLO \cite{diayolo} reports a YOLOv11-OBB baseline and a depth-fusion backbone on 18,730
+AI-TOD images. It changes the network input and backbone, and we found no treatment of label assignment in its method and
+results sections. Its protocol differs from ours, so our numbers are not comparable with it.
+
+\textbf{Error analysis.} TIDE \cite{tide} attributes detection errors to types. We use a simpler box-centred variant with
+rotated IoU and do not estimate its $\Delta$AP.
+
+\section{Assignment Stages and Candidate Floors}
+YOLO26-OBB places anchor centres at $((i+\tfrac12)s,(j+\tfrac12)s)$ for $s\in\{8,16,32\}$. Training uses the task-aligned
+assigner \cite{tood} with ProbIoU \cite{probiou}: (1) an anchor is a \emph{candidate} of a box if it lies inside the box's
+candidate region; (2) the top-$k$ candidates by alignment metric are kept ($k=10$ one-to-many; $k=7$ then $k_2=1$
+one-to-one); (3) an anchor kept by several boxes goes to the box of highest predicted overlap. A floor rule replaces each
+side $<\tau$ by $f$ in step (1) only: A0 none; A1 $\tau=8, f=16$; A8 $\tau=f=8\sqrt2$; A2 $\tau=f=16$.
+
+A region whose short side is at least $\sqrt2\,s$ contains an anchor of stride $s$ for every position and angle. This
+guarantees a candidate. It does not guarantee a positive, useful supervision or an AP optimum.
+
+\textbf{Label-only stage analysis.} Step (1) is exact: our implementation reproduces the library's candidate mask on random
+boxes (unit test). Steps (2)--(3) need predictions, so we replace the alignment metric by anchor-to-centre distance and
+report the result as a \emph{proxy}, together with the exact count of boxes with no candidate, which is a lower bound on
+boxes without a positive. With no mosaic, scaling or translation and $800\times800$ inputs, flips map the lattice onto
+itself, so the counts hold for every training sample.
+
+\section{Experimental Setup}
+\textbf{Data.} AI-TOD-R \cite{aitodr}, non-xView protocol (woX): 8,426 train, 936 val and 9,261 test images, with the val
+split made by scene. Results are not comparable with the full-benchmark Table II of \cite{aitodr}.
+
+\textbf{Training.} YOLO26n-OBB \cite{yolo26} from COCO weights, Ultralytics 8.4.174 pinned, 24 epochs, SGD, imgsz 800, flips
+only, batch 16. The benchmark of \cite{aitodr} uses 12 and 40 epochs; val AP was still rising at epoch 24, so conclusions
+hold for this recipe only.
+
+\textbf{Evaluation.} Official AITODReval (1,500 detections per image and class, \texttt{max\_det}=12,000; oracle AP 0.996),
+scoring \texttt{last.pt}, with the end-to-end (e2e) and NMS heads reported separately.
+
+\textbf{Statistics and preregistration.} Twelve runs (A0, A1, A8, A2 $\times$ seeds 1--3) are exploratory. Before training
+seeds 4--9 we fixed one primary comparison (P1): $\Delta$AP$_{vt}$(A2$-$A0), e2e head, seeds 4--9 only \todo{commit hash and
+date of the preregistration}. Uncertainty combines a paired scene-clustered bootstrap ($B=10{,}000$) with seed variation:
+$\Delta\pm t_{0.975,n-1}\sqrt{\mathrm{se}_\text{scene}^2+\mathrm{se}_\text{seed}^2}$. P1 is confirmed if this interval excludes
+zero and $\Delta\geq 0.006$, the minimal effect of interest derived from seed variation. All other comparisons are descriptive.
+
+\textbf{Per-box analysis.} On test boxes of seeds 4--9, a box is detected if a same-class prediction with score $\geq 0.25$
+matches it at rotated IoU $\geq 0.5$ under greedy score-ordered matching; score $\geq 0.05$ is a sensitivity check. Undetected
+boxes get one fate: taken by a neighbour's prediction, wrong class, poor localisation ($0.1\leq$ IoU $<0.5$), both, or missed.
+
+\section{Results}
+\subsection{Where boxes lose candidates and positives (labels only)}
+Table~\ref{tab:stages} and Fig.~\ref{fig:stages} use all \rqNgt{} boxes of woX train+val. Relative to A0, A2 rescues
+\rqRescuedTwo{} boxes from zero positives (proxy) and newly starves \rqStarvedTwo{}; A8: \rqRescuedEight{} and
+\rqStarvedEight{}; A1: \rqRescuedOne{} and \rqStarvedOne{}. Table~\ref{tab:density} shows that the remaining loss under a floor
+sits in dense clusters. These are predictions from geometry; Section~\ref{sec:link} tests them on detector output.
+
+\begin{table}[t]\centering\caption{Assignment stages per box, woX train+val (labels only).}
+\label{tab:stages}\footnotesize\input{tables/rq2_stages}\end{table}
+\begin{table}[t]\centering\caption{Boxes without any positive (proxy, \%) by number of box centres within 16 px.}
+\label{tab:density}\footnotesize\input{tables/rq2_density}\end{table}
+\begin{figure}[t]\centering\includegraphics[width=0.7\columnwidth]{figs/rq2_stages}
+\caption{Share of boxes without a positive: no candidate (exact) and lost at conflict (proxy).}
+\label{fig:stages}\end{figure}
+
+\subsection{Detection accuracy}
+\textbf{Exploratory, seeds 1--3 (Table~\ref{tab:explor}).} For A2$-$A0 with the e2e head, $\Delta$AP$_{vt}$ is \dAvtAtwo{}. The
+scene-only interval is [\dAvtAtwoSceneLo{}, \dAvtAtwoSceneHi{}], while the interval that also includes seed variation is
+[\dAvtAtwoCombLo{}, \dAvtAtwoCombHi{}]. Of the 40 combined intervals, \nCombExcl{} exclude zero. With three seeds these
+results do not support a claim in either direction.
+
+\textbf{Exploratory link to assignment, val.} Recall of boxes under 8 px rose with the number of assigned positives
+(\recallZero{} with none, \recallOne{} with one, \recallFive{} with five to nine, pooled over 12 runs, score $\geq 0.25$). This is
+an association: task-aligned selection uses the model's own predictions, so well-predicted boxes attract more positives.
+The preregistered geometric test on candidate count did not support a positive effect (coefficient \gateCoef{}, 95\% CI
+[\gateLo{}, \gateHi{}]), so we dropped a planned adaptive floor.
+
+\textbf{Confirmatory, seeds 4--9.} \todo{P1 verdict from c11x-confirm-results/p1\_verdict.json. Descriptive table from
+ci\_scene\_seed.csv, including the trade-off at AP$_s$ and AP$_m$. R0 reproducibility check.}
+
+\begin{table}[t]\centering\caption{Exploratory $\Delta$ on seeds 1--3, woX test. Scene: scene-clustered bootstrap only. Scene + seed:
+combined interval with $t$ on 2 degrees of freedom.}\label{tab:explor}\scriptsize\input{tables/c11x_explor}\end{table}
+
+\subsection{What happens to boxes after assignment}\label{sec:link}
+\todo{From mechanism/: M1 (A2$-$A0 on boxes A0 starves, against other very tiny boxes), M2 (A2$-$A8, dense against isolated),
+M3 (fate table and recall against IoU). Report predictions that failed.}
+
+\section{Discussion}
+\todo{Write after the confirmatory runs, along these questions: Does the AP$_{vt}$ gain come from the boxes the floor rescues,
+given that A2 changes the candidate region of nearly every box? What limits AP$_{vt}$ once almost every box has a positive:
+missed boxes, localisation, or conflicts? What do AP$_s$ and AP$_m$ cost? Should the floor be chosen by coverage (A8) or kept
+at the library default (A2)?}
+
+\textbf{Limitations.} One detector size; a 24-epoch recipe; the woX subset; one dataset \todo{or SODA-A, if run under its own
+annex}; a proxy for assignment stages 2--3; matched boxes only for any localisation statistic; label noise on boxes of a few
+pixels, which the evaluator's round trip already shows (only part of the boxes reach IoU $\geq 0.999$ with themselves).
+
+\section{Conclusion}
+\todo{3--4 sentences, only from confirmed results.}
+
+\section*{Reproducibility}
+Code: \texttt{scripts/rq2/}, \texttt{scripts/c11x/} and \texttt{scripts/c11/} \todo{publish scripts/c11}. Configurations, seeds
+and DOTA-format predictions: \todo{release link}.
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+\end{document}

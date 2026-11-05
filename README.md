@@ -16,7 +16,19 @@ Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt 
 
 Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
 
-## Trạng thái hiện hành — 30/10/2026 (C-20)
+## Trạng thái hiện hành — 06/11/2026 (C-21)
+
+- **Đích:** tạp chí, bài chẩn đoán có xác nhận. Kế hoạch: [notes/09-q4-plan/t07-journal-plan-2026-11-06.md](notes/09-q4-plan/t07-journal-plan-2026-11-06.md).
+- **Cổng H2 trượt:** hủy K-floor. Preregistration: [experiments/preregistration.md](experiments/preregistration.md), phụ lục A2.
+- **Việc phải train:** A0, A8, A2 × seed 4–9 (18 run) + R0, bằng [notebooks/C11x_train_confirm_colab.ipynb](notebooks/C11x_train_confirm_colab.ipynb).
+- **Bản thảo:** [paper/main.tex](paper/main.tex).
+- **Chưa có:** kết quả xác nhận, tính mới đã xác lập, band venue.
+
+## Cập nhật 05/11/2026 — RQ2 offline và khung bài báo
+
+Đã chạy RQ2 offline trên toàn bộ nhãn woX, có bản nháp preregistration và khung bài IEEE: xem [notes/09-q4-plan/](notes/09-q4-plan/README.md). Ledger không đổi; venue vẫn chưa gán band.
+
+## Trạng thái 30/10/2026 (C-20) — lịch sử, xem mục 06/11 ở trên
 
 - **Đã chạy C-11 (thăm dò, chưa preregistration):** 12 run YOLO26n-OBB = 4 quy tắc vùng ứng viên (A0/A1/A8/A2) × 3 seed, AI-TOD-R giao thức woX (chỉ ảnh không thuộc xView), Colab A100. Notebook: [`C11_colab.ipynb`](C11_colab.ipynb); giải thích: [notes/08-c11-execution/](notes/08-c11-execution/README.md).
   - Head e2e: sàn ứng viên tăng AP_vt khoảng +0,007 đến +0,009; AP tổng chỉ tăng ≤ +0,0035, nhỏ hơn dao động theo seed; A1/A8/A2 chưa phân biệt được.
