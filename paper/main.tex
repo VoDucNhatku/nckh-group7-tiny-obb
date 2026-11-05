@@ -64,9 +64,10 @@ and angle; this guarantees a candidate, not a positive or an AP optimum.
 
 \textbf{Label-only stage analysis.} Step (1) is exact: our implementation reproduces the library's
 candidate mask on random boxes (unit test). Steps (2)--(3) need predictions; we replace the
-alignment metric by anchor-to-centre distance and report it as a \emph{proxy}, bracketed by two exact
-quantities: GTs with no candidate (lower bound) and GTs whose every candidate is shared (upper
-bound). With no mosaic, scaling or translation and $800\times800$ inputs, flips map the lattice onto
+alignment metric by anchor-to-centre distance and report it as a \emph{proxy}, together with two exact
+quantities: GTs with no candidate (a lower bound on GTs without a positive) and GTs whose every
+candidate is shared (a sharing diagnostic; top-$k$ can still drop unshared candidates, so it is
+not an upper bound). With no mosaic, scaling or translation and $800\times800$ inputs, flips map the lattice onto
 itself, so the counts hold for every training sample.
 
 \section{Experimental Setup}

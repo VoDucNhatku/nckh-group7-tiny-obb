@@ -49,7 +49,7 @@ def main():
     ep = next((c for c in df.columns if c.split(".")[-1] in ("epoch", "ep")), None)
     if ep is not None:
         df = df[df[ep] > df[ep].max() - args.last_epochs]
-    keys = ["arm"] + [c for c in df.columns if any(h == c.split(".")[-1] or c.split(".")[-1].startswith(h) for h in GROUP_HINTS) and df[c].dtype == object]
+    keys = ["arm"] + [c for c in df.columns if c != "arm" and any(h == c.split(".")[-1] or c.split(".")[-1].startswith(h) for h in GROUP_HINTS) and df[c].dtype == object]
     num = [c for c in df.select_dtypes("number").columns if c not in ("seed", ep)]
     piv = df.groupby(keys)[num].mean().reset_index()
     piv.to_csv(args.out / "diag_pivot_last_epochs.csv", index=False)

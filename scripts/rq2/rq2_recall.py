@@ -94,11 +94,14 @@ def match_image(gpolys, gcls, preds_img: dict, iou_thr: float, score_thr: float)
             continue
         scores, polys = preds_img[c]
         gcent = np.array([gpolys[i].reshape(4, 2).mean(0) for i in gi])
+        grad = np.array([np.linalg.norm(gpolys[i].reshape(4, 2) - gcent[k], axis=1).max() for k, i in enumerate(gi)])
         for s, q in zip(scores, polys):
             if s < score_thr:
                 break
-            qc = q.reshape(4, 2).mean(0)
-            near = np.where((np.abs(gcent - qc) < 64).all(1) & ~det[gi])[0]
+            qp = q.reshape(4, 2)
+            qc = qp.mean(0)
+            qrad = np.linalg.norm(qp - qc, axis=1).max()
+            near = np.where((np.linalg.norm(gcent - qc, axis=1) <= grad + qrad) & ~det[gi])[0]
             best, bi = iou_thr, -1
             for j in near:
                 iou = rotated_iou(gpolys[gi[j]], q)

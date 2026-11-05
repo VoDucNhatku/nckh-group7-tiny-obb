@@ -11,9 +11,11 @@ label assignment that can be computed from labels alone:
 
 Stages 2-3 depend on predictions, so they are reported as a **label-only proxy**: the
 alignment metric is replaced by distance from the anchor to the GT centre (closer = better).
-Two exact bounds bracket the proxy: ``zero_cand`` (lower bound on GTs with no positive) and
-``all_shared`` (GT whose every candidate is also a candidate of another GT; such a GT *can*
-lose all positives, the upper bound). Online logs (``c11_assign_diag.jsonl``) remain the
+Two exact quantities go with the proxy: ``zero_cand`` (a lower bound on GTs with no positive)
+and ``all_shared`` (every candidate of the GT is also a candidate of another GT). ``all_shared``
+is a sharing diagnostic, not an upper bound: top-k can drop a GT's unshared candidates, and
+zero alignment scores can drop candidates, so a GT may end with no positive while
+``all_shared`` is false. Online logs (``c11_assign_diag.jsonl``) remain the
 measurement; this script fixes predictions *before* looking at them.
 
 Usage:
