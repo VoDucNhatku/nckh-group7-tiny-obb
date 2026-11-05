@@ -120,14 +120,14 @@ def test_clear_case_trains_with_a8():
     d = frame(rec=rec, fates=FOCUSED)
     r = ed.decide(d, d)
     assert r["verdict"] == "train" and r["C2_reason"]["top"] == "miss"
-    assert r["arms_if_training"] == ["A0", "A8", "A2"] and r["runs_if_training"] == 18
+    assert r["arms_if_training"] == ["A0", "A8", "A2"] and r["runs_if_training"] == 6
 
 
 def test_no_density_contrast_drops_a8():
     rec = lambda a, st, de: 0.3 + (0.2 if st and a != "A0" else 0)  # noqa: E731
     d = frame(rec=rec, fates=FOCUSED, n=20000)
     r = ed.decide(d, d)
-    assert r["verdict"] == "train" and r["arms_if_training"] == ["A0", "A2"] and r["runs_if_training"] == 12
+    assert r["verdict"] == "train" and r["arms_if_training"] == ["A0", "A2"] and r["runs_if_training"] == 4
 
 
 def test_no_rescue_and_no_reason_stops():

@@ -63,5 +63,5 @@ def decide(df25: pd.DataFrame, df05: pd.DataFrame) -> dict:
     else:
         verdict = "do_not_train_yet"
     arms = ["A0", "A8", "A2"] if c3["passed"] else ["A0", "A2"]
-    return dict(verdict=verdict, arms_if_training=arms, runs_if_training=len(arms) * 6, C1_rescue=c1, C2_reason=c2,
+    return dict(verdict=verdict, arms_if_training=arms, runs_if_training=len(arms) * 2, C1_rescue=c1, C2_reason=c2,
                 C3_keep_A8=c3, thresholds=dict(RESCUE_MIN=RESCUE_MIN, REASON_MIN=REASON_MIN, A8_MIN=A8_MIN))

@@ -23,9 +23,9 @@ def cells():
         md("""
 # C11x · Phân tích 12 run cũ trên val (không train)
 
-**Mục đích:** biết bài có nội dung đáng viết không, **trước khi** tốn khoảng 19,5 giờ GPU cho run mới.
+**Mục đích:** biết bài có nội dung đáng viết không, **trước khi** tốn GPU cho seed 4–5.
 
-**Vì sao dùng val:** tập test và seed 4–9 vẫn chưa bị xem, nên phép xác nhận sau này vẫn sạch. Notebook này **không chạm tập test**.
+**Vì sao dùng val:** recall theo GT trên tập test và seed 4–5 vẫn chưa bị xem. Notebook này **không chạm tập test**.
 
 **Cách chạy:** Runtime → **L4 hoặc A100** → **Run all**. Bị ngắt thì Run all lại; phần đã xong tự bỏ qua.
 
@@ -37,7 +37,7 @@ def cells():
 | C2 · Rõ lý do | Trong GT rất nhỏ mà A2 chưa phát hiện được: một loại lỗi chiếm ≥ 50% (score ≥ 0,05) |
 | C3 · Giữ A8 | [A2 − A8] ở cụm dày trừ ở GT cô lập: cùng dấu ở mọi seed, độ lớn trung bình ≥ 0,01 |
 
-**Kết quả:** đạt cả C1 và C2 → train. Đạt một → nhóm quyết. Không đạt cái nào → chưa train. C3 trượt → bỏ A8, còn 12 run thay vì 18.
+**Kết quả:** đạt cả C1 và C2 → train. Đạt một → nhóm quyết. Không đạt cái nào → chưa train. C3 trượt → bỏ A8, còn 4 run thay vì 6.
 
 **Khi xong:** gửi lại nội dung ô cuối cùng (và thư mục `c11x-explore-val` nếu được).
 """),

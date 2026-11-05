@@ -20,7 +20,7 @@ Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế ho
 
 - **Đích:** tạp chí, bài chẩn đoán có xác nhận. Kế hoạch: [notes/09-q4-plan/t07-journal-plan-2026-11-06.md](notes/09-q4-plan/t07-journal-plan-2026-11-06.md).
 - **Cổng H2 trượt:** hủy K-floor. Preregistration: [experiments/preregistration.md](experiments/preregistration.md), phụ lục A2.
-- **Việc phải train:** A0, A8, A2 × seed 4–9 (18 run) + R0, bằng [notebooks/C11x_train_confirm_colab.ipynb](notebooks/C11x_train_confirm_colab.ipynb).
+- **Việc phải train:** A0, A8, A2 × seed 4–5 (6 run) + R0, sau khi chạy `notebooks/C11x_explore_val_colab.ipynb`, bằng [notebooks/C11x_train_confirm_colab.ipynb](notebooks/C11x_train_confirm_colab.ipynb).
 - **Bản thảo:** [paper/main.tex](paper/main.tex).
 - **Chưa có:** kết quả xác nhận, tính mới đã xác lập, band venue.
 
