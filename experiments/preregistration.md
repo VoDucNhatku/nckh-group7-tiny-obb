@@ -112,7 +112,14 @@ Train A2 seed 1 bằng `c11x_train.py`, so với `c11_A2_s1` cũ.
 - Điểm test e2e và nms của cả 12 run seed 1–3; bootstrap B = 10.000 hai head; CI gộp (`experiments/2026-10-30-c11x-analysis/`).
 - Bảng theo GT trên val: recall theo số mẫu dương, hệ số arm, sai số góc, dao động theo seed.
 - Phân tích chỉ dùng nhãn trên trainval và test (`experiments/2026-11-05-rq2-offline-woX/`); không dùng dự đoán của detector.
-- **Trước khi khóa sẽ xem thêm:** số phận GT và recall theo IoU trên **val** của 12 run (`notebooks/C11x_explore_val_colab.ipynb`). Điền kết quả và quyết định vào đây trước khi merge: `[chưa chạy]`.
+- **Đã xem thêm trước khi khóa:** số phận GT và recall theo IoU trên **val** của 12 run, chạy ngày 06/11 (`notebooks/C11x_explore_val_colab.ipynb`, commit `ea8b725`; kết quả và cách chạy ở `experiments/2026-11-06-c11x-explore-val/`). Trung bình theo seed, GT rất nhỏ, head e2e:
+  - **C1 đạt.** Với 947 GT mà A0 không cho ứng viên, recall(A2) − recall(A0) ở score ≥ 0,25 là +0,116 / +0,140 / +0,141 (seed 1/2/3), trung bình +0,133.
+  - **C2 đạt.** Trong GT rất nhỏ mà A2 chưa phát hiện (score ≥ 0,05): `loc` 69,7%, `miss` 29,0%, `both` 1,1%, còn lại < 0,3%.
+  - **C3 trượt.** [A2 − A8] ở cụm dày trừ ở GT cô lập: −0,052 / −0,013 / +0,003, không cùng dấu.
+  - **Quyết định theo luật đã ghi:** train; bỏ A8 và M2; 4 run.
+  - **Mô tả, không dùng làm kết luận:** recall GT rất nhỏ ở IoU 0,5 (score ≥ 0,25) là A0 0,286; A1 0,336; A2 0,339; A8 0,348. Ở IoU 0,25 là 0,496; 0,555; 0,550; 0,585. A8 có recall cao nhất trên val nhưng vẫn bị bỏ theo C3, vì C3 hỏi về tương phản mật độ, không hỏi arm nào tốt hơn; điều này phải ghi trong bài.
+  - **Hệ quả cho các phép trên test:** M1 và M3(c) đã thấy cùng chiều trên val, với cùng 12 mô hình. Trên test chúng là kiểm lại trên ảnh khác và thêm seed 4–5, không phải dự báo chưa từng thấy dữ liệu.
+  - `old_dota_ok = false` do lần chạy không mount Drive nên không tải `dota_e2e`; xem `log.md` của lần chạy. Bản `c11_pipeline.py` trên Drive lưu dự đoán ở conf 0,001.
 - **Chưa xem:** mọi kết quả seed 4–5; recall hay số phận theo GT trên tập test của bất kỳ run nào.
 
 **2. Trạng thái §3.** Toàn bộ §3 đã chạy ngày 30–31/10, **trước** khi file này được merge (commit code `e29e3fe`, notebook `f7b30f7`). Vì vậy kết quả §3 báo là **thăm dò**, không gọi là xác nhận hay bán-xác nhận.
@@ -124,7 +131,7 @@ Sai lệch so với mô tả ban đầu, đều do lỗi kỹ thuật lúc chạ
 
 **4. Run mới, thay cho §4.** A0, A8, A2 × seed **4, 5** = 6 run, đúng tinh thần ROADMAP tuần 3 và ledger C-11 ("5 seed cho cặp chính"). Train bằng **cùng đường code với seed 1–3** (`c11_pipeline.train_arm` trên Drive), cùng recipe, cùng GPU A100, ghi vào `runs-woX`, để gộp được. Notebook: `notebooks/C11x_train_confirm_colab.ipynb`.
 - A1 và A4 không chạy.
-- **Còn phụ thuộc bước val ở mục 1,** theo tiêu chí ghi trong `scripts/rq2/explore_decision.py`: đạt C1 **hoặc** C2 thì train; trượt cả hai thì chưa train; C3 trượt thì bỏ A8 và M2, còn 4 run. Notebook train đọc arm từ `decision.json` của notebook val, không sửa tay. Ghi kết quả vào mục 1 trước khi merge; sau khi merge thì không đổi.
+- **Theo bước val ở mục 1** (tiêu chí trong `scripts/rq2/explore_decision.py`: đạt C1 **hoặc** C2 thì train; trượt cả hai thì chưa train; C3 trượt thì bỏ A8 và M2): C1, C2 đạt, C3 trượt. **Chốt: A0, A2 × seed 4, 5 = 4 run**, cộng R0. Notebook train đọc arm từ `decision.json` của notebook val, không sửa tay.
 - **Sửa ngày 06/11, trước khi có bất kỳ output val nào:** C2 trước đây đạt khi bất kỳ loại lỗi nào chiếm ≥ 50%, kể cả `miss`. `miss` là nhóm còn lại (không dự đoán nào đạt IoU 0,1), nên nó không cho biết lý do, và M3(a) lại dự báo nó là nhóm lớn nhất: C2 cũ gần như chắc đạt. Nay C2 chỉ đạt khi loại lớn nhất là `loc`, `lost_to_neighbour`, `cls` hoặc `both`. Nhánh "đạt một tiêu chí thì nhóm quyết" được thay bằng luật cố định ở trên, để quyết định không phụ thuộc người xem kết quả.
 
 **5. Kiểm tái lập R0, thay ngưỡng §6.** Train lại A2 seed 1 bằng cùng đường code, so với `c11_A2_s1` cũ. Khớp khi |Δ mAP50-95 val ở epoch 24| ≤ 0,005 và |Δ AP test e2e| ≤ 0,005 (bằng MEI_AP). Thiếu `results.csv` của một trong hai run thì không kiểm được điều kiện đầu, và tính là không khớp. Lý do nới: §6 viết cho đường code mới; ở đây cùng đường code, nên chỉ cần phát hiện môi trường Colab đổi quá cỡ dao động theo seed. **Không khớp:** không gộp seed 1–3 với seed 4–5, báo riêng từng nhóm và báo độ lệch.
@@ -143,6 +150,7 @@ Sai lệch so với mô tả ban đầu, đều do lỗi kỹ thuật lúc chạ
 
 **8. Phép thử cơ chế, trên recall theo GT của tập test, seed 1–5.** Recall theo GT trên test chưa ai xem, kể cả của seed 1–3. Recall: khớp cùng lớp theo thứ tự điểm, IoU xoay ≥ 0,5. Head e2e; chính score ≥ 0,25, độ nhạy score ≥ 0,05. Code: `scripts/rq2/rq2_errors.py`, `scripts/rq2/rq2_did.py`.
 - **Phạm vi chạy, chốt trước bằng số đo trên val:** `explore_decision.test_scope` lấy số giây trung bình mỗi run (head e2e) trên val, nhân theo tỉ lệ số GT test/val và số run. Nếu cả hai mức score vừa trong 10 giờ thì chạy cả hai; nếu không, chỉ chạy score ≥ 0,25 và bài ghi rằng phép độ nhạy 0,05 bị bỏ vì thời gian. Notebook val cũng kiểm `dota_e2e` của seed 1–3 có đủ và được lưu ở ngưỡng ≤ 0,05 không (`old_dota_check.json`); nếu không thì phép độ nhạy 0,05 không làm được cho seed 1–3, và phải ghi lại ở mục 1.
+- **Chốt theo số đo ngày 06/11:** khoảng 0,42 giờ cho mỗi mức score, nên **chạy cả score ≥ 0,25 và ≥ 0,05**. M2 bị hủy vì A8 bị bỏ (mục 4); chỉ còn M1 và M3.
 - **M1 (từ H1 của bản nháp PR #29).** Trong GT rất nhỏ, hiệu của hiệu Δrecall(A2 − A0) giữa GT có `A0_cand == 0` và GT còn lại. Dự báo: **> 0**.
 - **M2 (từ H2 của bản nháp PR #29).** Trong GT rất nhỏ, hiệu của hiệu Δrecall(A2 − A8) giữa GT có ≥ 3 tâm GT khác trong 16 px và GT cô lập. Dự báo: **> 0**. Cơ sở: phân tích nhãn. Lưu ý đã thấy trên val: hệ số arm tổng thể của A8 (0,195) cao hơn A2 (0,167), nên dự báo này có thể trượt.
 - **Được ủng hộ** khi đúng dấu **và** CI gộp (scene bootstrap B = 10.000 + seed, theo A1, 4 bậc tự do) không chứa 0.

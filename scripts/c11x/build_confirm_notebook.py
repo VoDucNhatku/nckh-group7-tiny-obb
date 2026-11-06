@@ -16,28 +16,28 @@ from build_notebooks import DATA, DATA_MD, INSTALL, SETUP, SETUP_MD, TESTS, code
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "notebooks" / "C11x_train_confirm_colab.ipynb"
-BRANCH = "admin/journal-diagnostic"
+BRANCH = "main"
 
 
 def cells():
     return [
         md("""
-# C11x · Thêm seed 4–5: A0, A8, A2
+# C11x · Thêm seed 4–5: A0, A2
 
-Theo `experiments/preregistration.md`, **phụ lục A2**. Train bằng cùng đường code với seed 1–3 để gộp được 5 seed.
+Theo `experiments/preregistration.md`, **phụ lục A2**. Train bằng cùng đường code với seed 1–3 để gộp được 5 seed. Arm đọc từ `decision.json` của notebook val (06/11: A0, A2; A8 bị bỏ vì C3 trượt).
 
 Notebook có **hai đợt**, để tiết kiệm compute unit. Đổi biến `PHASE` ở ô cấu hình.
 
 | Đợt | `PHASE` | Runtime | Làm gì | Thời gian [ước lượng] | CU [ước lượng] |
 |---|---|---|---|---|---|
-| 1 | `"train"` | **A100** | R0 + 6 run, chấm 13 lần | khoảng 5,7 giờ | khoảng 31 (86 nếu A100 tốn 15 CU/giờ) |
-| 2 | `"analyze"` | **L4** | Bootstrap, phân tích theo GT | khoảng 9–19 giờ | khoảng 16–33 |
+| 1 | `"train"` | **A100** | R0 + 4 run, chấm 9 lần | khoảng 4 giờ | khoảng 21 (60 nếu A100 tốn 15 CU/giờ) |
+| 2 | `"analyze"` | **L4** | Bootstrap, phân tích theo GT | khoảng 4 giờ | khoảng 7 (20 nếu L4 tốn 5 CU/giờ) |
 
 **Cách chạy:** Run all. Bị ngắt thì Run all lại; phần đã xong tự bỏ qua. Xong đợt 1, notebook tự dừng và nhắc đổi sang đợt 2.
 
 Bootstrap chỉ ghi file khi xong cả head, nên bị ngắt giữa chừng là mất phần của head đó. Để tab mở, máy không ngủ.
 
-**Căn cứ ước lượng:** train 0,56 giờ/run và chấm 337 giây/run/head đo ở `C11_colab.ipynb`. Bootstrap 0,93 giây/vòng trên L4 với 12 run ở `notes/08-c11-execution/t07-c11x-handoff-2026-10-30.md`, giả định tăng tuyến tính theo số run. Phân tích theo GT mới đo trên dữ liệu giả. Tốc độ CU là số cộng đồng đo, Google không công bố: đọc tốc độ thật trong Colab.
+**Căn cứ ước lượng:** train 0,56 giờ/run và chấm 337 giây/run/head đo ở `C11_colab.ipynb`. Bootstrap 0,93 giây/vòng trên L4 với 12 run ở `notes/08-c11-execution/t07-c11x-handoff-2026-10-30.md`, giả định tăng tuyến tính theo số run. Phân tích theo GT: 0,42 giờ cho mỗi mức score, ước từ thời gian đo trên val (A100) trong `experiments/2026-11-06-c11x-explore-val/decision.json`. Tốc độ CU là số cộng đồng đo, Google không công bố: đọc tốc độ thật trong Colab.
 """),
         md(SETUP_MD),
         code(SETUP + f'''
