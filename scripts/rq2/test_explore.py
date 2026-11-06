@@ -111,15 +111,17 @@ def frame(arms=("A0", "A8", "A2"), seeds=(1, 2, 3), n=2000, rec=None, fates=None
     return pd.concat(out, ignore_index=True)
 
 
-FOCUSED = {"miss": 0.8, "loc": 0.2}
+FOCUSED = {"loc": 0.8, "miss": 0.2}
+MISS_HEAVY = {"miss": 0.8, "loc": 0.2}
 SPREAD = {"miss": 0.34, "loc": 0.33, "cls": 0.33}
+FLAT = lambda a, st, de: 0.3  # noqa: E731
 
 
 def test_clear_case_trains_with_a8():
     rec = lambda a, st, de: 0.5 + (0.2 if st and a != "A0" else 0) + (0.2 if de and a == "A2" else 0)  # noqa: E731
     d = frame(rec=rec, fates=FOCUSED)
     r = ed.decide(d, d)
-    assert r["verdict"] == "train" and r["C2_reason"]["top"] == "miss"
+    assert r["verdict"] == "train" and r["C2_reason"]["top"] == "loc"
     assert r["arms_if_training"] == ["A0", "A8", "A2"] and r["runs_if_training"] == 6
 
 
@@ -131,15 +133,29 @@ def test_no_density_contrast_drops_a8():
 
 
 def test_no_rescue_and_no_reason_stops():
-    rec = lambda a, st, de: 0.3  # noqa: E731
-    d = frame(rec=rec, fates=SPREAD, n=20000)
+    d = frame(rec=FLAT, fates=SPREAD, n=20000)
     assert ed.decide(d, d)["verdict"] == "do_not_train_yet"
 
 
-def test_one_criterion_leaves_it_to_the_team():
-    rec = lambda a, st, de: 0.3  # noqa: E731
-    d = frame(rec=rec, fates=FOCUSED, n=20000)
-    assert ed.decide(d, d)["verdict"] == "team_decides"
+def test_miss_cannot_pass_c2():
+    d = frame(rec=FLAT, fates=MISS_HEAVY, n=20000)
+    r = ed.decide(d, d)
+    assert r["C2_reason"]["top"] == "miss" and not r["C2_reason"]["passed"]
+    assert r["verdict"] == "do_not_train_yet"
+
+
+def test_either_criterion_alone_trains():
+    d = frame(rec=FLAT, fates=FOCUSED, n=20000)
+    assert ed.decide(d, d)["verdict"] == "train"
+    rescue_only = lambda a, st, de: 0.3 + (0.2 if st and a != "A0" else 0)  # noqa: E731
+    d = frame(rec=rescue_only, fates=SPREAD, n=20000)
+    assert ed.decide(d, d)["verdict"] == "train"
+
+
+def test_scope_drops_low_score_level_when_over_budget():
+    n_val = ed.N_GT_TEST // 10
+    assert ed.test_scope(60, n_val, 15)["scores"] == [0.25, 0.05]  # 60 s x 10 x 15 = 2.5 h per level
+    assert ed.test_scope(200, n_val, 15)["scores"] == [0.25]  # 8.3 h per level
 
 
 def test_module_docstring_states_thresholds_are_design():

@@ -70,6 +70,21 @@ def read_predictions(folder: Path, keep: set[str]) -> dict:
     return out
 
 
+def score_floor(folder: Path) -> dict:
+    """Lowest score and box count in a prediction folder of either layout, to check the confidence it was saved at."""
+    folder = Path(folder)
+    task1 = list(folder.glob("Task1_*.txt"))
+    files, col = (task1, 1) if task1 else (list(folder.glob("*.txt")), 9)
+    low, n = np.inf, 0
+    for f in files:
+        for line in f.read_text().splitlines():
+            p = line.split()
+            if len(p) >= 10:
+                low, n = min(low, float(p[col])), n + 1
+    return dict(layout="task1" if task1 else "per_image", n_files=len(files), n_boxes=n,
+                min_score=float(low) if n else None)
+
+
 def gt_polys(path: Path):
     """GT polygons after the same filtering as geometry.read_dota_label, rebuilt from xywhr."""
     boxes, cls = g.read_dota_label(path)

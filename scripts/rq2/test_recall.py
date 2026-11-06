@@ -49,3 +49,14 @@ def test_recall_pipeline(tmp_path):
     det = pd.concat(frames).merge(off, on=["stem", "gt"], how="left")
     s = rr.summarize(det)
     assert s["paired_delta_vs_A0"] and all(x["d_recall"] >= 0 for x in s["paired_delta_vs_A0"])
+
+
+def test_score_floor_reads_both_layouts(tmp_path):
+    pts = "10 10 20 10 20 20 10 20"
+    t1, per = tmp_path / "t1", tmp_path / "per"
+    t1.mkdir(), per.mkdir()
+    (t1 / "Task1_vehicle.txt").write_text(f"a 0.9 {pts}\nb 0.012 {pts}\n")
+    (per / "a.txt").write_text(f"{pts} vehicle 0.3\n{pts} ship 0.07\n")
+    assert rr.score_floor(t1) == dict(layout="task1", n_files=1, n_boxes=2, min_score=0.012)
+    assert rr.score_floor(per)["min_score"] == 0.07
+    assert rr.score_floor(tmp_path / "missing")["n_boxes"] == 0
