@@ -7,10 +7,10 @@
 - NCKH nhóm 7, môn DPL302m, FPTU. Đề tài gốc #7: *Multi-scale Aerial Object Detection and Segmentation*.
 - Bản đã nộp trường: `notes/02-proposal/Group7.pdf` (C-10: YOLO-OBB trên AI-TOD-R, chẩn đoán STAL). Không thay bản nộp này.
 - Từ 13/10 nhóm mở lại nghiên cứu theo hướng phát hiện vật thể tí hon nhìn từ UAV (UAV-view tiny-object detection). Hướng này không bắt buộc dùng YOLO, OBB hay STAL.
-- **Trạng thái hiện hành** là C-19 (15/10), tóm tắt ở `notes/07-audits/t07-q2-audit-2026-10-15/REPORT.md`:
-  - có ba hướng ứng viên R1, R2, R3, chưa chọn hướng nào;
-  - chưa có band venue;
-  - **chưa chạy thí nghiệm nào**.
+- **Trạng thái hiện hành** là C-20 (30/10), REVISION của C-19 (15/10, `notes/07-audits/t07-q2-audit-2026-10-15/REPORT.md`):
+  - đã chạy 12 run **thăm dò** của C-11 (A0/A1/A8/A2 × 3 seed, woX), trước preregistration: `C11_colab.ipynb`, `notes/08-c11-execution/`;
+  - kế hoạch C11x và preregistration PREREG-C11X-v1 (`experiments/preregistration.md`): không chấm hay train mới trước khi file này có trên `main`;
+  - chưa có kết quả xác nhận; chưa có band venue.
 - Repo **public**.
 
 ## 2. Bản đồ thư mục
@@ -28,11 +28,13 @@
 | `notes/04-slr/` | SLR 80 bài, **tạm dừng**, toàn bộ ở `_local/` | Lịch sử, chỉ có ở máy |
 | `notes/05-venue-direction/` | Phản biện venue và hướng nâng cấp (11–15/10) | Lịch sử; đã bị C-19 sửa |
 | `notes/06-uav-research-2026-10-13/` | Corpus 50 bài, problem map, deep study | Nền nghiên cứu hiện hành |
-| `notes/07-audits/` | Audit C-19, phân tích lỗi | **Hiện hành; kết luận đúng nhất** |
+| `notes/07-audits/` | Audit C-19, phân tích lỗi | Hiện hành cho phần venue/hình học |
+| `notes/08-c11-execution/` | Giải thích notebook C11, kế hoạch C11x | **Hiện hành** |
 | `notes/99-archive/` | Bản đã bị thay (proposal v1, roadmap 14 tuần…) | Lưu trữ |
 | `notes/MOVED-2026-10-15.json` | Bảng ánh xạ đường dẫn cũ → mới sau lần sắp xếp 15/10 | Tra cứu |
-| `scripts/` | Script dựng hình và docx; script SLR ở local | |
-| `experiments/` | Mỗi lần chạy một thư mục `YYYY-MM-DD-<run>/` | Chưa có run |
+| `scripts/` | Script dựng hình và docx; `scripts/c11x/` code C11x + test; script SLR ở local | `scripts/c11/` vẫn chỉ ở Drive |
+| `C11_colab.ipynb`, `notebooks/` | Notebook Colab C11 (đã chạy) và C11x (phân tích, train sàn K) | Hiện hành |
+| `experiments/` | `preregistration.md`; mỗi lần chạy một thư mục `YYYY-MM-DD-<run>/` | Run C11 ở Drive, chưa đồng bộ |
 | `paper/` | Bản thảo bài báo | Chưa bắt đầu |
 | `papers/`, `logs/`, `scripts/t07-slr/data/` | PDF bài báo, log, cache | **Chỉ có ở máy, không lên Git** |
 
