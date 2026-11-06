@@ -43,9 +43,23 @@ Bootstrap chỉ ghi file khi xong cả head, nên bị ngắt giữa chừng là
         code(SETUP + f'''
 BRANCH = "{BRANCH}"                                   # đổi thành "main" sau khi merge
 PHASE = "train"                                       # "train" (A100) rồi "analyze" (L4)
-ARMS  = ["A0", "A8", "A2"]                            # phụ lục A2; bỏ "A8" nếu tiêu chí C3 trượt
+if not EXP_DRIVE.exists():
+    raise StopRun(f"Không thấy {{EXP_DRIVE}}. Acc này cần quyền Editor trên thư mục NCKH và một shortcut tên NCKH "
+                  "trong My Drive (Shared with me → chuột phải → Organize → Add shortcut → My Drive), rồi Run all lại.")
+# Arm và mức score lấy từ quyết định của notebook val (phụ lục A2, mục 4 và 8), không sửa tay.
+DECISION_FILE = EXP_DRIVE / "c11x-explore-val" / "decision.json"
+if not DECISION_FILE.exists():
+    raise StopRun("Chưa có decision.json của notebook val. Chạy C11x_explore_val_colab.ipynb trước.")
+DECISION = json.loads(DECISION_FILE.read_text())
+if DECISION["verdict"] != "train":
+    raise StopRun(f"Notebook val quyết định {{DECISION['verdict']}}: không train (phụ lục A2, mục 4).")
+if not isinstance(DECISION.get("test_scope"), dict):
+    raise StopRun(f"decision.json thiếu test_scope: {{DECISION.get('test_scope')}}")
+ARMS = DECISION["arms_if_training"]                    # ["A0", "A8", "A2"], hoặc ["A0", "A2"] nếu C3 trượt
+SCORES = DECISION["test_scope"]["scores"]              # [0.25, 0.05], hoặc [0.25] nếu quá ngân sách giờ
 NEW_SEEDS, ALL_SEEDS = [4, 5], [1, 2, 3, 4, 5]
 DIAG_EVERY = 10                                       # giống seed 1–3
+print("arm:", ARMS, "| score theo GT trên test:", SCORES)
 RESULTS = EXP_DRIVE / "c11x-seeds1to5-results"
 R0_DIR = EXP_DRIVE / "runs-woX-R0"
 RESULTS.mkdir(parents=True, exist_ok=True)
@@ -54,8 +68,13 @@ assert PHASE in ("train", "analyze")
         code(INSTALL + '''
 sys.path.insert(0, str(GH_DIR / "scripts/rq2"))
 prereg_text = (GH_DIR / "experiments" / "preregistration.md").read_text(encoding="utf-8")
-if "### A2 ·" not in prereg_text:
-    raise StopRun("preregistration chưa có phụ lục A2. Merge trước khi train.")
+# Khóa thật: phụ lục A2 phải nằm trên main, đã điền kết quả val, và BRANCH dùng đúng bản đó (AGENTS.md §1).
+subprocess.run(["git", "-C", str(GH_DIR), "fetch", "-q", "--depth", "1", "origin", "main"], check=True)
+main_prereg = subprocess.check_output(["git", "-C", str(GH_DIR), "show", "FETCH_HEAD:experiments/preregistration.md"]).decode()
+if "### A2 ·" not in main_prereg or "[chưa chạy]" in main_prereg.split("### A2 ·", 1)[1]:
+    raise StopRun("Phụ lục A2 chưa có trên main hoặc còn [chưa chạy]. Điền kết quả val vào A2, merge vào main, rồi Run all.")
+if prereg_text != main_prereg:
+    raise StopRun('preregistration của BRANCH khác bản trên main. Đặt BRANCH = "main" rồi Run all.')
 print(subprocess.check_output(["git", "-C", str(GH_DIR), "log", "-1", "--format=preregistration: %H %ci", "--",
                                "experiments/preregistration.md"]).decode())
 if PHASE == "train" and "A100" not in str(ENV["gpu"]):
@@ -108,12 +127,14 @@ if PHASE == "train":
     r0 = {"ap_new": json.loads((rd0 / "eval_e2e.json").read_text())["AP"],
           "ap_old": json.loads((old0 / "eval_e2e.json").read_text())["AP"]}
     r0["d_ap"] = r0["ap_new"] - r0["ap_old"]
-    if (old0 / "results.csv").exists():
+    if (old0 / "results.csv").exists() and (rd0 / "results.csv").exists():
         new, old = pd.read_csv(rd0 / "results.csv"), pd.read_csv(old0 / "results.csv")
         new.columns, old.columns = new.columns.str.strip(), old.columns.str.strip()
         col = [c for c in new.columns if "mAP50-95" in c][0]
         r0["d_val_ep24"] = float(new[col].iloc[-1] - old[col].iloc[-1])
-    r0["match"] = abs(r0["d_ap"]) <= 0.005 and abs(r0.get("d_val_ep24", 0.0)) <= 0.005
+    else:
+        r0["note"] = "thiếu results.csv: không kiểm được mAP50-95 val ở epoch 24, nên tính là không khớp"
+    r0["match"] = "d_val_ep24" in r0 and abs(r0["d_ap"]) <= 0.005 and abs(r0["d_val_ep24"]) <= 0.005
     r0["env"] = ENV
     (RESULTS / "r0_check.json").write_text(json.dumps(r0, indent=2))
     print(json.dumps(r0, indent=1))
@@ -122,7 +143,9 @@ if PHASE == "train":
         md("""
 ## 3. Đợt 2: bảng 5 seed, P1, bootstrap
 
-P1: A2 − A0, AP_vt, head e2e. "Lặp lại được" khi Δ của cả seed 4 và seed 5 > 0, khoảng t theo seed của 5 seed không chứa 0, và Δ ≥ MEI_vt = 0,006.
+P1: A2 − A0, AP_vt, head e2e, **chỉ tính trên seed mới**. "Lặp lại được" khi Δ của cả seed 4 và seed 5 > 0 và trung bình của hai seed này ≥ MEI_vt = 0,006. Hai seed đều > 0 nhưng trung bình < 0,006: "Có hướng nhưng dưới MEI". Còn lại: "Không lặp lại".
+
+Số gộp seed 1–5 (khoảng t, CI theo cảnh, CI gộp) chỉ để mô tả, và chỉ gộp khi R0 khớp.
 """),
         code(r'''
 import c11x_results as cr, c11x_cache as cc, c11_bootstrap as cb
@@ -162,17 +185,20 @@ for head, B in (("e2e", 10_000), ("nms", 2_000)):
 ci = pd.DataFrame(rows); display(ci.round(4)); ci.to_csv(RESULTS / "ci_scene_seed.csv", index=False)
 p1 = ci[(ci["head"] == "e2e") & (ci["pair"] == "A2-A0") & (ci["metric"] == "AP_vt")].iloc[0]
 MEI_VT = 0.006
-same_dir = p1["s4"] > 0 and p1["s5"] > 0 and p1["seed_t_lo"] > 0
-verdict = "Lặp lại được" if same_dir and p1["delta"] >= MEI_VT else "Có hướng nhưng dưới MEI" if same_dir else "Không lặp lại"
-p1_out = dict(verdict=verdict, delta=p1["delta"], s4=p1["s4"], s5=p1["s5"], seed_t=[p1["seed_t_lo"], p1["seed_t_hi"]],
-              scene_ci=[p1["scene_lo"], p1["scene_hi"]], combined_ci=[p1["comb_lo"], p1["comb_hi"]], mei=MEI_VT, r0_match=r0["match"])
+new_pos = p1["s4"] > 0 and p1["s5"] > 0
+new_mean = (p1["s4"] + p1["s5"]) / 2
+verdict = "Lặp lại được" if new_pos and new_mean >= MEI_VT else "Có hướng nhưng dưới MEI" if new_pos else "Không lặp lại"
+p1_out = dict(verdict=verdict, s4=p1["s4"], s5=p1["s5"], mean_s4_s5=new_mean, mei=MEI_VT, r0_match=r0["match"],
+              descriptive_seeds_1to5=dict(delta=p1["delta"], seed_t=[p1["seed_t_lo"], p1["seed_t_hi"]],
+                                          scene_ci=[p1["scene_lo"], p1["scene_hi"]], combined_ci=[p1["comb_lo"], p1["comb_hi"]],
+                                          pooled_allowed=r0["match"]))
 (RESULTS / "p1_verdict.json").write_text(json.dumps(p1_out, indent=2, ensure_ascii=False, default=float))
 print(json.dumps(p1_out, indent=1, ensure_ascii=False, default=float))
 '''),
         md("""
 ## 4. Đợt 2: theo từng GT trên tập test, seed 1–5, head e2e (M1, M2, M3)
 
-- `score ≥ 0,25` là chính; `score ≥ 0,05` kiểm độ nhạy. Ở 0,25, "bỏ sót" gồm cả hộp đúng chỗ nhưng điểm thấp.
+- `score ≥ 0,25` là chính; `score ≥ 0,05` kiểm độ nhạy, chỉ chạy nếu notebook val ước đủ ngân sách giờ (`SCORES`). Ở 0,25, "bỏ sót" gồm cả hộp đúng chỗ nhưng điểm thấp.
 - Mỗi run lưu một file trên Drive; chạy lại thì bỏ qua run đã xong.
 """),
         code(r'''
@@ -210,7 +236,7 @@ def fates(score):
     return df.assign(detected=lambda x: x["det_0.5"])
 
 summary = {"p1": p1_out}
-for score in (0.25, 0.05):
+for score in SCORES:
     df, tag = fates(score), f"e2e_score{score:g}"
     t, c = re_.fate_table(df), re_.recall_curve(df)
     t.to_csv(MECH / f"fate_by_arm_bin_{tag}.csv"); c.to_csv(MECH / f"recall_iou_by_arm_bin_{tag}.csv")

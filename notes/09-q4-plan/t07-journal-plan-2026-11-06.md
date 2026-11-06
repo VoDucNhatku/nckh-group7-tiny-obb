@@ -19,7 +19,7 @@
 
 | Việc | Quyết định | Lý do |
 |---|---|---|
-| Thêm A0, A8, A2 × seed 4–5 | **Làm** | Đúng ROADMAP tuần 3 và C-11 (5 seed cho cặp chính) |
+| Thêm A0, A8, A2 × seed 4–5 | **Làm** | ROADMAP (đợt 2) có "cặp so sánh chính thêm seed 4–5" và C-11 có "5 seed cho cặp chính", nhưng cả hai **không nêu cặp nào**; C-11 lấy cả factorial làm phép so chính. Cặp A2 − A0 được chọn sau khi đã xem seed 1–3 (đính chính 06/11, xem preregistration A2 §6) |
 | 6 seed hoàn toàn mới (18 run) | Không | Luật do AI đề xuất, không tạp chí nào đã đọc yêu cầu; để dành nếu mentor đòi |
 | Module mới, K-floor | Bỏ | Cổng H2 trượt; phần GT còn cứu được rất nhỏ theo proxy |
 | Sai số góc (C-7′) | Không theo trong bài này | Sai số không giảm đều theo kích thước trên val |
@@ -64,8 +64,7 @@ Với 300 CU: đủ, còn dư ít nhất khoảng 110 CU. Dùng phần dư cho c
 
 | Kết quả | Làm gì |
 |---|---|
-| Val: đạt C1 và C2 | Train |
-| Val: đạt một trong hai | Nhóm quyết |
+| Val: đạt C1 hoặc C2 | Train (sửa 06/11: bỏ nhánh "nhóm quyết"; C2 không tính `miss`) |
 | Val: không đạt cái nào | Chưa train, xem lại hướng |
 | Val: C3 trượt | Bỏ A8, còn 4 run, bỏ M2 |
 | R0 không khớp | Không gộp seed; báo riêng từng nhóm; tìm nguyên nhân môi trường |

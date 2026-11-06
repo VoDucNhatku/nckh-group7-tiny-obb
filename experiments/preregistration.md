@@ -124,21 +124,25 @@ Sai lệch so với mô tả ban đầu, đều do lỗi kỹ thuật lúc chạ
 
 **4. Run mới, thay cho §4.** A0, A8, A2 × seed **4, 5** = 6 run, đúng tinh thần ROADMAP tuần 3 và ledger C-11 ("5 seed cho cặp chính"). Train bằng **cùng đường code với seed 1–3** (`c11_pipeline.train_arm` trên Drive), cùng recipe, cùng GPU A100, ghi vào `runs-woX`, để gộp được. Notebook: `notebooks/C11x_train_confirm_colab.ipynb`.
 - A1 và A4 không chạy.
-- **Còn phụ thuộc bước val ở mục 1,** theo tiêu chí ghi trong `scripts/rq2/explore_decision.py`: nếu cả C1 và C2 trượt thì chưa train; nếu C3 trượt thì bỏ A8 và M2, còn 4 run. Sửa mục này theo kết quả trước khi merge; sau khi merge thì không đổi.
+- **Còn phụ thuộc bước val ở mục 1,** theo tiêu chí ghi trong `scripts/rq2/explore_decision.py`: đạt C1 **hoặc** C2 thì train; trượt cả hai thì chưa train; C3 trượt thì bỏ A8 và M2, còn 4 run. Notebook train đọc arm từ `decision.json` của notebook val, không sửa tay. Ghi kết quả vào mục 1 trước khi merge; sau khi merge thì không đổi.
+- **Sửa ngày 06/11, trước khi có bất kỳ output val nào:** C2 trước đây đạt khi bất kỳ loại lỗi nào chiếm ≥ 50%, kể cả `miss`. `miss` là nhóm còn lại (không dự đoán nào đạt IoU 0,1), nên nó không cho biết lý do, và M3(a) lại dự báo nó là nhóm lớn nhất: C2 cũ gần như chắc đạt. Nay C2 chỉ đạt khi loại lớn nhất là `loc`, `lost_to_neighbour`, `cls` hoặc `both`. Nhánh "đạt một tiêu chí thì nhóm quyết" được thay bằng luật cố định ở trên, để quyết định không phụ thuộc người xem kết quả.
 
-**5. Kiểm tái lập R0, thay ngưỡng §6.** Train lại A2 seed 1 bằng cùng đường code, so với `c11_A2_s1` cũ. Khớp khi |Δ mAP50-95 val ở epoch 24| ≤ 0,005 và |Δ AP test e2e| ≤ 0,005 (bằng MEI_AP). Lý do nới: §6 viết cho đường code mới; ở đây cùng đường code, nên chỉ cần phát hiện môi trường Colab đổi quá cỡ dao động theo seed. **Không khớp:** không gộp seed 1–3 với seed 4–5, báo riêng từng nhóm và báo độ lệch.
+**5. Kiểm tái lập R0, thay ngưỡng §6.** Train lại A2 seed 1 bằng cùng đường code, so với `c11_A2_s1` cũ. Khớp khi |Δ mAP50-95 val ở epoch 24| ≤ 0,005 và |Δ AP test e2e| ≤ 0,005 (bằng MEI_AP). Thiếu `results.csv` của một trong hai run thì không kiểm được điều kiện đầu, và tính là không khớp. Lý do nới: §6 viết cho đường code mới; ở đây cùng đường code, nên chỉ cần phát hiện môi trường Colab đổi quá cỡ dao động theo seed. **Không khớp:** không gộp seed 1–3 với seed 4–5, báo riêng từng nhóm và báo độ lệch.
 
-**6. Phép chính duy nhất: P1.** Δ(AP_vt, A2 − A0), head e2e, seed 1–5.
-- **Lặp lại được:** Δ của **cả seed 4 và seed 5** đều > 0, **và** khoảng t 95% theo seed của 5 seed không chứa 0, **và** Δ ≥ MEI_vt = 0,006.
-- **Có hướng nhưng dưới MEI:** hai điều đầu đúng, Δ < MEI_vt.
+**6. Phép chính duy nhất: P1.** Δ(AP_vt, A2 − A0), head e2e, **phán quyết chỉ trên seed 4 và 5**.
+- **Lặp lại được:** Δ của **cả seed 4 và seed 5** đều > 0, **và** trung bình của hai seed này ≥ MEI_vt = 0,006.
+- **Có hướng nhưng dưới MEI:** cả hai > 0, trung bình < MEI_vt.
 - **Không lặp lại:** các trường hợp còn lại; không có nghĩa là hai arm tương đương.
-- **Luôn báo kèm:** Δ từng seed; CI theo cảnh (bootstrap B = 10.000); CI gộp của A1. Nếu CI gộp chứa 0 thì phải viết rõ điều đó trong bài.
-- **Giới hạn phải ghi trong bài:** seed 1–3 đã được xem trước khi đặt giả thuyết, nên đây là **lặp lại trên 2 seed mới**, không gọi là "xác nhận độc lập". Khoảng t của 5 seed chưa tính bất định theo cảnh.
+- **Luôn báo kèm, chỉ để mô tả:** Δ từng seed 1–5; trung bình và khoảng t 95% của 5 seed; CI theo cảnh (bootstrap B = 10.000); CI gộp của A1. Chỉ gộp seed 1–5 khi R0 khớp. Nếu CI gộp chứa 0 thì phải viết rõ điều đó trong bài.
+- **Vì sao không dùng khoảng t của 5 seed làm tiêu chí (sửa 06/11, trước khi train):** Δ của seed 1–3 đã thấy (khoảng 0,0045; 0,0070; 0,0155 [derived] từ min, max, trung bình trong `experiments/2026-10-30-c11x-analysis/ci_scene_seed.csv`) chiếm phần lớn khoảng đó. Hai seed mới chỉ +0,003 mỗi seed, nhỏ hơn mọi seed đã thấy, vẫn cho cận dưới > 0 và trung bình ≥ 0,006. Mô phỏng với Δ seed mới ~ N(0; 0,0058) cho tỉ lệ "lặp lại" khoảng 17% dù không có hiệu ứng [ước lượng]; luật mới cho khoảng 6,5% [ước lượng, cùng giả định].
+- **Điều đã biết lúc viết P1, phải ghi trong bài:** cặp A2 − A0 và chỉ số AP_vt được chọn **sau** khi đã xem seed 1–3, trong đó A2 − A0 có Δ AP_vt lớn nhất (0,0090, so với 0,0071 của A8 − A0) và CI gộp của nó chứa 0 ([−0,0088; 0,0269]). Lý do chọn A2: đó là quy tắc STAL-16, bản mới nhất trong các thay đổi của Ultralytics mà C-10 ghi lại; A0 là không có sàn.
+- **Giới hạn phải ghi trong bài:** đây là **lặp lại trên 2 seed mới**, không gọi là "xác nhận độc lập". Hai seed không cho khoảng tin cậy có ý nghĩa; phán quyết là luật [design], không phải phép kiểm thống kê.
 - Không đổi phép chính và không thêm seed để cứu kết quả sau khi đã thấy.
 
 **7. Mô tả (không gọi "có ý nghĩa", theo tinh thần A1.3).** A2 − A0, A8 − A0, A2 − A8; AP_vt, AP_t, AP_s, AP_m, AP; hai head. Bootstrap B = 10.000 cho e2e, B = 2.000 cho nms (head phụ, để tiết kiệm GPU).
 
 **8. Phép thử cơ chế, trên recall theo GT của tập test, seed 1–5.** Recall theo GT trên test chưa ai xem, kể cả của seed 1–3. Recall: khớp cùng lớp theo thứ tự điểm, IoU xoay ≥ 0,5. Head e2e; chính score ≥ 0,25, độ nhạy score ≥ 0,05. Code: `scripts/rq2/rq2_errors.py`, `scripts/rq2/rq2_did.py`.
+- **Phạm vi chạy, chốt trước bằng số đo trên val:** `explore_decision.test_scope` lấy số giây trung bình mỗi run (head e2e) trên val, nhân theo tỉ lệ số GT test/val và số run. Nếu cả hai mức score vừa trong 10 giờ thì chạy cả hai; nếu không, chỉ chạy score ≥ 0,25 và bài ghi rằng phép độ nhạy 0,05 bị bỏ vì thời gian. Notebook val cũng kiểm `dota_e2e` của seed 1–3 có đủ và được lưu ở ngưỡng ≤ 0,05 không (`old_dota_check.json`); nếu không thì phép độ nhạy 0,05 không làm được cho seed 1–3, và phải ghi lại ở mục 1.
 - **M1 (từ H1 của bản nháp PR #29).** Trong GT rất nhỏ, hiệu của hiệu Δrecall(A2 − A0) giữa GT có `A0_cand == 0` và GT còn lại. Dự báo: **> 0**.
 - **M2 (từ H2 của bản nháp PR #29).** Trong GT rất nhỏ, hiệu của hiệu Δrecall(A2 − A8) giữa GT có ≥ 3 tâm GT khác trong 16 px và GT cô lập. Dự báo: **> 0**. Cơ sở: phân tích nhãn. Lưu ý đã thấy trên val: hệ số arm tổng thể của A8 (0,195) cao hơn A2 (0,167), nên dự báo này có thể trượt.
 - **Được ủng hộ** khi đúng dấu **và** CI gộp (scene bootstrap B = 10.000 + seed, theo A1, 4 bậc tự do) không chứa 0.

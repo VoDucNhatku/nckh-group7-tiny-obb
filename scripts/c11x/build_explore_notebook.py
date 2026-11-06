@@ -34,10 +34,12 @@ def cells():
 | Tiêu chí | Đạt khi |
 |---|---|
 | C1 · Có cứu thật | Với GT mà A0 không cho ứng viên: recall(A2) − recall(A0) > 0 ở mọi seed, trung bình ≥ 0,02 (score ≥ 0,25) |
-| C2 · Rõ lý do | Trong GT rất nhỏ mà A2 chưa phát hiện được: một loại lỗi chiếm ≥ 50% (score ≥ 0,05) |
+| C2 · Rõ lý do | Trong GT rất nhỏ mà A2 chưa phát hiện được: loại lỗi nhiều nhất là `loc`, `lost_to_neighbour`, `cls` hoặc `both` và chiếm ≥ 50% (score ≥ 0,05). `miss` vẫn báo nhưng không tính cho C2 |
 | C3 · Giữ A8 | [A2 − A8] ở cụm dày trừ ở GT cô lập: cùng dấu ở mọi seed, độ lớn trung bình ≥ 0,01 |
 
-**Kết quả:** đạt cả C1 và C2 → train. Đạt một → nhóm quyết. Không đạt cái nào → chưa train. C3 trượt → bỏ A8, còn 4 run thay vì 6.
+**Kết quả:** đạt C1 **hoặc** C2 → train. Không đạt cái nào → chưa train. C3 trượt → bỏ A8, còn 4 run thay vì 6.
+
+Ô cuối cũng ước thời gian phân tích theo GT trên test từ thời gian đo ở đây, và chọn trước mức score sẽ chạy (`explore_decision.test_scope`).
 
 **Khi xong:** gửi lại nội dung ô cuối cùng (và thư mục `c11x-explore-val` nếu được).
 """),
@@ -45,7 +47,11 @@ def cells():
         code(SETUP + f'''
 BRANCH = "{BRANCH}"                                   # đổi thành "main" sau khi merge
 ARMS, SEEDS = ["A0", "A1", "A8", "A2"], [1, 2, 3]
+if not EXP_DRIVE.exists():
+    raise StopRun(f"Không thấy {{EXP_DRIVE}}. Acc này cần quyền Editor trên thư mục NCKH và một shortcut tên NCKH "
+                  "trong My Drive (Shared with me → chuột phải → Organize → Add shortcut → My Drive), rồi Run all lại.")
 OUT_DIR = EXP_DRIVE / "c11x-explore-val"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
 '''),
         code(INSTALL + '''
 sys.path.insert(0, str(GH_DIR / "scripts/rq2"))
@@ -59,6 +65,16 @@ missing = [f"c11_{a}_s{s}" for a in ARMS for s in SEEDS if not (RUNS_OLD / f"c11
 if missing:
     raise StopRun(f"Thiếu checkpoint trên Drive: {missing}")
 print("đủ 12 checkpoint")
+
+# Notebook train dùng dota_e2e của seed 1–3 cho phân tích theo GT trên test. Chỉ đọc điểm, không đọc GT test.
+import rq2_recall as rr
+OLD_DOTA = {f"c11_{a}_s{s}": rr.score_floor(RUNS_OLD / f"c11_{a}_s{s}" / "dota_e2e") for a in ("A0", "A8", "A2") for s in SEEDS}
+OLD_DOTA_OK = all(v["n_boxes"] > 0 and v["min_score"] <= 0.05 + 1e-9 for v in OLD_DOTA.values())
+(OUT_DIR / "old_dota_check.json").write_text(json.dumps(OLD_DOTA, indent=2))
+print("dota_e2e seed 1–3 dùng được cho score ≥ 0,05:", OLD_DOTA_OK)
+if not OLD_DOTA_OK:
+    print("CẢNH BÁO: thiếu dota_e2e hoặc lưu ở ngưỡng > 0,05:", {k: v for k, v in OLD_DOTA.items()
+          if not (v["n_boxes"] and v["min_score"] <= 0.05 + 1e-9)})
 '''),
         md(DATA_MD),
         code(DATA),
@@ -106,6 +122,8 @@ Chỉ để mô tả. Bootstrap B = 2.000 theo cụm cảnh, gộp bất định
         code(r'''
 FATES = OUT_DIR / "fates"
 FATES.mkdir(parents=True, exist_ok=True)
+SECONDS_FILE = FATES / "_seconds.json"
+SECONDS = json.loads(SECONDS_FILE.read_text()) if SECONDS_FILE.exists() else {}
 
 def fates(head, score):
     frames = []
@@ -115,7 +133,9 @@ def fates(head, score):
             if not f.exists():
                 t0 = time.time()
                 re_.fates_run(LABELS / "trainval", stems, PRED / f"{a}_s{s}_{head}", score).to_parquet(f)
-                print(head, score, a, s, f"{time.time() - t0:.0f}s", flush=True)
+                SECONDS[f.stem] = time.time() - t0
+                SECONDS_FILE.write_text(json.dumps(SECONDS, indent=1))
+                print(head, score, a, s, f"{SECONDS[f.stem]:.0f}s", flush=True)
             frames.append(pd.read_parquet(f).assign(arm=a, seed=s))
     df = pd.concat(frames, ignore_index=True).merge(off2, on=["stem", "gt"], how="left", validate="many_to_one")
     assert df["scene"].notna().all(), "có GT không khớp bảng nhãn"
@@ -144,6 +164,10 @@ for head, score in (("e2e", 0.25), ("e2e", 0.05), ("nms", 0.25)):
 res = ed.decide(TABLES[("e2e", 0.25)], TABLES[("e2e", 0.05)])
 res["env"] = ENV
 res["n_gt_val"] = len(off2)
+e2e_sec = [v for k, v in SECONDS.items() if k.startswith("e2e_")]
+res["test_scope"] = (ed.test_scope(sum(e2e_sec) / len(e2e_sec), len(off2), res["runs_if_training"] // 2 * 5)
+                     if e2e_sec else "không có số đo giây: xóa thư mục fates rồi Run all lại")
+res["old_dota_ok"] = OLD_DOTA_OK
 res["recall_iou_e2e_0.25"] = re_.recall_curve(TABLES[("e2e", 0.25)]).xs("mean", axis=1, level=1).round(4).reset_index().to_dict("records")
 (OUT_DIR / "decision.json").write_text(json.dumps(res, indent=2, ensure_ascii=False, default=float))
 print(json.dumps(res, indent=1, ensure_ascii=False, default=float))
