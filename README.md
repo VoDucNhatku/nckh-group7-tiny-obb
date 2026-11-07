@@ -16,7 +16,16 @@ Hướng khảo sát mới là **UAV-view tiny-object detection**, không bắt 
 
 Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế hoạch đã có; bộ nghiên cứu mới chưa tự thay thế bản nộp trường. Không áp quy đổi tier→quartile trong phần cũ như tiêu chuẩn biên tập cho hướng mới.
 
-## Trạng thái hiện hành — 06/11/2026 (C-21)
+## Trạng thái hiện hành — 07/11/2026
+
+- **Đã chạy xong phần thực nghiệm** theo preregistration (phụ lục A2): A0, A2 × seed 4–5 + R0, rồi phân tích trên test. Log, sai lệch và số: [experiments/2026-11-07-c11x-seeds1to5/log.md](experiments/2026-11-07-c11x-seeds1to5/log.md).
+  - **P1 "Lặp lại được":** Δ AP_vt (A2 − A0, head e2e) = +0,0085 (seed 4) và +0,0087 (seed 5), trung bình ≥ MEI 0,006. Phạm vi: AI-TOD-R woX, YOLO26n-OBB.
+  - **R0 không khớp** (val epoch 24 lệch −0,019): không gộp seed 1–3 với seed 4–5 trong bài.
+  - **M1** (GT rất nhỏ A0 không cấp ứng viên): recall tăng thêm +0,067 so với GT rất nhỏ khác, cả 5 seed dương; đã thấy trên val trước, nên trên test là kiểm lại.
+- **Việc còn lại:** điền kết quả vào [paper/main.tex](paper/main.tex), đọc toàn văn 5 bài gần nhất, mentor duyệt, chọn tạp chí.
+- **Chưa có:** tính mới đã xác lập, band venue.
+
+## Trạng thái 06/11/2026 (C-21) — lịch sử, xem mục 07/11 ở trên
 
 - **Đích:** tạp chí, bài chẩn đoán có xác nhận. Kế hoạch: [notes/09-q4-plan/t07-journal-plan-2026-11-06.md](notes/09-q4-plan/t07-journal-plan-2026-11-06.md).
 - **Cổng H2 trượt:** hủy K-floor. Preregistration: [experiments/preregistration.md](experiments/preregistration.md), phụ lục A2.
