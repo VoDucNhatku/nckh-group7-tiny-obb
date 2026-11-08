@@ -22,7 +22,8 @@ Các mục proposal, lịch và quy tắc bên dưới lưu bối cảnh kế ho
   - **P1 "Lặp lại được":** Δ AP_vt (A2 − A0, head e2e) = +0,0085 (seed 4) và +0,0087 (seed 5), trung bình ≥ MEI 0,006. Phạm vi: AI-TOD-R woX, YOLO26n-OBB.
   - **R0 không khớp** (val epoch 24 lệch −0,019): không gộp seed 1–3 với seed 4–5 trong bài.
   - **M1** (GT rất nhỏ A0 không cấp ứng viên): recall tăng thêm +0,067 so với GT rất nhỏ khác, cả 5 seed dương; đã thấy trên val trước, nên trên test là kiểm lại.
-- **Việc còn lại:** điền kết quả vào [paper/main.tex](paper/main.tex), đọc toàn văn 5 bài gần nhất, mentor duyệt, chọn tạp chí.
+- **Bản thảo đã có kết quả (08/11):** [paper/main.tex](paper/main.tex); bảng, macro và hình sinh từ file kết quả bằng `scripts/c11x/export_results.py`. Chưa biên dịch.
+- **Việc còn lại:** đọc toàn văn 5 bài gần nhất (còn đánh dấu `[TODO]` trong bài), đưa `scripts/c11/` lên GitHub, biên dịch và rà bài, mentor duyệt, chọn tạp chí.
 - **Chưa có:** tính mới đã xác lập, band venue.
 
 ## Trạng thái 06/11/2026 (C-21) — lịch sử, xem mục 07/11 ở trên

@@ -2,14 +2,16 @@
 % Rule (AGENTS.md §6, paper/README.md): every number comes from a file in experiments/, through generated macros and tables.
 % Generated inputs: tables/rq2_*.tex, figs/rq2_stages.pdf <- scripts/rq2/rq2_report.py
 %                   tables/c11x_explor.tex, tables/c11x_macros.tex <- scripts/c11x/export_explor.py
+%                   tables/results_*.tex, figs/recall_iou.pdf <- scripts/c11x/export_results.py
 % Red [TODO: ...] marks what is missing. Nothing marked TODO may be read as a finding.
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,url,longtable}
+\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,url}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 \input{tables/rq2_macros}
 \input{tables/c11x_macros}
+\input{tables/results_macros}
 
 \begin{document}
 \title{Candidate Floors for Tiny Oriented Objects:\\
@@ -20,14 +22,15 @@ A Stage-Wise Audit of Label Assignment in YOLO26n-OBB on AI-TOD-R}
 
 \begin{abstract}
 One-stage detectors can give a tiny object no training signal when its box contains no anchor centre. Recent YOLO
-releases address this by enlarging tiny boxes during candidate selection, a rule ablated on COCO with horizontal boxes
-in single runs. We audit such candidate floors for oriented tiny objects, using YOLO26n-OBB on the non-xView part of
-AI-TOD-R. We trace every ground-truth box through the assignment stages under no floor and three floor rules, and find
-that without a floor \rqZeroCandVtA\% of very tiny boxes ($<8$ px) have no candidate anchor, while any floor removes
-this loss and moves the remaining loss to anchor conflicts in dense clusters (a label-only proxy for the later stages).
-Twelve exploratory training runs show higher AP$_{vt}$ under every floor, yet no comparison remains clear of zero once
-seed variation is included. \todo{Result of P1 on seeds 1--5, with seeds 4--5 shown apart. Fate of tiny boxes that a floor rescues
-(M1, M3). One sentence on what limits AP$_{vt}$ once candidates are no longer the bottleneck.}
+releases enlarge tiny boxes during candidate selection to prevent this, a rule ablated on COCO with horizontal boxes in
+single runs. We audit such candidate floors for oriented tiny objects with YOLO26n-OBB on the non-xView part of AI-TOD-R.
+Tracing every ground-truth box through the assignment stages shows that without a floor \rqZeroCandVtA\% of very tiny
+boxes ($<8$ px) have no candidate anchor, and that any floor removes this loss. On two training seeds that were not seen
+when the comparison was fixed, the library's current floor raised AP$_{vt}$ by \pOneSFour{} and \pOneSFive{} over no
+floor, matching three earlier exploratory seeds. A per-box analysis explains why the gain stays small: boxes that the floor
+rescues gain more recall than other very tiny boxes, yet only \starvedAtwo\% of them are detected, and at a low score
+threshold most undetected very tiny boxes have a prediction nearby that misses the IoU threshold. Once candidates are
+restored, localisation appears to limit very tiny oriented objects in this setting more than assignment does.
 \end{abstract}
 
 \section{Introduction}
@@ -39,19 +42,22 @@ threshold are replaced by a larger value during candidate selection only, while 
 regression keep the original box.
 
 Three gaps motivate this audit. First, the published ablation of STAL uses COCO with horizontal boxes and reports single
-values without repeated runs \cite[Table 6]{yolo26}; its oriented-box section does not evaluate the rule. Second, the
-rule used for oriented boxes has changed across library releases \cite{ultralytics}\todo{cite the exact commits from
-notes/02-proposal}, so results depend on the version. Third, tiny-object work reports that small objects receive fewer
-positives \cite{aitodr} but we found no per-box account of where they lose them, and none of what happens to a box after
+values without repeated runs \cite[Table 6]{yolo26}; its oriented-box section does not evaluate the rule. Second, the rule
+applied to oriented boxes has changed across library releases \cite{ultralytics}: no floor up to release 8.4.7; sides below
+8 px replaced by 16 px from 8.4.8 (applied in place until a fix in 8.4.39); and sides below 16 px replaced by 16 px from
+8.4.128 on.\footnote{From the history of \texttt{ultralytics/utils/tal.py}, release tags checked on 8 October 2026.}
+Results for ``STAL'' therefore depend on the package version. Third, tiny-object work reports that small objects receive
+fewer positives \cite{aitodr}, but we found no per-box account of where they lose them, nor of what happens to a box after
 it is given candidates. \todo{Confirm after the full reads listed in paper/README.md; do not claim ``first''.}
 
 We ask: (Q1) at which assignment stage do tiny oriented boxes lose supervision, under each floor? (Q2) does a floor raise
-AP$_{vt}$ on two seeds that were not seen when the comparison was chosen? (Q3) if a floor gives almost every box a candidate,
-why does AP$_{vt}$ stay low: are the rescued boxes missed, poorly localised, or taken by neighbours?
+AP$_{vt}$ on two seeds that were not seen when the comparison was chosen? (Q3) if a floor gives almost every box a
+candidate, why does AP$_{vt}$ stay low: are the rescued boxes missed, poorly localised, or taken by neighbours?
 
-Our contributions are an exact label-only decomposition of the candidate stage, validated against the library code; a
-preregistered comparison extended with two new seeds that reports scene and seed uncertainty; and a per-box error analysis
-linking assignment geometry to detection outcome. This is an audit of an existing rule, not a new detector.
+Our contributions are: an exact label-only decomposition of the candidate stage, validated against the library code; a
+preregistered comparison extended with two new seeds, reported with scene and seed uncertainty; and a per-box error
+analysis linking assignment geometry to detection outcome, which points to localisation as the remaining limit. This is
+an audit of an existing rule, not a new detector.
 
 \section{Related Work}
 \textbf{Label assignment for tiny objects.} RFLA \cite{rfla} and NWD-based assignment \cite{aitodv2} replace IoU-based
@@ -79,7 +85,8 @@ YOLO26-OBB places anchor centres at $((i+\tfrac12)s,(j+\tfrac12)s)$ for $s\in\{8
 assigner \cite{tood} with ProbIoU \cite{probiou}: (1) an anchor is a \emph{candidate} of a box if it lies inside the box's
 candidate region; (2) the top-$k$ candidates by alignment metric are kept ($k=10$ one-to-many; $k=7$ then $k_2=1$
 one-to-one); (3) an anchor kept by several boxes goes to the box of highest predicted overlap. A floor rule replaces each
-side $<\tau$ by $f$ in step (1) only: A0 none; A1 $\tau=8, f=16$; A8 $\tau=f=8\sqrt2$; A2 $\tau=f=16$.
+side $<\tau$ by $f$ in step (1) only: A0 none; A1 $\tau=8, f=16$; A8 $\tau=f=8\sqrt2$; A2 $\tau=f=16$ (the current library
+rule).
 
 A region whose short side is at least $\sqrt2\,s$ contains an anchor of stride $s$ for every position and angle. This
 guarantees a candidate. It does not guarantee a positive, useful supervision or an AP optimum.
@@ -95,24 +102,31 @@ itself, so the counts hold for every training sample.
 split made by scene. Results are not comparable with the full-benchmark Table II of \cite{aitodr}.
 
 \textbf{Training.} YOLO26n-OBB \cite{yolo26} from COCO weights, Ultralytics 8.4.174 pinned, 24 epochs, SGD, imgsz 800, flips
-only, batch 16. The benchmark of \cite{aitodr} uses 12 and 40 epochs; val AP was still rising at epoch 24, so conclusions
-hold for this recipe only.
+only, batch 16, on one A100 GPU. The benchmark of \cite{aitodr} uses 12 and 40 epochs; val AP was still rising at epoch 24, so
+conclusions hold for this recipe only. New seeds use the same training code as the exploratory ones.
 
 \textbf{Evaluation.} Official AITODReval (1,500 detections per image and class, \texttt{max\_det}=12,000; oracle AP 0.996),
 scoring \texttt{last.pt}, with the end-to-end (e2e) and NMS heads reported separately.
 
-\textbf{Statistics and preregistration.} Twelve runs (A0, A1, A8, A2 $\times$ seeds 1--3) are exploratory. Before training
-seeds 4--5 we fixed one primary comparison (P1): $\Delta$AP$_{vt}$(A2$-$A0), e2e head \todo{commit hash and
-date of the preregistration}. The pair and the metric were chosen after seeing seeds 1--3, so P1 is judged on the two new
-seeds only: it counts as replicated if $\Delta>0$ on both and their mean is at least 0.006, the minimal effect of interest
-derived from seed variation. This is a replication on two new seeds, not an independent confirmation, and a decision rule
-rather than a statistical test. For seeds 1--5 we report, as description, a paired $t$ interval over seeds, a
-scene-clustered bootstrap ($B=10{,}000$) and a conservative combined interval
-$\Delta\pm t_{0.975,n-1}\sqrt{\mathrm{se}_\text{scene}^2+\mathrm{se}_\text{seed}^2}$. All other comparisons are descriptive.
+\textbf{Sequence of the study.} (i) Twelve exploratory runs (A0, A1, A8, A2 $\times$ seeds 1--3) on the test set. (ii) A
+val-only per-box analysis of the same twelve runs, with a stopping rule written before it was run, which decided whether
+new seeds were worth training and which arms to keep. (iii) A preregistration annex fixed before training, merged on
+6 November 2026 (repository commit \texttt{d8b9d99}). (iv) Training of A0 and A2 on seeds 4 and 5, plus a reproducibility
+run R0 that repeats A2 seed 1.
 
-\textbf{Per-box analysis.} On test boxes of seeds 1--5, a box is detected if a same-class prediction with score $\geq 0.25$
-matches it at rotated IoU $\geq 0.5$ under greedy score-ordered matching; score $\geq 0.05$ is a sensitivity check. Undetected
-boxes get one fate: taken by a neighbour's prediction, wrong class, poor localisation ($0.1\leq$ IoU $<0.5$), both, or missed.
+\textbf{Primary comparison.} P1 is $\Delta$AP$_{vt}$(A2$-$A0) with the e2e head. The pair and the metric were chosen after
+seeing seeds 1--3, so P1 is judged on the two new seeds only: it counts as replicated if $\Delta>0$ on both and their mean
+is at least 0.006, the minimal effect of interest derived from seed variation. This is a replication on two new seeds, not
+an independent confirmation, and a decision rule rather than a statistical test. Seeds 1--3 and 4--5 are pooled only if
+R0 reproduces the earlier run (Section~\ref{sec:acc}).
+
+\textbf{Per-box analysis.} On test boxes, a box is detected if a same-class prediction with score $\geq 0.25$ matches it at
+rotated IoU $\geq 0.5$ under greedy score-ordered matching; score $\geq 0.05$ is a sensitivity check. Undetected boxes get
+one fate, in this order: taken by a neighbour's prediction (a same-class prediction reaches IoU 0.5 but is matched to
+another box), wrong class, poor localisation (best same-class IoU in $[0.1, 0.5)$), both, or missed (no prediction reaches
+IoU 0.1). M1 is a difference in differences of recall: [A2$-$A0] on very tiny boxes that A0 leaves without a candidate,
+minus the same on other very tiny boxes. Its uncertainty combines a scene-clustered bootstrap ($B=10{,}000$) with seed
+variation, $\Delta\pm t_{0.975,n-1}\sqrt{\mathrm{se}_\text{scene}^2+\mathrm{se}_\text{seed}^2}$.
 
 \section{Results}
 \subsection{Where boxes lose candidates and positives (labels only)}
@@ -129,44 +143,113 @@ sits in dense clusters. These are predictions from geometry; Section~\ref{sec:li
 \caption{Share of boxes without a positive: no candidate (exact) and lost at conflict (proxy).}
 \label{fig:stages}\end{figure}
 
-\subsection{Detection accuracy}
+\subsection{Detection accuracy}\label{sec:acc}
 \textbf{Exploratory, seeds 1--3 (Table~\ref{tab:explor}).} For A2$-$A0 with the e2e head, $\Delta$AP$_{vt}$ is \dAvtAtwo{}. The
 scene-only interval is [\dAvtAtwoSceneLo{}, \dAvtAtwoSceneHi{}], while the interval that also includes seed variation is
 [\dAvtAtwoCombLo{}, \dAvtAtwoCombHi{}]. Of the 40 combined intervals, \nCombExcl{} exclude zero. With three seeds these
-results do not support a claim in either direction.
+results do not support a claim in either direction. The preregistered test of candidate count on val did not support a
+positive effect (coefficient \gateCoef{}, 95\% CI [\gateLo{}, \gateHi{}]), so a planned adaptive floor was dropped.
 
-\textbf{Exploratory link to assignment, val.} Recall of boxes under 8 px rose with the number of assigned positives
-(\recallZero{} with none, \recallOne{} with one, \recallFive{} with five to nine, pooled over 12 runs, score $\geq 0.25$). This is
-an association: task-aligned selection uses the model's own predictions, so well-predicted boxes attract more positives.
-The preregistered geometric test on candidate count did not support a positive effect (coefficient \gateCoef{}, 95\% CI
-[\gateLo{}, \gateHi{}]), so we dropped a planned adaptive floor.
+\textbf{Val check before training.} On val, very tiny boxes that A0 leaves without a candidate gained \valCOne{} recall under
+A2 (\valCOneN{} boxes, mean over seeds 1--3), and among very tiny boxes that A2 still missed at score $\geq 0.05$,
+\valLocShare\% were poorly localised and \valMissShare\% had no prediction nearby. The rule therefore called for training.
+The density contrast between A2 and A8 changed sign across seeds, so A8 was dropped from the new runs. A8 had the highest
+very-tiny recall of the four arms on val; the rule asked about the density contrast, not about which arm is best, and we did
+not test A8 further.
 
-\textbf{Seeds 1--5.} \todo{P1 verdict from c11x-seeds1to5-results/p1\_verdict.json. Descriptive table from
-ci\_scene\_seed.csv, including the trade-off at AP$_s$ and AP$_m$. R0 reproducibility check.}
+\textbf{P1, seeds 4--5 (Table~\ref{tab:p1}).} $\Delta$AP$_{vt}$(A2$-$A0) was \pOneSFour{} on seed 4 and \pOneSFive{} on seed 5,
+mean \pOneMean{}: P1 is replicated under the preregistered rule. Both values lie within the range of the exploratory seeds
+(\pOneOldMin{} to \pOneOldMax{}). With the NMS head the differences were \pOneNmsSFour{} and \pOneNmsSFive{}. Overall AP rose
+by \apNewMean{} on average over seeds 4--5, and AP$_m$ fell by \apmNewMean{} in both seed groups; AP$_s$ changed by
+\apsNewMean{} on seeds 4--5 and \apsOldMean{} on seeds 1--3, with mixed signs across seeds. These are descriptive.
+
+\textbf{Reproducibility check.} R0 repeated A2 seed 1: test AP differed by \rzeroDap{}, within the preset 0.005, but val
+mAP at epoch 24 differed by \rzeroDval{}, outside it. Following the annex, seeds 1--3 and 4--5 are reported apart and never
+pooled. The cause of the val difference is not known; the training environment showed a different numpy version.
+
+\begin{table}[t]\centering\caption{Test AP per seed, e2e head, woX. $\Delta$ is A2 minus A0. Seeds 1--3 were seen before P1 was
+fixed; seeds 4--5 were not. The groups are not pooled because R0 did not reproduce.}\label{tab:p1}\scriptsize
+\input{tables/results_p1}\end{table}
 
 \begin{table}[t]\centering\caption{Exploratory $\Delta$ on seeds 1--3, woX test. Scene: scene-clustered bootstrap only. Scene + seed:
 combined interval with $t$ on 2 degrees of freedom.}\label{tab:explor}\scriptsize\input{tables/c11x_explor}\end{table}
 
 \subsection{What happens to boxes after assignment}\label{sec:link}
-\todo{From mechanism/: M1 (A2$-$A0 on boxes A0 starves, against other very tiny boxes), M2 (A2$-$A8, dense against isolated),
-M3 (fate table and recall against IoU). Report predictions that failed.}
+\textbf{Rescued boxes (M1, Table~\ref{tab:m1}).} Very tiny boxes that A0 leaves without a candidate gained more recall under A2
+than other very tiny boxes: \mOneOld{} on seeds 1--3 and \mOneNew{} on seeds 4--5 at score $\geq 0.25$, and \mOneOldLow{} and
+\mOneNewLow{} at score $\geq 0.05$. All five per-seed values at score $\geq 0.25$ were positive (\mOneSeedMin{} to
+\mOneSeedMax{}). With only two seeds, the combined interval of seeds 4--5 contains zero because the $t$ factor on one degree of
+freedom is 12.7, not because the sign changed. M1 had already been seen on val, so on test it is a check on new images
+and seeds rather than an unseen prediction. A difference in differences does not remove every other difference between the
+two groups of boxes, such as size within the very tiny bin.
+
+Even so, rescue does not mean detection. Under A2, \starvedAtwo\% of the boxes that A0 starves were detected at score
+$\geq 0.25$, against \starvedAzero\% under A0 and \fedAtwo\% for the other very tiny boxes under A2 (\fedAzero\% under A0).
+That A0 detects some boxes without any candidate shows that neighbouring anchors' predictions can still cover them.
+
+\textbf{Fate of very tiny boxes (Table~\ref{tab:fates}, Fig.~\ref{fig:iou}).} At score $\geq 0.25$, A2 detected \vtDetAtwo\% of
+very tiny boxes against \vtDetAzero\% for A0; the gain came from fewer missed boxes (\vtMissAtwo\% against \vtMissAzero\%),
+while poorly localised boxes stayed at about the same share (\vtLocAtwo\% and \vtLocAzero\%). Taken by a neighbour and wrong
+class were rare for every arm. Missed was the largest fate among undetected very tiny boxes at score $\geq 0.25$
+(\vtMissShareUndet\%), as predicted, but at score $\geq 0.05$ poor localisation became the largest (\vtLocShareUndetLow\% against
+\vtMissShareUndetLow\%). Part of what counts as missed at the higher threshold is therefore a box in roughly the right place
+with a low score.
+
+Recall depends strongly on the IoU threshold for very tiny boxes. Under A2 at score $\geq 0.05$, \recVtOne\% of them had a
+same-class prediction at IoU $\geq 0.1$, \recVtHalf\% at 0.5 and \recVtThreeQ\% at 0.75. The drop from IoU 0.25 to 0.5 was
+\dropVt{} points for very tiny boxes and \dropT{} points for tiny ones (score $\geq 0.25$), as predicted. The fate and IoU tables
+average seeds 1--5; per-seed versions are not in the repository, and their spread across seeds is small.
+
+\begin{table}[t]\centering\caption{M1: difference in differences of recall, A2$-$A0, very tiny boxes that A0 starves minus other very
+tiny boxes, e2e head, woX test.}\label{tab:m1}\footnotesize\input{tables/results_m1}\end{table}
+\begin{table}[t]\centering\caption{Fate of boxes, \% of boxes in the size bin, e2e head, mean over seeds 1--5.}\label{tab:fates}
+\scriptsize\input{tables/results_fates}\end{table}
+\begin{figure}[t]\centering\includegraphics[width=0.6\columnwidth]{figs/recall_iou}
+\caption{Recall against the IoU threshold, score $\geq 0.05$, e2e head, mean over seeds 1--5.}\label{fig:iou}\end{figure}
 
 \section{Discussion}
-\todo{Write after the confirmatory runs, along these questions: Does the AP$_{vt}$ gain come from the boxes the floor rescues,
-given that A2 changes the candidate region of nearly every box? What limits AP$_{vt}$ once almost every box has a positive:
-missed boxes, localisation, or conflicts? What do AP$_s$ and AP$_m$ cost? Should the floor be chosen by coverage (A8) or kept
-at the library default (A2)?}
+\textbf{The floor works where it is meant to, and that is not enough.} Without a floor about one very tiny box in five has no
+candidate. The library's floor removes this, and on two new seeds AP$_{vt}$ rose by about the same amount as on the
+exploratory seeds. The boxes that the floor rescues gain the most recall, which is consistent with the mechanism the rule
+targets. Since A2 also changes the candidate region of nearly every other box, the gain is not explained by rescue alone.
 
-\textbf{Limitations.} One detector size; a 24-epoch recipe; the woX subset; one dataset \todo{or SODA-A, if run under its own
-annex}; a proxy for assignment stages 2--3; matched boxes only for any localisation statistic; label noise on boxes of a few
-pixels, which the evaluator's round trip already shows (only part of the boxes reach IoU $\geq 0.999$ with themselves).
+\textbf{Localisation is the remaining limit.} When low-scoring predictions are kept (score $\geq 0.05$), most very tiny boxes
+that the detector does not count as found have a prediction of the right class nearby whose overlap falls short of the IoU
+threshold, and recall falls steeply between IoU 0.25 and 0.5. At score $\geq 0.25$ more of them are simply missed, so low
+confidence on these boxes is part of the same problem. A
+shift of one or two pixels is a large fraction of a box under 8 px, so IoU-based matching is harsh at this size; this agrees
+with the motivation of distance-based measures for tiny objects \cite{aitodv2}. In this setting, a better candidate rule can
+only move boxes from missed to found if the predicted box is accurate enough to count. We expect larger gains from improving
+localisation of very tiny oriented boxes, or from evaluation that is less sensitive to small offsets, than from further
+changes to candidate selection. This is a hypothesis for future work, not a result of this study.
+
+\textbf{Cost.} AP$_m$ fell in both seed groups, while overall AP rose slightly. A floor of 16 px enlarges the candidate region
+of every box below that size, which can pull anchors away from larger neighbours; we did not test this mechanism.
+
+\textbf{Which floor.} We kept the library default, A2, as the primary arm. A8, the smallest floor that guarantees a candidate,
+had the highest recall on val but was not trained on new seeds. Whether the coverage-minimal floor matches or beats the
+default remains open.
+
+\textbf{Limitations.} One detector size (YOLO26n); a 24-epoch recipe; the non-xView subset of one dataset \todo{or SODA-A, if run
+under its own annex}; a proxy for assignment stages 2--3; P1 was chosen after the exploratory seeds and is judged on two new
+seeds by a decision rule, not a test; the reproducibility check failed on val, so seeds 1--5 are not pooled; per-box tables
+average seeds 1--5; box-level fates use one greedy matching and fixed thresholds; label noise matters at a few pixels, as the
+evaluator's round trip already shows (only part of the boxes reach IoU $\geq 0.999$ with themselves). During the study, NMS
+result files of eight exploratory runs were lost from shared storage and rebuilt from the original evaluation cache; this
+affects only NMS-head tables, and the rebuilt values match those recorded before the loss.
 
 \section{Conclusion}
-\todo{3--4 sentences, only from confirmed results.}
+For very tiny oriented objects in AI-TOD-R, YOLO26n-OBB without a candidate floor leaves about one box in five with no
+candidate anchor. The library's current floor removes this loss and raised AP$_{vt}$ on two new seeds by an amount close to
+the exploratory estimate. Boxes rescued by the floor gain the most recall, yet most very tiny boxes still go uncounted, and
+among those with a low-scoring prediction kept, the predicted box is usually close but not accurate enough to pass the IoU
+threshold. Once candidates are restored, localisation and confidence on very tiny boxes, rather than assignment, are the
+limits to address.
 
 \section*{Reproducibility}
-Code: \texttt{scripts/rq2/}, \texttt{scripts/c11x/} and \texttt{scripts/c11/} \todo{publish scripts/c11}. Configurations, seeds
-and DOTA-format predictions: \todo{release link}.
+Preregistration, analysis code, notebooks and result files: \url{https://github.com/VoDucNhatku/nckh-group7-tiny-obb}
+(\texttt{experiments/}, \texttt{scripts/rq2/}, \texttt{scripts/c11x/}). Training and evaluation code \texttt{scripts/c11/}:
+\todo{publish}. Model weights and DOTA-format predictions: \todo{release link}.
 
 \bibliographystyle{unsrt}
 \bibliography{refs}
