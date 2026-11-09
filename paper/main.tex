@@ -16,7 +16,8 @@
 \begin{document}
 \title{Candidate Floors for Tiny Oriented Objects:\\
 A Stage-Wise Audit of Label Assignment in YOLO26n-OBB on AI-TOD-R}
-\author{\todo{Group 7 authors, FPT University}}
+\author{Vo Duc Nhat, Tran Loi Kieu Nhi, Tran Nguyen Minh Hai, Nguyen Tan Tai\\ FPT University, Vietnam
+\todo{Confirm author order, name spelling (with or without diacritics), affiliations, emails and whether the mentor is a co-author.}}
 \date{}
 \maketitle
 
@@ -47,8 +48,9 @@ applied to oriented boxes has changed across library releases \cite{ultralytics}
 8 px replaced by 16 px from 8.4.8 (applied in place until a fix in 8.4.39); and sides below 16 px replaced by 16 px from
 8.4.128 on.\footnote{From the history of \texttt{ultralytics/utils/tal.py}, release tags checked on 8 October 2026.}
 Results for ``STAL'' therefore depend on the package version. Third, tiny-object work reports that small objects receive
-fewer positives \cite{aitodr}, but we found no per-box account of where they lose them, nor of what happens to a box after
-it is given candidates. \todo{Confirm after the full reads listed in paper/README.md; do not claim ``first''.}
+fewer positives \cite{aitodr}, and several assigners give them more \cite{cdcedet,dala,ngla}, but in the work we read we found no
+per-box account of where they lose positives under a deployed rule, nor of what happens to a box after it is given
+candidates.
 
 We ask: (Q1) at which assignment stage do tiny oriented boxes lose supervision, under each floor? (Q2) does a floor raise
 AP$_{vt}$ on two seeds that were not seen when the comparison was chosen? (Q3) if a floor gives almost every box a
@@ -63,15 +65,25 @@ an audit of an existing rule, not a new detector.
 \textbf{Label assignment for tiny objects.} RFLA \cite{rfla} and NWD-based assignment \cite{aitodv2} replace IoU-based
 matching with measures less sensitive to small offsets. DCFL \cite{aitodr} assigns oriented tiny objects dynamically and
 sets the benchmark for AI-TOD-R; that paper notes qualitatively that tiny objects receive fewer positives, and its
-benchmark table has no YOLO-family row. \todo{Add NGLA (Remote Sensing 18(3):396) and DALA (CAAI TRIT, DOI
-10.1049/cit2.70083), read so far at abstract level only.}
+benchmark table has no YOLO-family row. Recent methods enlarge or re-rank the positive set of tiny objects: NGLA
+\cite{ngla} measures similarity between Gaussian box models and ranks candidates by classification and localisation
+quality (horizontal boxes, AI-TOD-v2 and VisDrone, MMDetection detectors); DALA \cite{dala} sets the number of positives
+per object adaptively; MFN-Net \cite{mfnnet} combines flexible label assignment with multi-scale fusion on SODA-A and
+AI-TOD. Closest to our data, CDCEDet \cite{cdcedet} generates scale-adaptive anchors and adaptive IoU thresholds to give
+tiny objects more positives, together with frequency-domain feature fusion, and reports gains on AI-TOD-v2 and AI-TOD-R.
+These works propose new assigners and show that more positives help; we instead measure, box by box, where a deployed
+real-time rule loses positives and what happens to boxes after they are given candidates. \todo{Full texts of DALA,
+MFN-Net and CDCEDet not yet read (abstract or publisher summary only); NGLA read by section structure and keyword search.
+Check that none of them reports a per-box stage or error analysis of the kind in Section~\ref{sec:link}.}
 
 \textbf{Floors and pseudo-boxes.} STAL \cite{yolo26} is ablated with reference sizes 8, 16 and 32 on COCO. OSCAR
 \cite{oscar} sweeps square pseudo-boxes for sub-stride infrared targets with horizontal boxes and reports a non-monotonic
 optimum, so ``floor size matters'' is known. We study the oriented, multi-level, dense case.
 
-\textbf{Oriented assignment.} EARL \cite{earl} and SARFA-Net \cite{sarfa} make assignment shape-aware; \todo{MCSA (read in
-full on 14/10, see the ledger C-16), MFN-Net and ARA (abstract only; paywalled, a team member needs library access).}
+\textbf{Oriented assignment.} EARL \cite{earl}, SARFA-Net \cite{sarfa} and ARA \cite{ara} make assignment for oriented boxes
+shape- or aspect-ratio-aware, on general aerial benchmarks rather than tiny-object ones. MCSA \cite{mcsa} targets oriented
+tiny objects with a multi-factor sample assignment on a RetinaNet-OBB baseline, evaluated on DOTA and DIOR-R; it does not use
+AI-TOD-R or a YOLO detector. \todo{ARA read at abstract level only.}
 
 \textbf{YOLO-OBB on AI-TOD.} DIA-YOLO \cite{diayolo} reports a YOLOv11-OBB baseline and a depth-fusion backbone on 18,730
 AI-TOD images. It changes the network input and backbone, and we found no treatment of label assignment in its method and
@@ -230,8 +242,8 @@ of every box below that size, which can pull anchors away from larger neighbours
 had the highest recall on val but was not trained on new seeds. Whether the coverage-minimal floor matches or beats the
 default remains open.
 
-\textbf{Limitations.} One detector size (YOLO26n); a 24-epoch recipe; the non-xView subset of one dataset \todo{or SODA-A, if run
-under its own annex}; a proxy for assignment stages 2--3; P1 was chosen after the exploratory seeds and is judged on two new
+\textbf{Limitations.} One detector size (YOLO26n); a 24-epoch recipe; the non-xView subset of one dataset, with no second
+dataset run; a proxy for assignment stages 2--3; P1 was chosen after the exploratory seeds and is judged on two new
 seeds by a decision rule, not a test; the reproducibility check failed on val, so seeds 1--5 are not pooled; per-box tables
 average seeds 1--5; box-level fates use one greedy matching and fixed thresholds; label noise matters at a few pixels, as the
 evaluator's round trip already shows (only part of the boxes reach IoU $\geq 0.999$ with themselves). During the study, NMS
