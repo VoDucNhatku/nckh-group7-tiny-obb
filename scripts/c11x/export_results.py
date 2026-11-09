@@ -17,6 +17,7 @@ notebook; the per-seed files behind them are on Drive only, so those tables cann
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -167,6 +168,17 @@ def main():
         r = st25[(st25.arm == a) & (st25.bin == "vt") & (st25.starved.astype(str) == str(flag))].iloc[0]
         return r[f]
 
+    def starved_bin(a, b, flag):
+        r = st25[(st25.arm == a) & (st25.bin == b) & (st25.starved.astype(str) == str(flag))].iloc[0]
+        return r["detected"]
+
+    def logit(p):
+        return math.log(p / (1 - p))
+
+    did_logit = (logit(starved("A2", True)) - logit(starved("A0", True))) - (logit(starved("A2", False)) - logit(starved("A0", False)))
+    test_summary = json.loads((ROOT / "experiments/2026-11-05-rq2-offline-woX/rq2_summary_test.json").read_text())
+    a2_old_sd = float(vt.loc[old, "A2"].std(ddof=1))
+    apm_all = other["AP_m"]["delta"]
     undet25 = 1 - fate(f25, "A2", "vt", "detected")
     undet05 = 1 - fate(f05, "A2", "vt", "detected")
     macros = {
@@ -199,6 +211,17 @@ def main():
         "dropVt": pct(rec(rc25, "A2", "vt", "0.25") - rec(rc25, "A2", "vt", "0.5")),
         "dropT": pct(rec(rc25, "A2", "t", "0.25") - rec(rc25, "A2", "t", "0.5")),
         "recVtHalfAzeroHigh": pct(rec(rc25, "A0", "vt", "0.5")), "recVtHalfAtwoHigh": pct(rec(rc25, "A2", "vt", "0.5")),
+        "tStarvedAzero": pct(starved_bin("A0", "t", True)), "tStarvedAtwo": pct(starved_bin("A2", "t", True)),
+        "tStarvedN": f"{int(st25[(st25.arm == 'A0') & (st25.bin == 't') & (st25.starved.astype(str) == 'True')].iloc[0]['n']):,}".replace(",", "{,}"),
+        "didLogit": num(did_logit, 2),
+        "vtZeroCandTest": pct(test_summary["by_size"]["vt"]["A0"]["zero_cand"]),
+        "nVtTest": f"{test_summary['by_size']['vt']['A0']['n']:,}".replace(",", "{,}"),
+        "nScenesTest": f"{test_summary['n_scenes']:,}".replace(",", "{,}"),
+        "nScenesVt": f"{m1['e2e_score0.25']['1-5']['n_scene']:,}".replace(",", "{,}"),
+        "aTwoOldSd": num(a2_old_sd, 4, sign=False),
+        "apmNeg": str(int((apm_all < 0).sum())), "apmSeeds": str(int(apm_all.size)),
+        "aZeroOldMax": num(vt.loc[old, "A0"].max(), sign=False), "aZeroNewMin": num(vt.loc[new, "A0"].min(), sign=False),
+        "pOneNewApMax": num(other["AP"].loc[new, "delta"].max()),
     }
     (TAB / "results_macros.tex").write_text("".join(f"\\newcommand{{\\{k}}}{{{v}}}\n" for k, v in macros.items()),
                                           encoding="utf-8")
