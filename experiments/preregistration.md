@@ -165,3 +165,39 @@ Sai lệch so với mô tả ban đầu, đều do lỗi kỹ thuật lúc chạ
 **10. Mở rộng cho sau.** Dataset thứ hai (SODA-A nếu tải được) và ảnh xView chỉ chạy sau khi có **phụ lục có ngày** riêng. Không kết quả nào của chúng được dùng để đổi P1, M1, M2.
 
 **11. Báo cáo.** Báo mọi mục ở trên, kể cả kết quả âm (§7). Số trong bài sinh từ file CSV/JSON. Nếu đọc thêm bài trước làm đổi giả thuyết, phải sửa bằng phụ lục có ngày **trước** khi train.
+
+### A3 · 10/11/2026: thêm A8 trên seed 4–5 (P2)
+
+**Người viết.** Claude Code (Opus 5.5), theo yêu cầu của nhóm trưởng; nhóm duyệt qua PR. **Thời điểm khóa:** commit merge phụ lục này vào `main`, **trước** khi train R1 và mọi run A8 seed 4–5. Notebook `notebooks/C11x_train_a8_colab.ipynb` dừng nếu phụ lục này chưa có trên `main`.
+
+**1. Lý do.** Phụ lục A2 mục 4 bỏ A8 vì C3 trượt. C3 hỏi về tương phản mật độ (M2), không hỏi A8 có cho mức tăng như A2 không. Bài báo cần biết sàn nhỏ nhất đủ để mọi hộp có ứng viên (A8, τ = f = 8√2 ≈ 11,3 px) có cho mức tăng AP_vt như sàn 16 px của thư viện (A2) không. Phụ lục này không đổi P1, M1, M3 và các phán quyết đã ghi ở `experiments/2026-11-07-c11x-seeds1to5/`.
+
+**2. Đã xem trước khi viết (toàn bộ là thăm dò).**
+- A8 seed 1–3 trên test, head e2e (`experiments/2026-10-30-c11x-analysis/ci_scene_seed.csv`; trung bình, trong ngoặc là min đến max theo seed):
+  - Δ AP_vt(A8 − A0) +0,0071 (0,0042 đến 0,0115);
+  - Δ AP_vt(A2 − A8) +0,0019 (−0,0045 đến +0,0100);
+  - Δ AP_m(A2 − A8) −0,0054 (−0,0222 đến +0,0039);
+  - Δ AP_m(A8 − A0) −0,0029 (−0,0094 đến +0,0090).
+- Recall theo GT trên val của A8 (phụ lục A2 mục 1).
+- Toàn bộ kết quả seed 4–5 của A0, A2: P1 "Lặp lại được"; AP_m(A2 − A0) âm ở 5/5 seed; R0 không khớp.
+- Hướng của P2 được chọn **sau** khi đã thấy các số trên. Điều này phải ghi trong bài.
+- **Chưa xem:** mọi run A8 seed 4–5 (chưa train).
+
+**3. Kiểm môi trường R1, trước mọi run A8.** Train lại A2 seed 4 bằng cùng đường code (`c11_pipeline.train_arm`), ghi vào `runs-woX-A8/c11_A2_s4`, so với `runs-woX/c11_A2_s4` (train 07/11). Khớp khi |Δ AP test e2e| ≤ 0,005 và |Δ mAP50-95 val ở epoch cuối| ≤ 0,005, như phụ lục A2 mục 5. Thiếu `results.csv` thì tính là không khớp. Code: `scripts/c11x/a8_rule.py` (`r1_check`, `jobs`).
+- **Khớp:** train A8 × seed 4, 5 vào `runs-woX`, so với A0, A2 seed 4–5 đã có. 2 run.
+- **Không khớp:** train A0, A8 × seed 4, 5 và A2 seed 5 vào `runs-woX-A8`; R1 là A2 seed 4 của nhóm này. 5 run. P2 chỉ dùng nhóm này. A0, A2 của nhóm mới cho thêm một lần đo A2 − A0 trong môi trường khác; chỉ báo mô tả, không đổi phán quyết P1.
+- Quyết định ghi vào `c11x-a8-results/a8_env_check.json` trên Drive; chạy lại notebook không tính lại.
+
+**4. P2, phép chính của phụ lục này.** Head e2e, chỉ seed 4 và 5 của nhóm ở mục 3. Code: `a8_rule.p2_verdict`.
+- **P2a:** Δ AP_vt(A8 − A0), cùng luật với P1. "Lặp lại được" khi cả hai seed > 0 và trung bình ≥ MEI_vt = 0,006; "Có hướng nhưng dưới MEI" khi cả hai > 0 và trung bình < 0,006; còn lại "Không lặp lại".
+- **P2b (phụ):** trung bình Δ AP_vt(A8 − A2) ≥ −MEI_vt = −0,006, tức A8 không kém A2 quá MEI. Không gọi là "tương đương".
+- Bài chỉ được viết rằng sàn tối thiểu đủ cho mức tăng AP_vt khi P2a "Lặp lại được" **và** P2b đạt.
+- **Khả năng đạt [ước lượng]:** coi Δ theo seed là chuẩn, sd lấy từ seed 1–3 (`scripts/c11x/a8_power.py`). P2a đạt khoảng 65% nếu hiệu thật bằng +0,0071 như seed 1–3, và khoảng 1,4% nếu hiệu thật bằng 0. P2b đạt khoảng 78% nếu hiệu thật bằng −0,0019 như seed 1–3. P2a trượt vì thiếu seed là khả năng thật, và phải viết như vậy nếu xảy ra.
+
+**5. AP_m: chỉ mô tả, lý do ghi trước.** Câu "A8 làm giảm AP_m ít hơn A2" không phán quyết được với số seed có. Theo sd của Δ AP_m(A8 − A2) ở seed 1–3 (khoảng 0,015), một luật kiểu P1 cho AP_m (cả hai seed > 0, trung bình ≥ 0,005) đạt khoảng 22% khi không có hiệu ứng và khoảng 38% khi hiệu ứng bằng +0,0054 như seed 1–3; thêm seed 6 thì còn 12% và 26% [ước lượng, cùng giả định]. Vì vậy Δ AP_m(A8 − A2) và Δ AP_m(A8 − A0) chỉ báo theo từng seed, không gắn nhãn, và bài không được viết rằng A8 ít tốn AP_m hơn A2.
+
+**6. Mô tả (không gọi "có ý nghĩa", theo tinh thần A1.3).** Bootstrap theo cảnh B = 10.000, head e2e, cho A8 − A0, A2 − A8, A2 − A0 trên seed 4–5 của nhóm; CI gộp theo A1 (1 bậc tự do). Head nms: chỉ điểm từng run. Số phận GT và recall theo IoU ở score ≥ 0,25 và ≥ 0,05; DiD M1 cho A8 − A0 và A2 − A0; M2 (A2 − A8, cụm dày so với cô lập).
+
+**7. Không làm.** Không gộp A8 seed 1–3 với seed 4–5 trong phép chính. Không thêm seed, không đổi luật hay chỉ số sau khi thấy kết quả A8. Run bị đổi batch thì loại và báo (§7), và P2 khi đó không phán quyết được. Run lỗi thì chạy lại cùng seed.
+
+**8. Ngân sách [ước lượng].** 0,57 giờ/run train (log 07/11) và 337 giây/run/head chấm. Khớp: khoảng 2,5 giờ A100. Không khớp: khoảng 4,5 giờ A100. Phân tích: khoảng 1–2 giờ, chưa đo với 6 run.

@@ -150,16 +150,20 @@ def scene_key_audit(stems, scene_key) -> dict:
             "n_prefixes_split": len(split), "examples": dict(list(split.items())[:5])}
 
 
-def run_scene_bootstrap(cb, runs_dirs, head, pairs, keys, B, scene_key, out_json, engine="weighted") -> dict:
+def run_scene_bootstrap(cb, runs_dirs, head, pairs, keys, B, scene_key, out_json, engine="weighted",
+                        only_seeds=None) -> dict:
     """Gọi `c11_bootstrap.multi_pair_bootstrap` (module trên Drive) với cache `evalcache_<head>.npz`.
 
     Chỉ nhận run có file done; mỗi (arm, seed) đúng một cache. Ghi JSON kèm B, head, keys, seed của từng arm.
+    `only_seeds`: nếu có, chỉ lấy run của các seed này (phụ lục A3 chỉ dùng seed 4–5).
     """
     by_arm, seeds = {}, {}
     for runs_dir in runs_dirs:
         for rd in sorted(Path(runs_dir).glob("c11*_s*")):
             meta, f = _run_meta(rd), rd / f"evalcache_{head}.npz"
             if meta is None or not f.exists():
+                continue
+            if only_seeds is not None and meta["seed"] not in only_seeds:
                 continue
             assert meta["seed"] not in seeds.get(meta["arm"], []), f"trùng {meta}"
             seeds.setdefault(meta["arm"], []).append(meta["seed"])

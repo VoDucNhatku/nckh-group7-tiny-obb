@@ -114,3 +114,22 @@ def test_run_scene_bootstrap_with_fake_module(runs, tmp_path):
     meta = json.loads(out.read_text())["_c11x_meta"]
     assert meta["pairs"] == ["A2-A0"] and meta["B"] == 10000
     assert boot["A2-A0"]["AP"]["delta"] == 0.0035
+
+
+def test_run_scene_bootstrap_only_seeds(runs, tmp_path):
+    for rd in runs.glob("c11_*"):
+        (rd / "evalcache_e2e.npz").write_bytes(b"x")
+
+    class FakeCB:
+        @staticmethod
+        def load_cache(f):
+            return f.parent.name
+
+        @staticmethod
+        def multi_pair_bootstrap(by_arm, pairs, scene_key, keys, B, engine):
+            assert sorted(by_arm["A0"]) == ["c11_A0_s2", "c11_A0_s3"]
+            return {"A2-A0": {"AP": {"delta": 0.0}}}
+
+    out = tmp_path / "boot.json"
+    cr.run_scene_bootstrap(FakeCB, [runs], "e2e", [("A2", "A0")], ("AP",), 10, None, out, only_seeds=(2, 3))
+    assert json.loads(out.read_text())["_c11x_meta"]["seeds"] == {"A0": [2, 3], "A2": [2, 3]}
