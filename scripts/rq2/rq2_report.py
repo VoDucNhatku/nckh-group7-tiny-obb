@@ -70,7 +70,7 @@ def figure(s: dict, out: Path):
         ax.bar(x, zc, color="#4c72b0", label="no candidate")
         ax.bar(x, lc, bottom=zc, color="#dd8452", label="lost at conflict (proxy)")
         ax.set_xticks(list(x), ARMS)
-        ax.set_title(name.replace("$<$", "<"), fontsize=9)
+        ax.set_title(name.replace("$<$", "<").replace("--", "–"), fontsize=9)
         ax.set_ylabel("GT without positive (%)", fontsize=8)
         ax.tick_params(labelsize=8)
     axes[0].legend(fontsize=7, frameon=False)
