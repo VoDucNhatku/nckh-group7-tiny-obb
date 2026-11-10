@@ -17,6 +17,9 @@ Mọi module viết cho `ultralytics==8.4.174` và có kiểm phiên bản.
 | `build_notebooks.py` | Sinh `notebooks/C11x_analysis_colab.ipynb` và `notebooks/C11x_train_kfloor_colab.ipynb` | — |
 | `build_confirm_notebook.py` | Sinh `notebooks/C11x_train_confirm_colab.ipynb` (phụ lục A2). Notebook K-floor cũ giữ làm lịch sử; nó dừng vì cổng H2 trượt | — |
 | `build_explore_notebook.py` | Sinh `notebooks/C11x_explore_val_colab.ipynb`: phân tích 12 run cũ trên val, không train, để quyết định có train thêm không | không |
+| `a8_rule.py` | Luật phụ lục A3: kiểm môi trường R1, chọn run cần train, phán quyết P2 cho A8 | không |
+| `a8_power.py` | Ước lượng khả năng đạt của luật A3 từ dao động theo seed 1–3 (mô phỏng) | không |
+| `build_a8_notebook.py` | Sinh `notebooks/C11x_train_a8_colab.ipynb` (phụ lục A3) | — |
 | `c11x_cache.py` | Đưa `evalcache_*.npz` về cùng thứ tự ảnh trước khi bootstrap (từ ô #17 notebook phân tích) | không |
 | `export_explor.py` | Chép kết quả thăm dò từ output notebook phân tích ra CSV/JSON, sinh bảng và macro cho bài | không |
 | `tests/` | 50 test (pytest); 5 test nặng tự bỏ qua khi không có GPU | không |
