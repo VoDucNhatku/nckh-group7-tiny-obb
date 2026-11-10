@@ -130,6 +130,32 @@ def main():
     lines += [f"{a} & {b} & {c} \\\\" for a, b, c in rows]
     lines += ["\\bottomrule", "\\end{tabular}"]
     (TAB / "appendix_prereg.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    # Vietnamese version for paper/main_vi.tex: same outcomes, same numbers.
+    def trang_thai(ok, yes="đúng", no="không được ủng hộ"):
+        return yes if ok else no
+
+    rows_vi = [
+        ("H1a", "$\\Delta$AP$_{vt}>0$ cho A1, A8, A2 so với A0, cả hai đầu", trang_thai(h1a, "đúng (mô tả)")),
+        ("H1b", "mức tăng do sàn ở đầu NMS lớn hơn ở đầu e2e", f"không được ủng hộ: {len(h1b_arms)} trên 3 nhánh đạt luật"),
+        ("H1c", "$\\Delta$AP$_s\\leq 0$ với các sàn, cả hai đầu", trang_thai(h1c, "đúng (mô tả)")),
+        ("H2a", "recall tăng theo số ứng viên (cổng)", "không được ủng hộ: hệ số âm"),
+        ("H2b", "mẫu dương đầu tiên quan trọng nhất với hộp $<8$ px", f"đúng một phần: {num(h2b_first)} so với {num(h2b_rest)}; chưa tính tỉ lệ 95\\%"),
+        ("H2c", "hiệu ứng của nhánh giảm $\\geq 50\\%$ khi đưa mẫu dương vào", "đúng với " + ", ".join(a for a in ARMS if h2c[a]) + "; không đúng với " + ", ".join(a for a in ARMS if not h2c[a])),
+        ("H3a--c", "các lần chạy K-floor", "hủy sau cổng"),
+        ("H4a", "sai số góc giảm theo kích thước", trang_thai(all(monotone.values()), "đúng", f"không được ủng hộ: cao nhất ở {peak_bin.replace('-', '--')} px")),
+        ("H4b", "các nhánh lệch nhau trong 2$^\\circ$ ở cùng kích thước", trang_thai(spread <= 2, f"đúng (lệch tối đa {spread:.1f}$^\\circ$)", "không được ủng hộ")),
+        ("P1", "$\\Delta$AP$_{vt}$(A2$-$A0) $>0$ trên seed 4, 5, trung bình $\\geq 0.006$", "lặp lại được theo luật"),
+        ("M1", "hộp bị bỏ đói trừ hộp rất nhỏ khác, $\\Delta$recall $>0$", "dương ở mọi seed; đạt tiêu chí trên seed 1--3, không đạt trên 4--5"),
+        ("M2", "A2$-$A8 lớn hơn ở cụm dày", "hủy (không huấn luyện A8)"),
+        ("M3a", "bỏ sót là kết quả lớn nhất (A2, rất nhỏ)", "đúng ở score $\\geq 0.25$; đảo ngược ở $\\geq 0.05$"),
+        ("M3b", "hộp bị bỏ đói vẫn có recall thấp hơn dưới A2", "đúng"),
+        ("M3c", "mức giảm IoU 0.25$\\to$0.5 ở hộp rất nhỏ lớn hơn ở hộp tí hon", "đúng (đã thấy trên tập kiểm định trước)"),
+    ]
+    lines = ["\\begin{tabular}{lp{6.2cm}p{6.2cm}}", "\\toprule", "Mã & Dự báo & Kết quả \\\\", "\\midrule"]
+    lines += [f"{a} & {b} & {c} \\\\" for a, b, c in rows_vi]
+    lines += ["\\bottomrule", "\\end{tabular}"]
+    (TAB / "appendix_prereg_vi.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("h1b arms meeting rule:", h1b_arms, "h2c:", h2c, "monotone:", monotone, "spread:", round(spread, 2))
     print(len(macros), "macros")
 
